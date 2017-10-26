@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/ImageviewPelicula"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+
+        />
+    <TextView
+        android:id="@+id/TextviewPelicula"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="pelicula"
+        android:textSize="100dp"
+        android:layout_gravity="center_vertical"
+        android:background="#ba000000"
+        android:textColor="#fdfafa"
+        />
+
+</FrameLayout>
