@@ -7,10 +7,12 @@ package a0817moact03c_2.a0817moact03c_02;
 public class Pelicula {
     private String pelicula;
     private int imagen;
+    private String genero;
 
-    public Pelicula(String nombre, int imagen) {
+    public Pelicula(String nombre, int imagen, String genero) {
         this.pelicula = nombre;
         this.imagen = imagen;
+        this.genero = genero;
     }
 
     public String getNombre() {
@@ -19,6 +21,10 @@ public class Pelicula {
 
     public int getImagen() {
         return imagen;
+    }
+
+    public String getGenero() {
+        return genero;
     }
 }
 

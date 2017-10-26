@@ -1,6 +1,8 @@
 package a0817moact03c_2.a0817moact03c_02;
 
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
@@ -22,12 +24,17 @@ import java.util.List;
 public class ListaGenerosFragment extends Fragment implements AdaptadorGeneros.EscuchadorDeGeneros {
     private List<Genero>listaDeGeneros;
     private AdaptadorGeneros adaptadorGeneros;
-
+    private EscuchadorDeGeneros escuchadorDeGeneros;
 
     public ListaGenerosFragment() {
         // Required empty public constructor
     }
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        escuchadorDeGeneros = (EscuchadorDeGeneros)context;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -72,6 +79,11 @@ public class ListaGenerosFragment extends Fragment implements AdaptadorGeneros.E
 
     @Override
     public void seleccionaronA(Genero unGenero) {
-        Toast.makeText(getContext(), "seleccionaron a " + unGenero.getNombreGenero(), Toast.LENGTH_SHORT).show();
+      escuchadorDeGeneros.seleccionaronGenero(unGenero);
+
+    }
+
+    interface EscuchadorDeGeneros{
+        public void seleccionaronGenero(Genero unGenero);
     }
 }

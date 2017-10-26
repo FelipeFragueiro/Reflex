@@ -12,9 +12,9 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements AdaptadorPeliculasRecycler.PeliculasListener{
-    private List<Pelicula> listaDePelis;
-    private AdaptadorPeliculasRecycler unAdaptadorDeGeneros;
+public class MainActivity extends AppCompatActivity implements ListaGenerosFragment.EscuchadorDeGeneros {
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,36 +26,18 @@ public class MainActivity extends AppCompatActivity implements AdaptadorPelicula
         fragmentTransaction.replace(R.id.contenedorFragmentListaGeneros, listaGenerosFragment);
         fragmentTransaction.commit();
 
-
-
-        cargarPelis();
-
-        RecyclerView recyclerViewPersonaje = (RecyclerView)findViewById(R.id.RecyclerGeneros);
-
-        unAdaptadorDeGeneros = new AdaptadorPeliculasRecycler(listaDePelis,this,this);
-
-        recyclerViewPersonaje.setLayoutManager(new GridLayoutManager(this,2));
-
-        recyclerViewPersonaje.setAdapter(unAdaptadorDeGeneros);
-    }
-
-    private void cargarPelis() {
-        listaDePelis = new ArrayList<>();
-        listaDePelis.add(new Pelicula("ACCION",R.drawable.accion));
-        listaDePelis.add(new Pelicula("TERROR",R.drawable.terror));
-        listaDePelis.add(new Pelicula("AVENTURA",R.drawable.aventura));
-
+        
     }
 
 
     @Override
-    public void seleccionaronA(Pelicula unaPeli) {
-        Toast.makeText(this,unaPeli.getNombre(),Toast.LENGTH_SHORT).show();
-        Intent unIntent = new Intent(this, activitypelis.class);
-        Bundle unBundle = new Bundle();
-        unBundle.putString("Pelicula",unaPeli.getNombre());
-
+    public void seleccionaronGenero(Genero unGenero) {
+        Toast.makeText(this, unGenero.toString(), Toast.LENGTH_SHORT).show();
+        Intent unIntent = new Intent(this, DetalleGenerosActivity.class);
+        Bundle unBundle = new  Bundle();
+        unBundle.putString("nombre_genero",unGenero.getNombreGenero());
         unIntent.putExtras(unBundle);
         startActivity(unIntent);
+
     }
 }

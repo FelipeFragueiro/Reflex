@@ -20,4 +20,12 @@ public class Genero {
     public String getNombreGenero() {
         return nombreGenero;
     }
+
+    @Override
+    public String toString() {
+        return "Genero{" +
+                "nombreGenero='" + nombreGenero + '\'' +
+                ", imagenGenero=" + imagenGenero +
+                '}';
+    }
 }
