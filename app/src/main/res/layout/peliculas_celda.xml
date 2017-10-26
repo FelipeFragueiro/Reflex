@@ -3,17 +3,17 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-<ImageView
-    android:id="@+id/ImageviewGenero"
-    android:layout_width="match_parent"
-    android:layout_height="300dp"
+    <ImageView
+        android:id="@+id/ImageviewPelicula"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
 
-    />
+        />
     <TextView
-        android:id="@+id/TextviewGenero"
+        android:id="@+id/TextviewPelicula"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Genero"
+        android:text="pelicula"
         android:textSize="100dp"
         android:layout_gravity="center_vertical"
         android:background="#ba000000"
