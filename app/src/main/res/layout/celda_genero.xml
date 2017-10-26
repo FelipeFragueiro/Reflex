@@ -4,15 +4,20 @@
     android:layout_height="match_parent">
 
 <ImageView
+    android:id="@+id/ImageviewGenero"
     android:layout_width="match_parent"
     android:layout_height="300dp"
-    android:layout_gravity="center"
+
     />
     <TextView
+        android:id="@+id/TextviewGenero"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Genero"
-        android:textSize="60dp"
+        android:textSize="100dp"
+        android:layout_gravity="center_vertical"
+        android:background="#ba000000"
+        android:textColor="#fdfafa"
         />
 
 </FrameLayout>
