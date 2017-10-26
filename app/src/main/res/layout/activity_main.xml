@@ -6,16 +6,12 @@
     android:orientation="vertical"
     tools:context="a0817moact03c_2.a0817moact03c_02.MainActivity">
 
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Generos"
-    android:layout_gravity="center"
-    android:textSize="30dp"/>
+    <LinearLayout
+        android:id="@+id/contenedorFragmentListaGeneros"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-<ListView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    </LinearLayout>
 
-</ListView>
 </LinearLayout>
