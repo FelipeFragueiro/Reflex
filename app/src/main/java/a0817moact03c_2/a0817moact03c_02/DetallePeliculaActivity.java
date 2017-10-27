@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -22,8 +23,15 @@ public class DetallePeliculaActivity extends AppCompatActivity implements Adapta
         Intent unIntent = getIntent();
         Bundle unBundle = unIntent.getExtras();
         String nombrePelicula = unBundle.get("nombre_pelicula").toString();
+        int imagenDePelicula = (int) unBundle.get("Imagen_Pelicula");
+        String generoDePelicula = unBundle.get("Genero_Pelicula").toString();
         TextView textViewNombrePelicula = (TextView)findViewById(R.id.textViewDelTituloDeLaPelicula);
+        ImageView unImageViewPelicula = (ImageView)findViewById(R.id.imageViewDeLaPelicula);
+        TextView unTextViewDelGenero = (TextView)findViewById(R.id.textViewDelGenero);
+
         textViewNombrePelicula.setText(nombrePelicula);
+        unImageViewPelicula.setImageResource(imagenDePelicula);
+        unTextViewDelGenero.setText(generoDePelicula);
 
 
         //1) Buscar el recycler View

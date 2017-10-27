@@ -19,14 +19,14 @@
         <ImageView
             android:id="@+id/imageViewDeLaPelicula"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="200dp" />
 
         <TextView
             android:id="@+id/textViewDelTituloDeLaPelicula"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:layout_marginTop="150dp"
+            android:layout_marginTop="15dp"
             android:textSize="20dp"
             android:text="Titulo de la pelicula" />
 

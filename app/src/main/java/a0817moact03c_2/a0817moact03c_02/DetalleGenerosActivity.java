@@ -56,7 +56,8 @@ public class DetalleGenerosActivity extends AppCompatActivity implements Adaptad
         Intent unIntent = new Intent(this, DetallePeliculaActivity.class);
         Bundle unBundle = new Bundle();
         unBundle.putString("nombre_pelicula",unaPeli.getNombre());
-
+        unBundle.putInt("Imagen_Pelicula", unaPeli.getImagen());
+        unBundle.putString("Genero_Pelicula",unaPeli.getGenero());
         unIntent.putExtras(unBundle);
         startActivity(unIntent);
     }
