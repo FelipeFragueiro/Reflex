@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="a0817moact03c_2.a0817moact03c_02.DetalleGenerosActivity">
+    tools:context="a0817moact03c_2.a0817moact03c_02.DetalleGenerosActivity"
+    android:background="#000000">
 
 <TextView
     android:id="@+id/textViewGeneroDetalleGeneroAct"
@@ -12,7 +13,8 @@
     android:layout_height="wrap_content"
     android:text="Genero"
     android:layout_gravity="center"
-    android:textSize="50dp"/>
+    android:textSize="50dp"
+    android:textColor="#ffffff"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/RecyclerGeneros"
