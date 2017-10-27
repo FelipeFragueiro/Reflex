@@ -14,16 +14,17 @@ import java.util.List;
  * Created by ma on 26/10/17.
  */
 
-public class AdaptadorPeliculasRecycler extends RecyclerView.Adapter {
+public class AdaptadorDeListaDePeliculasRecycler extends RecyclerView.Adapter {
     private List<Pelicula> peliculasAMostrar;
     private Context unContexto;
     private PeliculasListener peliculasListener;
 
-    public AdaptadorPeliculasRecycler(List<Pelicula> peliculasAMostrar, Context unContexto,PeliculasListener unlistener  ){
+    public AdaptadorDeListaDePeliculasRecycler(List<Pelicula> peliculasAMostrar, Context unContexto, PeliculasListener unlistener  ){
         this.peliculasAMostrar = peliculasAMostrar;
         this.unContexto = unContexto;
         this.peliculasListener = unlistener;
     }
+
 
 
 

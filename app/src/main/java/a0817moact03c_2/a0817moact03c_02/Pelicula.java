@@ -15,6 +15,8 @@ public class Pelicula {
         this.genero = genero;
     }
 
+
+
     public String getNombre() {
         return pelicula;
     }

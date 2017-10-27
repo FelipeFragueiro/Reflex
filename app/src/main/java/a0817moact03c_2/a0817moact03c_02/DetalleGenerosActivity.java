@@ -6,13 +6,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class DetalleGenerosActivity extends AppCompatActivity implements AdaptadorPeliculasRecycler.PeliculasListener{
+public class DetalleGenerosActivity extends AppCompatActivity implements AdaptadorDeListaDePeliculasRecycler.PeliculasListener{
     private List<Pelicula> listaDePelis;
-    private AdaptadorPeliculasRecycler unAdaptadorDePeliculas;
+    private AdaptadorDeListaDePeliculasRecycler unAdaptadorDePeliculas;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +28,7 @@ public class DetalleGenerosActivity extends AppCompatActivity implements Adaptad
 
         RecyclerView recyclerViewPersonaje = (RecyclerView)findViewById(R.id.RecyclerGeneros);
 
-        unAdaptadorDePeliculas = new AdaptadorPeliculasRecycler(listaDePelis,this,this);
+        unAdaptadorDePeliculas = new AdaptadorDeListaDePeliculasRecycler(listaDePelis,this,this);
 
         recyclerViewPersonaje.setLayoutManager(new GridLayoutManager(this,2));
         recyclerViewPersonaje.setHasFixedSize(true);
@@ -51,12 +52,12 @@ public class DetalleGenerosActivity extends AppCompatActivity implements Adaptad
 
     @Override
     public void seleccionaronA(Pelicula unaPeli) {
-        //Toast.makeText(this,unaPeli.getNombre(),Toast.LENGTH_SHORT).show();
-       // Intent unIntent = new Intent(this, detallePelis.class);
-        //Bundle unBundle = new Bundle();
-        //unBundle.putString("Pelicula",unaPeli.getNombre());
+        Toast.makeText(this,unaPeli.getNombre(), Toast.LENGTH_SHORT).show();
+        Intent unIntent = new Intent(this, DetallePeliculaActivity.class);
+        Bundle unBundle = new Bundle();
+        unBundle.putString("nombre_pelicula",unaPeli.getNombre());
 
-        //unIntent.putExtras(unBundle);
-        //startActivity(unIntent);
+        unIntent.putExtras(unBundle);
+        startActivity(unIntent);
     }
 }

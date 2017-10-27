@@ -17,6 +17,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".DetalleGenerosActivity"></activity>
+        <activity android:name=".DetallePeliculaActivity"></activity>
     </application>
 
 </manifest>
