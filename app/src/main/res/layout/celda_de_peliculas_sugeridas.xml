@@ -10,9 +10,7 @@
         android:id="@id/imageViewDeLaPelicula"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="10dp"
+        android:layout_margin="8dp"
         />
 
     <TextView
@@ -21,6 +19,7 @@
         android:layout_height="wrap_content"
         android:text="Titulo de la pelicula"
         android:gravity="center"
+        android:textStyle="bold"
         android:textSize="23dp"/>
 
 

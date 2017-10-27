@@ -42,9 +42,9 @@ public class DetalleGenerosActivity extends AppCompatActivity implements Adaptad
     private void cargarPelis() {
 
             listaDePelis = new ArrayList<>();
-            listaDePelis.add(new Pelicula("El trolaso", R.drawable.accion, "Accion"));
-            listaDePelis.add(new Pelicula("Indiana jones", R.drawable.terror, "Aventura"));
-            listaDePelis.add(new Pelicula("pelicula terror", R.drawable.aventura, "Terror"));
+            listaDePelis.add(new Pelicula("El transportador 10", R.drawable.accion, "Accion", "Un pelado trabado, que anda siempre arriba de un Audi enfierrado."));
+            listaDePelis.add(new Pelicula("Indiana jones", R.drawable.indiana_jones, "Aventura", "Un exploraGay que siempre lleva su latigo encima."));
+            listaDePelis.add(new Pelicula("Martes 13", R.drawable.terror, "Terror", "Un feo con una mascara que murio ahogado en un lago , resucita todos los martes 13 para matar a todos."));
 
 
     }
@@ -58,6 +58,7 @@ public class DetalleGenerosActivity extends AppCompatActivity implements Adaptad
         unBundle.putString("nombre_pelicula",unaPeli.getNombre());
         unBundle.putInt("Imagen_Pelicula", unaPeli.getImagen());
         unBundle.putString("Genero_Pelicula",unaPeli.getGenero());
+        unBundle.putString("descripcion_pelicula",unaPeli.getDescripcion());
         unIntent.putExtras(unBundle);
         startActivity(unIntent);
     }
