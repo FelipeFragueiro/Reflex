@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import static android.support.v7.recyclerview.R.styleable.RecyclerView;
+
 /**
  * Created by ma on 26/10/17.
  */

@@ -2,6 +2,8 @@ package a0817moact03c_2.a0817moact03c_02;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,48 +13,50 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DetalleGenerosActivity extends AppCompatActivity implements AdaptadorDeListaDePeliculasRecycler.PeliculasListener{
+public class DetalleGenerosActivity extends AppCompatActivity implements DetalleGenerosFragment.EscuchadorDePelis{
     private List<Pelicula> listaDePelis;
     private AdaptadorDeListaDePeliculasRecycler unAdaptadorDePeliculas;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle_genero);
+
+
         Intent unIntent = getIntent();
         Bundle unBundle = unIntent.getExtras();
 
-        String unNombreDeGenero = unBundle.getString("nombre_genero");
-        TextView unTextView = (TextView)findViewById(R.id.textViewGeneroDetalleGeneroAct);
-        unTextView.setText(unNombreDeGenero);
-        cargarPelis();
 
-        RecyclerView recyclerViewPersonaje = (RecyclerView)findViewById(R.id.RecyclerGeneros);
 
-        unAdaptadorDePeliculas = new AdaptadorDeListaDePeliculasRecycler(listaDePelis,this,this);
 
-        recyclerViewPersonaje.setLayoutManager(new GridLayoutManager(this,2));
-        recyclerViewPersonaje.setHasFixedSize(true);
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        DetalleGenerosFragment detalleGenerosFragment = new DetalleGenerosFragment();
+        detalleGenerosFragment.setArguments(unBundle);
+        fragmentTransaction.replace(R.id.contenedorFragmentListaPeliculas,detalleGenerosFragment);
+        fragmentTransaction.commit();
 
-        recyclerViewPersonaje.setAdapter(unAdaptadorDePeliculas);
-        
+
+        /*FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        ListaGenerosFragment listaGenerosFragment = new ListaGenerosFragment();
+        fragmentTransaction.replace(R.id.contenedorFragmentListaPeliculas, listaGenerosFragment);
+        fragmentTransaction.commit();*/
+
+
+
+
     }
 
     //Hacer un if para cuando toquen el genero de terror aparesca una lista con peliculas de terror.
 
-    private void cargarPelis() {
-
-            listaDePelis = new ArrayList<>();
-            listaDePelis.add(new Pelicula("El transportador 10", R.drawable.imagenpeliculas, "Accion", "Un pelado trabado, que anda siempre arriba de un Audi enfierrado."));
-            listaDePelis.add(new Pelicula("Indiana jones", R.drawable.imagenpeliculas, "Aventura", "Un exploraGay que siempre lleva su latigo encima."));
-            listaDePelis.add(new Pelicula("Martes 13", R.drawable.imagenpeliculas, "Terror", "Un feo con una mascara que murio ahogado en un lago , resucita todos los martes 13 para matar a todos."));
 
 
+
+    public void seleccionaronA(Pelicula unaPeli) {
     }
 
-
     @Override
-    public void seleccionaronA(Pelicula unaPeli) {
-        Toast.makeText(this,unaPeli.getNombre(), Toast.LENGTH_SHORT).show();
+    public void seleccionaronPeli(Pelicula unaPeli) {
         Intent unIntent = new Intent(this, DetallePeliculaActivity.class);
         Bundle unBundle = new Bundle();
         unBundle.putString("nombre_pelicula",unaPeli.getNombre());
