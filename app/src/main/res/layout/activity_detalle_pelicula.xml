@@ -6,10 +6,7 @@
     android:fillViewport="true"
     android:focusableInTouchMode="true">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -22,49 +19,7 @@
         android:background="#000000"
         >
 
-        <ImageButton
-            android:id="@+id/imageViewDeLaPelicula"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            />
 
-        <TextView
-            android:id="@+id/textViewDelTituloDeLaPelicula"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_marginTop="10dp"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            android:text="Titulo de la pelicula"
-            android:textColor="#ffffff"/>
-
-        <TextView
-            android:layout_marginTop="5dp"
-            android:id="@+id/textViewDelGenero"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="15dp"
-            android:textStyle="bold"
-            android:text="Genero"
-            android:textColor="#ffffff"/>
-
-        <TextView
-            android:id="@+id/textViewDeLaDescripcionDeLaPelicula"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textSize="20dp"
-            android:text="Descripcion de la pelicula"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="15dp"
-            android:textColor="#ffffff"/>
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recyclerViewDePeliculasSugeridas"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            ></android.support.v7.widget.RecyclerView>
     </LinearLayout>
-    </ScrollView>
+
 </RelativeLayout>
