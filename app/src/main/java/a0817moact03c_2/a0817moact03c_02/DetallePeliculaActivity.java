@@ -84,7 +84,14 @@ public class DetallePeliculaActivity extends AppCompatActivity implements Adapta
     @Override
     public void seleccionaronA(Pelicula unaPelicula) {
 
-    }
-
+            Intent unIntent = new Intent(DetallePeliculaActivity.this,DetallePeliculaActivity.class);
+            Bundle unBundle = new Bundle();
+            unBundle.putString("nombre_pelicula",unaPelicula.getNombre());
+            unBundle.putInt("Imagen_Pelicula", unaPelicula.getImagen());
+            unBundle.putString("Genero_Pelicula",unaPelicula.getGenero());
+            unBundle.putString("descripcion_pelicula",unaPelicula.getDescripcion());
+            unIntent.putExtras(unBundle);
+            startActivity(unIntent);
+        }
 
 }
