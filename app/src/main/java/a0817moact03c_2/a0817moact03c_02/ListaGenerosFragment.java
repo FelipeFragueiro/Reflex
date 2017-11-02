@@ -56,21 +56,21 @@ public class ListaGenerosFragment extends Fragment implements AdaptadorGeneros.E
 
         recyclerView.setAdapter(adaptadorGeneros);
 
-        listaDeGeneros.add(new Genero("Accion",R.drawable.accion));
-        listaDeGeneros.add(new Genero("Animadas",R.drawable.animadas));
-        listaDeGeneros.add(new Genero("Anime",R.drawable.anime));
-        listaDeGeneros.add(new Genero("Aventura",R.drawable.aventura));
-        listaDeGeneros.add(new Genero("Ciencia Ficcion",R.drawable.ciencia_ficcion));
-        listaDeGeneros.add(new Genero("Comedia",R.drawable.comedia));
-        listaDeGeneros.add(new Genero("Deporte",R.drawable.deporte));
-        listaDeGeneros.add(new Genero("Documentales",R.drawable.documental));
-        listaDeGeneros.add(new Genero("Drama",R.drawable.drama));
-        listaDeGeneros.add(new Genero("Infantil",R.drawable.infantil));
-        listaDeGeneros.add(new Genero("Policiaca",R.drawable.policiaca));
-        listaDeGeneros.add(new Genero("Romantico",R.drawable.romantica));
-        listaDeGeneros.add(new Genero("Terror",R.drawable.terror));
-        listaDeGeneros.add(new Genero("Thriller",R.drawable.thriller));
-        listaDeGeneros.add(new Genero("Suspenso",R.drawable.suspenso));
+        listaDeGeneros.add(new Genero("Accion",R.drawable.imagenpeliculas));
+        listaDeGeneros.add(new Genero("Animadas",R.drawable.imagenpeliculas));
+        listaDeGeneros.add(new Genero("Anime",R.drawable.imagenpeliculas));
+        listaDeGeneros.add(new Genero("Aventura",R.drawable.imagenpeliculas));
+        listaDeGeneros.add(new Genero("Ciencia Ficcion",R.drawable.imagenpeliculas));
+        listaDeGeneros.add(new Genero("Comedia",R.drawable.imagenpeliculas));
+        listaDeGeneros.add(new Genero("Deporte",R.drawable.imagenpeliculas));
+        listaDeGeneros.add(new Genero("Documentales",R.drawable.imagenpeliculas));
+        listaDeGeneros.add(new Genero("Drama",R.drawable.imagenpeliculas));
+        listaDeGeneros.add(new Genero("Infantil",R.drawable.imagenpeliculas));
+        listaDeGeneros.add(new Genero("Policiaca",R.drawable.imagenpeliculas));
+        listaDeGeneros.add(new Genero("Romantico",R.drawable.imagenpeliculas));
+        listaDeGeneros.add(new Genero("Terror",R.drawable.imagenpeliculas));
+        listaDeGeneros.add(new Genero("Thriller",R.drawable.imagenpeliculas));
+        listaDeGeneros.add(new Genero("Suspenso",R.drawable.imagenpeliculas));
 
         return view;
 

@@ -73,11 +73,11 @@ public class DetallePeliculaActivity extends AppCompatActivity implements Adapta
 
     private void cargarPersonajesFavoritos(){
         listaDePeliculasSugeridas = new ArrayList<>();
-        listaDePeliculasSugeridas.add(new Pelicula("MasacreDeTexas", R.drawable.masacredetexas,"terror","Un pipe medio chiflado sale a matar gente en el estado de TeJas."));
-        listaDePeliculasSugeridas.add(new Pelicula("Anabelle", R.drawable.anabelle,"terror", " Una muñeca de feria seenoja por no ser linda como la Barbie y mata a todos."));
-        listaDePeliculasSugeridas.add(new Pelicula("Freddy Crugger ", R.drawable.freddycrugger,"terror","Un pelado quemado ,más achicharrado que una pasa de uva aparece en tus sueños para hacer contigo lo que se le plazca ."));
-        listaDePeliculasSugeridas.add(new Pelicula(" IT ", R.drawable.it,"terror", "Un payaso aparece cada 27 años en la matanza para robarse todos los celus."));
-        listaDePeliculasSugeridas.add(new Pelicula("Saw", R.drawable.saw,"terror", " Mueren todos."));
+        listaDePeliculasSugeridas.add(new Pelicula("MasacreDeTexas", R.drawable.imagenpeliculas,"terror","Un pipe medio chiflado sale a matar gente en el estado de TeJas."));
+        listaDePeliculasSugeridas.add(new Pelicula("Anabelle", R.drawable.imagenpeliculas,"terror", " Una muñeca de feria seenoja por no ser linda como la Barbie y mata a todos."));
+        listaDePeliculasSugeridas.add(new Pelicula("Freddy Crugger ", R.drawable.imagenpeliculas,"terror","Un pelado quemado ,más achicharrado que una pasa de uva aparece en tus sueños para hacer contigo lo que se le plazca ."));
+        listaDePeliculasSugeridas.add(new Pelicula(" IT ", R.drawable.imagenpeliculas,"terror", "Un payaso aparece cada 27 años en la matanza para robarse todos los celus."));
+        listaDePeliculasSugeridas.add(new Pelicula("Saw", R.drawable.imagenpeliculas,"terror", " Mueren todos."));
 
     }
 

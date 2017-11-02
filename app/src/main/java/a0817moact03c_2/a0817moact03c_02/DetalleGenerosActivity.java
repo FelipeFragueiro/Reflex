@@ -42,9 +42,9 @@ public class DetalleGenerosActivity extends AppCompatActivity implements Adaptad
     private void cargarPelis() {
 
             listaDePelis = new ArrayList<>();
-            listaDePelis.add(new Pelicula("El transportador 10", R.drawable.accion, "Accion", "Un pelado trabado, que anda siempre arriba de un Audi enfierrado."));
-            listaDePelis.add(new Pelicula("Indiana jones", R.drawable.indiana_jones, "Aventura", "Un exploraGay que siempre lleva su latigo encima."));
-            listaDePelis.add(new Pelicula("Martes 13", R.drawable.terror, "Terror", "Un feo con una mascara que murio ahogado en un lago , resucita todos los martes 13 para matar a todos."));
+            listaDePelis.add(new Pelicula("El transportador 10", R.drawable.imagenpeliculas, "Accion", "Un pelado trabado, que anda siempre arriba de un Audi enfierrado."));
+            listaDePelis.add(new Pelicula("Indiana jones", R.drawable.imagenpeliculas, "Aventura", "Un exploraGay que siempre lleva su latigo encima."));
+            listaDePelis.add(new Pelicula("Martes 13", R.drawable.imagenpeliculas, "Terror", "Un feo con una mascara que murio ahogado en un lago , resucita todos los martes 13 para matar a todos."));
 
 
     }
