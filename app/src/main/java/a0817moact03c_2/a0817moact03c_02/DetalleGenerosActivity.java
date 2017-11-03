@@ -64,6 +64,7 @@ public class DetalleGenerosActivity extends AppCompatActivity implements Detalle
         unBundle.putInt("Imagen_Pelicula", unaPeli.getImagen());
         unBundle.putString("Genero_Pelicula",unaPeli.getGenero());
         unBundle.putString("descripcion_pelicula",unaPeli.getDescripcion());
+        unBundle.putInt("posicion_pelicula",unaPeli.getPosicion());
         unIntent.putExtras(unBundle);
         startActivity(unIntent);
     }

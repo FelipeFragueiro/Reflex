@@ -42,7 +42,9 @@ public class AdaptadorDeListaDePeliculasRecycler extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        final Pelicula unaPeli = peliculasAMostrar.get(position);
+
+        final  Pelicula unaPeli = peliculasAMostrar.get(position);
+         unaPeli.setPosicion(position);
         PeliculaViewHolder peliculaViewHolder = (PeliculaViewHolder) holder;
         peliculaViewHolder.cargarPeli(unaPeli);
         View viewDeLaCelda = peliculaViewHolder.itemView;

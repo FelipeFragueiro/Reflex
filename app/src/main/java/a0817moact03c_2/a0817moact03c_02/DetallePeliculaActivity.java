@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -31,25 +32,28 @@ public class DetallePeliculaActivity extends AppCompatActivity implements Detall
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         DetallePeliculaFragment detallePeliculaFragment = new DetallePeliculaFragment();
         detallePeliculaFragment.setArguments(unBundle);
-        fragmentTransaction.replace(R.id.contenedorFragmentDetallePelicula,detallePeliculaFragment);
+        fragmentTransaction.replace(R.id.contenedorFragmentDetallePelicula, detallePeliculaFragment);
         fragmentTransaction.commit();
+
+
+        ViewPager viewPager = (ViewPager) findViewById(R.id.viewPagerDetallePelicula);
+        AdaptadorDeDetallePeliculaFragment adapterViewPager = new AdaptadorDeDetallePeliculaFragment(getSupportFragmentManager());
+        viewPager.setAdapter(adapterViewPager);
+        viewPager.setCurrentItem(unBundle.getInt("posicion_pelicula"));
 
     }
 
 
 
 
-
-
-
     @Override
     public void seleccionaronPelicula(Pelicula unaPelicula) {
-        Intent unIntent = new Intent(DetallePeliculaActivity.this,DetallePeliculaActivity.class);
+        Intent unIntent = new Intent(DetallePeliculaActivity.this, DetallePeliculaActivity.class);
         Bundle unBundle = new Bundle();
-        unBundle.putString("nombre_pelicula",unaPelicula.getNombre());
+        unBundle.putString("nombre_pelicula", unaPelicula.getNombre());
         unBundle.putInt("Imagen_Pelicula", unaPelicula.getImagen());
-        unBundle.putString("Genero_Pelicula",unaPelicula.getGenero());
-        unBundle.putString("descripcion_pelicula",unaPelicula.getDescripcion());
+        unBundle.putString("Genero_Pelicula", unaPelicula.getGenero());
+        unBundle.putString("descripcion_pelicula", unaPelicula.getDescripcion());
         unIntent.putExtras(unBundle);
         startActivity(unIntent);
 

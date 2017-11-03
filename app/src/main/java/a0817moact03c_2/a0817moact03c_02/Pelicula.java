@@ -9,15 +9,20 @@ public class Pelicula {
     private int imagen;
     private String genero;
     private String descripcion;
+    private int posicion;
 
-    public Pelicula(String nombre, int imagen, String genero,String descripcion) {
+    public Pelicula(String nombre, int imagen, String genero,String descripcion, int posicion) {
         this.pelicula = nombre;
         this.imagen = imagen;
         this.genero = genero;
         this.descripcion= descripcion;
+        this.posicion = posicion;
+
     }
 
-
+    public void setPosicion(int posicion) {
+        this.posicion = posicion;
+    }
 
     public String getNombre() {
         return pelicula;
@@ -29,6 +34,10 @@ public class Pelicula {
 
     public String getGenero() {
         return genero;
+    }
+
+    public int getPosicion() {
+        return posicion;
     }
 
     public String getDescripcion() {
