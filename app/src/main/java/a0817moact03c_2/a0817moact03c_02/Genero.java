@@ -23,9 +23,6 @@ public class Genero {
 
     @Override
     public String toString() {
-        return "Genero{" +
-                "nombreGenero='" + nombreGenero + '\'' +
-                ", imagenGenero=" + imagenGenero +
-                '}';
+        return  "Seleccionaste el genero = '" + nombreGenero +  '\'' ;
     }
 }
