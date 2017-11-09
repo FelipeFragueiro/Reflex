@@ -2,6 +2,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
+
     >
 
 
@@ -10,6 +11,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:focusableInTouchMode="true"
         android:orientation="vertical"
         tools:context="a0817moact03c_2.a0817moact03c_02.DetallePeliculaActivity"
         android:background="#000000">
