@@ -22,7 +22,6 @@ import java.util.List;
 public class DetalleGenerosFragment extends Fragment implements AdaptadorDeListaDePeliculasRecycler.PeliculasListener {
     private List<Pelicula> listaDePelis;
     private AdaptadorDeListaDePeliculasRecycler unAdaptadorDePelis;
-    private AdaptadorDeListaDePeliculasRecycler.PeliculasListener escuchadorDePeliculas;
     private EscuchadorDePelis unEscuchadorDePelis;
 
     public DetalleGenerosFragment() {

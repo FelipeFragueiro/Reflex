@@ -25,7 +25,6 @@ import java.util.List;
 public class DetallePeliculaFragment extends Fragment implements AdaptadorDePeliculaRecycler.EscuchadorDePeliculas {
     private List<Pelicula> listaDePeliculas;
     private AdaptadorDePeliculaRecycler adaptadorDePeliculaRecycler;
-    private AdaptadorDePeliculaRecycler.EscuchadorDePeliculas escuchadorDePeliculas;
     private EscuchadorDePeliculasInterface escuchadorDePeliculasInterface;
 
 
@@ -108,14 +107,14 @@ public class DetallePeliculaFragment extends Fragment implements AdaptadorDePeli
     private void cargarPelis() {
 
         listaDePeliculas = new ArrayList<>();
-        listaDePeliculas.add(new Pelicula("El transportador 10", R.drawable.imagenpeliculas, "Accion", "Un pelado trabado, que anda siempre arriba de un Audi enfierrado.",1));
-        listaDePeliculas.add(new Pelicula("Indiana jones", R.drawable.imagenpeliculas, "Aventura", "Un exploraGay que siempre lleva su latigo encima.",2));
-        listaDePeliculas.add(new Pelicula("Martes 13", R.drawable.imagenpeliculas, "Terror", "Un feo con una mascara que murio ahogado en un lago , resucita todos los martes 13 para matar a todos.",3));
-        listaDePeliculas.add(new Pelicula("Masacre de texas", R.drawable.imagenpeliculas, "Terror", "Un carnisero loco con muy pocas pulgas mata a todo habitante nuevo en Texas",4));
-        listaDePeliculas.add(new Pelicula("Anabelle", R.drawable.imagenpeliculas, "Terror", "Una muñeca con un espiritu maligno se adueña de una familia, sus intenciones no son buenas",5));
-        listaDePeliculas.add(new Pelicula("Freddy Cruger", R.drawable.imagenpeliculas, "Terror", "Una persona acusada de algo que no hizo fue quemada viva por sus vecinos, vuelve en tus sueños en busca de venganza ",6));
-        listaDePeliculas.add(new Pelicula("IT", R.drawable.imagenpeliculas, "Terror", "Un payaso loco en busca de niños para alimentarse vuelve cada 27 años a su suidad donde murio",7));
-        listaDePeliculas.add(new Pelicula("SAW", R.drawable.imagenpeliculas, "Terror", "Un viejo loco asesina a toda persona culpable de pecados",8));
+        listaDePeliculas.add(new Pelicula("El transportador 10", R.drawable.imagenpeliculas, "Accion", "Un pelado trabado, que anda siempre arriba de un Audi enfierrado.",0));
+        listaDePeliculas.add(new Pelicula("Indiana jones", R.drawable.imagenpeliculas, "Aventura", "Un exploraGay que siempre lleva su latigo encima.",1));
+        listaDePeliculas.add(new Pelicula("Martes 13", R.drawable.imagenpeliculas, "Terror", "Un feo con una mascara que murio ahogado en un lago , resucita todos los martes 13 para matar a todos.",2));
+        listaDePeliculas.add(new Pelicula("Masacre de texas", R.drawable.imagenpeliculas, "Terror", "Un carnisero loco con muy pocas pulgas mata a todo habitante nuevo en Texas",3));
+        listaDePeliculas.add(new Pelicula("Anabelle", R.drawable.imagenpeliculas, "Terror", "Una muñeca con un espiritu maligno se adueña de una familia, sus intenciones no son buenas",4));
+        listaDePeliculas.add(new Pelicula("Freddy Cruger", R.drawable.imagenpeliculas, "Terror", "Una persona acusada de algo que no hizo fue quemada viva por sus vecinos, vuelve en tus sueños en busca de venganza ",5));
+        listaDePeliculas.add(new Pelicula("IT", R.drawable.imagenpeliculas, "Terror", "Un payaso loco en busca de niños para alimentarse vuelve cada 27 años a su suidad donde murio",6));
+        listaDePeliculas.add(new Pelicula("SAW", R.drawable.imagenpeliculas, "Terror", "Un viejo loco asesina a toda persona culpable de pecados",7));
 
     }
 
@@ -125,7 +124,6 @@ public class DetallePeliculaFragment extends Fragment implements AdaptadorDePeli
 
     interface EscuchadorDePeliculasInterface {
         public void seleccionaronPelicula(Pelicula unaPelicula);
-
         public void seleccionaronImagen(int unInt);
     }
 }

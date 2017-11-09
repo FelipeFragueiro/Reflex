@@ -39,7 +39,8 @@ public class DetallePeliculaActivity extends AppCompatActivity implements Detall
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewPagerDetallePelicula);
         AdaptadorDeDetallePeliculaFragment adapterViewPager = new AdaptadorDeDetallePeliculaFragment(getSupportFragmentManager());
         viewPager.setAdapter(adapterViewPager);
-        viewPager.setCurrentItem(unBundle.getInt("posicion_pelicula"));
+        viewPager.setCurrentItem(unBundle.getInt("posicion_pelicula")
+        );
 
     }
 
@@ -54,6 +55,7 @@ public class DetallePeliculaActivity extends AppCompatActivity implements Detall
         unBundle.putInt("Imagen_Pelicula", unaPelicula.getImagen());
         unBundle.putString("Genero_Pelicula", unaPelicula.getGenero());
         unBundle.putString("descripcion_pelicula", unaPelicula.getDescripcion());
+        unBundle.putInt("posicion_pelicula",unaPelicula.getPosicion());
         unIntent.putExtras(unBundle);
         startActivity(unIntent);
 
