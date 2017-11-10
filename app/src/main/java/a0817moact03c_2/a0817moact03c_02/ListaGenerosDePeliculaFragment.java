@@ -27,6 +27,7 @@ public class ListaGenerosDePeliculaFragment extends Fragment implements Adaptado
         // Required empty public constructor
     }
 
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -60,7 +61,7 @@ public class ListaGenerosDePeliculaFragment extends Fragment implements Adaptado
         listaDeGeneros.add(new Genero("Ciencia Ficcion",R.drawable.ciencia_ficcion));
         listaDeGeneros.add(new Genero("Comedia",R.drawable.comedia));
         listaDeGeneros.add(new Genero("Deporte",R.drawable.deportes));
-        listaDeGeneros.add(new Genero("Documentales",R.drawable.documental));
+        listaDeGeneros.add(new Genero("Documentales",R.drawable.documentales));
         listaDeGeneros.add(new Genero("Drama",R.drawable.drama));
         listaDeGeneros.add(new Genero("Infantil",R.drawable.infantil));
         listaDeGeneros.add(new Genero("Policiaca",R.drawable.policial));

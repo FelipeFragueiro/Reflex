@@ -3,6 +3,7 @@ package a0817moact03c_2.a0817moact03c_02;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.content.Intent;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -17,18 +18,18 @@ public class MainActivity extends AppCompatActivity implements ListaGenerosDePel
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        ListaGenerosDePeliculaFragment listaGenerosDePeliculaFragment = new ListaGenerosDePeliculaFragment();
-        fragmentTransaction.replace(R.id.contenedorFragmentPeliculasYSeries, listaGenerosDePeliculaFragment);
-        fragmentTransaction.commit();
+
+
+        ViewPager unViewPager = (ViewPager)findViewById(R.id.viewPagerPeliculasYSeries);
+        AdaptadorViewPagerMenuPrincipal adaptadorViewPagerMenuPrincipal = new AdaptadorViewPagerMenuPrincipal(getSupportFragmentManager());
+        unViewPager.setAdapter(adaptadorViewPagerMenuPrincipal);
 
 
 
         
     }
 
-    public void onClickPelicula(View view){
+    /*public void onClickPelicula(View view){
         TextView textView = (TextView)findViewById(R.id.textviewTitulo);
         textView.setText("PELICULAS");
 
@@ -50,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements ListaGenerosDePel
         ListaGenerosDePeliculaFragment listaGenerosDePeliculaFragment = new ListaGenerosDePeliculaFragment();
         fragmentTransaction.replace(R.id.contenedorFragmentPeliculasYSeries, listaGenerosDePeliculaFragment);
         fragmentTransaction.commit();
-    }
+    }*/
 
 
     @Override

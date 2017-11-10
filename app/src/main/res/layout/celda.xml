@@ -17,14 +17,17 @@
         >
     </ImageView>
 
-        <TextView
-            android:id="@+id/textViewCelda"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textSize="27dp"
-            android:textColor="#7b7575"
-            android:text="Accion"
-            android:layout_gravity="center"
-            />
+    <TextView
+        android:id="@+id/textViewCelda"
+        android:layout_width="140dp"
+        android:layout_height="80dp"
+        android:text="pelicula"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:textSize="18dp"
+        android:layout_gravity="center"
+        android:background="#80000000"
+        android:textColor="#fdfafa"
+        />
 
 </FrameLayout>

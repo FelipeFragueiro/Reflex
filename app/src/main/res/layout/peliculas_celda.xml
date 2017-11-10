@@ -22,9 +22,9 @@
         android:text="pelicula"
         android:gravity="center"
         android:textAlignment="center"
-        android:textSize="30dp"
+        android:textSize="15dp"
         android:layout_gravity="bottom"
-        android:background="#80000000"
+        android:background="#79bdbdbd"
         android:textColor="#fdfafa"
         />
 

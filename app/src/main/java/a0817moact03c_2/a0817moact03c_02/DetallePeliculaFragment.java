@@ -107,7 +107,7 @@ public class DetallePeliculaFragment extends Fragment implements AdaptadorDePeli
     private void cargarPelis() {
 
         listaDePeliculas = new ArrayList<>();
-        listaDePeliculas.add(new Pelicula("El transportador 10", R.drawable.el_transportador, "Accion", "Un pelado trabado, que anda siempre arriba de un Audi enfierrado.",0));
+        listaDePeliculas.add(new Pelicula("El transportador", R.drawable.el_transportador, "Accion", "Un pelado trabado, que anda siempre arriba de un Audi enfierrado.",0));
         listaDePeliculas.add(new Pelicula("Indiana jones", R.drawable.indiana_jones, "Aventura", "Un exploraGay que siempre lleva su latigo encima.",1));
         listaDePeliculas.add(new Pelicula("Martes 13", R.drawable.martes_13, "Terror", "Un feo con una mascara que murio ahogado en un lago , resucita todos los martes 13 para matar a todos.",2));
         listaDePeliculas.add(new Pelicula("Masacre de texas", R.drawable.masacre_de_texas, "Terror", "Un carnisero loco con muy pocas pulgas mata a todo habitante nuevo en Texas",3));

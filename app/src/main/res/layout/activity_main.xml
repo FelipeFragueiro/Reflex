@@ -3,42 +3,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#212121"
     android:orientation="vertical"
-    android:background="#000000"
     tools:context="a0817moact03c_2.a0817moact03c_02.MainActivity">
+
     <TextView
         android:id="@+id/textviewTitulo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="PELICULEANDO"
         android:gravity="center"
+        android:text="PELICULEANDO"
         android:textColor="#ffffff"
-        android:textSize="40dp"/>
-<Button
-    android:layout_below="@+id/textviewTitulo"
-    android:id="@+id/buttonPeliculas"
-    android:layout_width="190dp"
-    android:layout_height="wrap_content"
-    android:onClick="onClickPelicula"
-    android:text="Peliculas"
-    />
+        android:textSize="40dp" />
+
     <Button
+        android:id="@+id/buttonPeliculas"
+        android:layout_width="190dp"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/textviewTitulo"
+        android:text="Peliculas" />
+
+    <Button
         android:id="@+id/buttonSeries"
         android:layout_width="190dp"
-        android:onClick="onClickSerie"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/textviewTitulo"
         android:layout_toRightOf="@+id/buttonPeliculas"
-        android:text="Series"/>
+        android:text="Series" />
 
-
-    <LinearLayout
-        android:layout_below="@+id/buttonPeliculas"
-        android:id="@+id/contenedorFragmentPeliculasYSeries"
+    <android.support.v4.view.ViewPager
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-    </LinearLayout>
+        android:id="@+id/viewPagerPeliculasYSeries"
+        android:layout_below="@id/buttonPeliculas">
+
+
+    </android.support.v4.view.ViewPager>
 
 
 </RelativeLayout>
