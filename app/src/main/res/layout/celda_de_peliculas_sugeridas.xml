@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="200dp"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     android:background="#000">
 
@@ -16,10 +16,11 @@
 
     <TextView
         android:id="@+id/textViewNombreDeLaPelicula"
-        android:layout_width="match_parent"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:text="Titulo de la pelicula"
+        android:text="saw"
         android:gravity="center"
+        android:textAlignment="center"
         android:textColor="#ffffff"
         android:textSize="23dp"/>
 
