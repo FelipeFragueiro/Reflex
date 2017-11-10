@@ -39,7 +39,7 @@ public class ListaGenerosFragment extends Fragment implements AdaptadorGenerosDe
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_lista_generos, container, false);
 
-        TextView textView = view.findViewById(R.id.textViewPalabraGeneros);
+        //TextView textView = view.findViewById(R.id.textViewPalabraGeneros);
         RecyclerView recyclerView = view.findViewById(R.id.recyclerViewGeneros);
         listaDeGeneros = new ArrayList<>();
 
@@ -59,7 +59,7 @@ public class ListaGenerosFragment extends Fragment implements AdaptadorGenerosDe
         listaDeGeneros.add(new Genero("Aventura",R.drawable.aventura));
         listaDeGeneros.add(new Genero("Ciencia Ficcion",R.drawable.ciencia_ficcion));
         listaDeGeneros.add(new Genero("Comedia",R.drawable.comedia));
-        listaDeGeneros.add(new Genero("Deporte",R.drawable.deporte));
+        listaDeGeneros.add(new Genero("Deporte",R.drawable.deportes));
         listaDeGeneros.add(new Genero("Documentales",R.drawable.documental));
         listaDeGeneros.add(new Genero("Drama",R.drawable.drama));
         listaDeGeneros.add(new Genero("Infantil",R.drawable.infantil));

@@ -22,6 +22,7 @@
             android:id="@+id/imageViewDeLaPelicula"
             android:layout_width="match_parent"
             android:layout_height="200dp"
+            android:background="#353434"
             android:layout_alignParentTop="true"/>
 
         <com.getbase.floatingactionbutton.FloatingActionsMenu

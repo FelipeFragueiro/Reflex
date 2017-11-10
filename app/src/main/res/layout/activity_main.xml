@@ -19,12 +19,14 @@
     android:id="@+id/buttonPeliculas"
     android:layout_width="190dp"
     android:layout_height="wrap_content"
+    android:onClick="onClickPelicula"
     android:text="Peliculas"
     />
     <Button
         android:layout_below="@+id/textviewTitulo"
         android:id="@+id/buttonSeries"
         android:layout_width="190dp"
+        android:onClick="onClickSerie"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/buttonPeliculas"
         android:text="Series"/>
