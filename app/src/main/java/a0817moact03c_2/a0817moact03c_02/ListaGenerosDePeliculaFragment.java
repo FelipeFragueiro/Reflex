@@ -18,12 +18,12 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ListaGenerosFragment extends Fragment implements AdaptadorGenerosDePelicula.EscuchadorDeGeneros {
+public class ListaGenerosDePeliculaFragment extends Fragment implements AdaptadorGenerosDePelicula.EscuchadorDeGeneros {
     private List<Genero>listaDeGeneros;
     private AdaptadorGenerosDePelicula adaptadorGenerosDePelicula;
     private EscuchadorDeGeneros escuchadorDeGeneros;
 
-    public ListaGenerosFragment() {
+    public ListaGenerosDePeliculaFragment() {
         // Required empty public constructor
     }
 

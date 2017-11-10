@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="a0817moact03c_2.a0817moact03c_02.ListaGenerosFragment"
+    tools:context="a0817moact03c_2.a0817moact03c_02.ListaGenerosDePeliculaFragment"
     android:background="#000000">
 
     <!-- TODO: Update blank fragment layout -->

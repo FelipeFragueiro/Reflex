@@ -33,7 +33,7 @@ public class DetalleGenerosDePeliculaActivity extends AppCompatActivity implemen
 
         /*FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        ListaGenerosFragment listaGenerosFragment = new ListaGenerosFragment();
+        ListaGenerosDePeliculaFragment listaGenerosFragment = new ListaGenerosDePeliculaFragment();
         fragmentTransaction.replace(R.id.contenedorFragmentListaPeliculas, listaGenerosFragment);
         fragmentTransaction.commit();*/
 

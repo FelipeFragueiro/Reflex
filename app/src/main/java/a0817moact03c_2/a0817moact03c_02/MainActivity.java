@@ -5,9 +5,11 @@ import android.support.v4.app.FragmentTransaction;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.Toast;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity implements ListaGenerosFragment.EscuchadorDeGeneros {
+public class MainActivity extends AppCompatActivity implements ListaGenerosDePeliculaFragment.EscuchadorDeGeneros {
 
 
     @Override
@@ -17,11 +19,37 @@ public class MainActivity extends AppCompatActivity implements ListaGenerosFragm
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        ListaGenerosFragment listaGenerosFragment = new ListaGenerosFragment();
-        fragmentTransaction.replace(R.id.contenedorFragmentListaGeneros, listaGenerosFragment);
+        ListaGenerosDePeliculaFragment listaGenerosDePeliculaFragment = new ListaGenerosDePeliculaFragment();
+        fragmentTransaction.replace(R.id.contenedorFragmentPeliculasYSeries, listaGenerosDePeliculaFragment);
         fragmentTransaction.commit();
 
+
+
         
+    }
+
+    public void onClickPelicula(View view){
+        TextView textView = (TextView)findViewById(R.id.textviewTitulo);
+        textView.setText("PELICULAS");
+
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        ListaGenerosDePeliculaFragment listaGenerosDePeliculaFragment = new ListaGenerosDePeliculaFragment();
+        fragmentTransaction.replace(R.id.contenedorFragmentPeliculasYSeries, listaGenerosDePeliculaFragment);
+        fragmentTransaction.commit();
+    }
+
+    public void onClickSerie(View view){
+        TextView textView = (TextView)findViewById(R.id.textviewTitulo);
+        textView.setText("SERIES");
+
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        ListaGenerosDePeliculaFragment listaGenerosDePeliculaFragment = new ListaGenerosDePeliculaFragment();
+        fragmentTransaction.replace(R.id.contenedorFragmentPeliculasYSeries, listaGenerosDePeliculaFragment);
+        fragmentTransaction.commit();
     }
 
 

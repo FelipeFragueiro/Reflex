@@ -10,7 +10,7 @@
         android:id="@+id/textviewTitulo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TITULO"
+        android:text="PELICULEANDO"
         android:gravity="center"
         android:textColor="#ffffff"
         android:textSize="40dp"/>
@@ -30,18 +30,15 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/buttonPeliculas"
         android:text="Series"/>
+
+
     <LinearLayout
         android:layout_below="@+id/buttonPeliculas"
-        android:id="@+id/contenedorFragmentListaGeneros"
+        android:id="@+id/contenedorFragmentPeliculasYSeries"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
     </LinearLayout>
-    <LinearLayout
-        android:layout_below="@+id/buttonSeries"
-        android:id="@+id/contenedorFragmentSeries"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"></LinearLayout>
+
 
 </RelativeLayout>
