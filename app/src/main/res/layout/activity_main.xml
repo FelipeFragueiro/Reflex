@@ -1,17 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#000000"
     tools:context="a0817moact03c_2.a0817moact03c_02.MainActivity">
-
+    <TextView
+        android:id="@+id/textviewTitulo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TITULO"
+        android:gravity="center"
+        android:textColor="#ffffff"
+        android:textSize="40dp"/>
+<Button
+    android:layout_below="@+id/textviewTitulo"
+    android:id="@+id/buttonPeliculas"
+    android:layout_width="190dp"
+    android:layout_height="wrap_content"
+    android:text="Peliculas"
+    />
+    <Button
+        android:layout_below="@+id/textviewTitulo"
+        android:id="@+id/buttonSeries"
+        android:layout_width="190dp"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/buttonPeliculas"
+        android:text="Series"/>
     <LinearLayout
+        android:layout_below="@+id/buttonPeliculas"
         android:id="@+id/contenedorFragmentListaGeneros"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
     </LinearLayout>
+    <LinearLayout
+        android:layout_below="@+id/buttonSeries"
+        android:id="@+id/contenedorFragmentSeries"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"></LinearLayout>
 
-</LinearLayout>
+</RelativeLayout>

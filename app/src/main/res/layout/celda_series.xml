@@ -1,0 +1,29 @@
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp"
+    >
+
+
+    <ImageView
+        android:id="@+id/imageViewCeldaSeries"
+        android:layout_width="150dp"
+        android:layout_height="80dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/drama"
+        android:foreground="#32000000"
+        >
+    </ImageView>
+
+    <TextView
+        android:id="@+id/textViewCeldaSeries"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textSize="30dp"
+        android:textColor="#ffffff"
+        android:text="Accion"
+        android:layout_gravity="center"
+        />
+
+</FrameLayout>
