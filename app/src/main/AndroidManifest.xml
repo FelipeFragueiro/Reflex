@@ -16,7 +16,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DetalleGenerosActivity"></activity>
+        <activity android:name=".DetalleGenerosDePeliculaActivity"></activity>
         <activity android:name=".DetallePeliculaActivity"></activity>
         <activity android:name=".FotoCompletaPeliculaActivity"></activity>
 

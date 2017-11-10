@@ -5,15 +5,10 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class DetalleGenerosActivity extends AppCompatActivity implements DetalleGenerosFragment.EscuchadorDePelis{
+public class DetalleGenerosDePeliculaActivity extends AppCompatActivity implements DetalleGenerosDePeliculaFragment.EscuchadorDePelis{
     private List<Pelicula> listaDePelis;
     private AdaptadorDeListaDePeliculasRecycler unAdaptadorDePeliculas;
     @Override
@@ -30,9 +25,9 @@ public class DetalleGenerosActivity extends AppCompatActivity implements Detalle
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        DetalleGenerosFragment detalleGenerosFragment = new DetalleGenerosFragment();
-        detalleGenerosFragment.setArguments(unBundle);
-        fragmentTransaction.replace(R.id.contenedorFragmentListaPeliculas,detalleGenerosFragment);
+        DetalleGenerosDePeliculaFragment detalleGenerosDePeliculaFragment = new DetalleGenerosDePeliculaFragment();
+        detalleGenerosDePeliculaFragment.setArguments(unBundle);
+        fragmentTransaction.replace(R.id.contenedorFragmentListaPeliculas, detalleGenerosDePeliculaFragment);
         fragmentTransaction.commit();
 
 

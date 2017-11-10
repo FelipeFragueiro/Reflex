@@ -2,17 +2,14 @@ package a0817moact03c_2.a0817moact03c_02;
 
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,9 +18,9 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ListaGenerosFragment extends Fragment implements AdaptadorGeneros.EscuchadorDeGeneros {
+public class ListaGenerosFragment extends Fragment implements AdaptadorGenerosDePelicula.EscuchadorDeGeneros {
     private List<Genero>listaDeGeneros;
-    private AdaptadorGeneros adaptadorGeneros;
+    private AdaptadorGenerosDePelicula adaptadorGenerosDePelicula;
     private EscuchadorDeGeneros escuchadorDeGeneros;
 
     public ListaGenerosFragment() {
@@ -52,9 +49,9 @@ public class ListaGenerosFragment extends Fragment implements AdaptadorGeneros.E
         recyclerView.setLayoutManager(layoutManager);
 
 
-        AdaptadorGeneros adaptadorGeneros = new AdaptadorGeneros(listaDeGeneros, getContext(), this);
+        AdaptadorGenerosDePelicula adaptadorGenerosDePelicula = new AdaptadorGenerosDePelicula(listaDeGeneros, getContext(), this);
 
-        recyclerView.setAdapter(adaptadorGeneros);
+        recyclerView.setAdapter(adaptadorGenerosDePelicula);
 
         listaDeGeneros.add(new Genero("Accion",R.drawable.accion));
         listaDeGeneros.add(new Genero("Animadas",R.drawable.animadas));

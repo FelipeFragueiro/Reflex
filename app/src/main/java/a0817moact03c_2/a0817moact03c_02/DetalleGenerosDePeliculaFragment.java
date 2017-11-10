@@ -2,7 +2,6 @@ package a0817moact03c_2.a0817moact03c_02;
 
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
@@ -19,19 +18,19 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class DetalleGenerosFragment extends Fragment implements AdaptadorDeListaDePeliculasRecycler.PeliculasListener {
+public class DetalleGenerosDePeliculaFragment extends Fragment implements AdaptadorDeListaDePeliculasRecycler.PeliculasListener {
     private List<Pelicula> listaDePelis;
     private AdaptadorDeListaDePeliculasRecycler unAdaptadorDePelis;
     private EscuchadorDePelis unEscuchadorDePelis;
 
-    public DetalleGenerosFragment() {
+    public DetalleGenerosDePeliculaFragment() {
         // Required empty public constructor
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        unEscuchadorDePelis = (DetalleGenerosFragment.EscuchadorDePelis)context;
+        unEscuchadorDePelis = (DetalleGenerosDePeliculaFragment.EscuchadorDePelis)context;
     }
 
 

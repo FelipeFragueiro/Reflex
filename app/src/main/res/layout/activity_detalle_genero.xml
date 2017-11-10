@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="a0817moact03c_2.a0817moact03c_02.DetalleGenerosActivity">
+    tools:context="a0817moact03c_2.a0817moact03c_02.DetalleGenerosDePeliculaActivity">
 
 <LinearLayout
     android:id="@+id/contenedorFragmentListaPeliculas"

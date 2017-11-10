@@ -15,13 +15,13 @@ import java.util.List;
  * Created by ma on 26/10/17.
  */
 
-public class AdaptadorGeneros extends RecyclerView.Adapter {
+public class AdaptadorGenerosDePelicula extends RecyclerView.Adapter {
     private List<Genero> listaDeBotonesDeGenero;
     private Context unContext;
     private EscuchadorDeGeneros escuchadorDeGeneros;
 
 
-    public AdaptadorGeneros(List<Genero> listaDeBotonesDeGenero, Context unContext, EscuchadorDeGeneros escuchadorDeGeneros) {
+    public AdaptadorGenerosDePelicula(List<Genero> listaDeBotonesDeGenero, Context unContext, EscuchadorDeGeneros escuchadorDeGeneros) {
         this.listaDeBotonesDeGenero = listaDeBotonesDeGenero;
         this.unContext = unContext;
         this.escuchadorDeGeneros = escuchadorDeGeneros;
