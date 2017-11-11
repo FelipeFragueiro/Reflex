@@ -76,8 +76,8 @@ public class AdaptadorDeListaDePeliculasRecycler extends RecyclerView.Adapter {
         }
         public  void cargarPeli(Pelicula unaPeli){
             textviewNombePeli.setText(unaPeli.getNombre());
-            imageViewPeli.setImageResource(unaPeli.getImagenPelicula());
-            textViewDescripcionPeli.setText(unaPeli.getDescripcionPelicula());
+           // imageViewPeli.setImageResource(unaPeli.getPoster_path());
+            textViewDescripcionPeli.setText(unaPeli.getOverview());
         }
     }
     public interface PeliculasListener{

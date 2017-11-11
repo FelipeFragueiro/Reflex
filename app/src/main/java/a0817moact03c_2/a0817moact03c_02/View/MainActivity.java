@@ -9,8 +9,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 
+import java.util.List;
+
+import a0817moact03c_2.a0817moact03c_02.Controller.PeliculasController;
 import a0817moact03c_2.a0817moact03c_02.Model.Genero;
+import a0817moact03c_2.a0817moact03c_02.Model.Pelicula;
 import a0817moact03c_2.a0817moact03c_02.R;
+import a0817moact03c_2.a0817moact03c_02.Util.ResultListener;
 import a0817moact03c_2.a0817moact03c_02.View.Activities.DetalleGenerosDePeliculaActivity;
 import a0817moact03c_2.a0817moact03c_02.View.Fragments.ListaGenerosDePeliculaFragment;
 import a0817moact03c_2.a0817moact03c_02.View.Fragments.SeriesFragment;
@@ -46,6 +51,13 @@ public class MainActivity extends AppCompatActivity implements ListaGenerosDePel
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         tabLayout.setupWithViewPager(unViewPager);
 
+        PeliculasController peliculasController = new PeliculasController();
+        peliculasController.getPostList(new ResultListener<List<Pelicula>>() {
+            @Override
+            public void finish(List<Pelicula> resultado) {
+
+            }
+        }, this);
 
         
     }
