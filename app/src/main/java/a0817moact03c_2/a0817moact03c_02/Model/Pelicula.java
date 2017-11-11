@@ -5,19 +5,25 @@ package a0817moact03c_2.a0817moact03c_02.Model;
  */
 
 public class Pelicula {
-    private String nombrePelicula;
-    private int imagenPelicula;
+    private String tittle;
+    private Integer id;
+    private String poster_path;
     private String generoPelicula;
-    private String descripcionPelicula;
+    private String overview;
     private int posicion;
+    private String release_date;
 
-    public Pelicula(String nombre, int imagenPelicula, String generoPelicula, String descripcionPelicula, int posicion) {
-        this.nombrePelicula = nombre;
-        this.imagenPelicula = imagenPelicula;
+    public Pelicula(String tittle, Integer id, String poster_path, String generoPelicula, String overview, int posicion, String release_date) {
+        this.tittle = tittle;
+        this.id = id;
+        this.poster_path = poster_path;
         this.generoPelicula = generoPelicula;
-        this.descripcionPelicula = descripcionPelicula;
+        this.overview = overview;
         this.posicion = posicion;
+        this.release_date = release_date;
+    }
 
+    public Pelicula() {
     }
 
     public void setPosicion(int posicion) {
@@ -25,11 +31,11 @@ public class Pelicula {
     }
 
     public String getNombre() {
-        return nombrePelicula;
+        return tittle;
     }
 
-    public int getImagenPelicula() {
-        return imagenPelicula;
+    public String getPoster_path() {
+        return poster_path;
     }
 
     public String getGeneroPelicula() {
@@ -40,9 +46,43 @@ public class Pelicula {
         return posicion;
     }
 
-    public String getDescripcionPelicula() {
-        return descripcionPelicula;
+    public String getOverview() {
+        return overview;
+    }
+
+    public void setTittle(String tittle) {
+        this.tittle = tittle;
+    }
+
+    public void setPoster_path(String poster_path) {
+        this.poster_path = poster_path;
+    }
+
+    public void setGeneroPelicula(String generoPelicula) {
+        this.generoPelicula = generoPelicula;
+    }
+
+    public void setOverview(String overview) {
+        this.overview = overview;
+    }
+
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getRelease_date() {
+        return release_date;
+    }
+
+    public void setRelease_date(String release_date) {
+        this.release_date = release_date;
     }
 }
+
 
 

@@ -11,21 +11,22 @@ import android.widget.TextView;
 import java.util.List;
 
 import a0817moact03c_2.a0817moact03c_02.Model.Pelicula;
+import a0817moact03c_2.a0817moact03c_02.Model.Serie;
 import a0817moact03c_2.a0817moact03c_02.R;
 
 /**
- * Created by ma on 26/10/17.
+ * Created by ma on 11/11/17.
  */
 
-public class AdaptadorDeListaDePeliculasRecycler extends RecyclerView.Adapter {
-    private List<Pelicula> peliculasAMostrar;
-    private Context unContexto;
-    private PeliculasListener peliculasListener;
+public class DetalleSeriesAdapter /*extends RecyclerView.Adapter*/{
+    private List<Serie> seriesAMostrar;
+   /* private Context unContexto;
+    private EscuchadorDeSeriesDetalle escuchadorDeSeriesDetalle;
 
-    public AdaptadorDeListaDePeliculasRecycler(List<Pelicula> peliculasAMostrar, Context unContexto, PeliculasListener unlistener  ){
-        this.peliculasAMostrar = peliculasAMostrar;
+    public DetalleSeriesAdapter(List<Serie> seriesAMostrar, Context unContexto, EscuchadorDeSeriesDetalle  unlistener  ){
+        this.seriesAMostrar = seriesAMostrar;
         this.unContexto = unContexto;
-        this.peliculasListener = unlistener;
+        this.escuchadorDeSeriesDetalle = unlistener;
     }
 
 
@@ -35,8 +36,8 @@ public class AdaptadorDeListaDePeliculasRecycler extends RecyclerView.Adapter {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(unContexto);
-        View celdaGenero = layoutInflater.inflate(R.layout.peliculas_celda,parent, false);
-        PeliculaViewHolder peliculaViewHolder = new PeliculaViewHolder(celdaGenero);
+        View celdaSerie = layoutInflater.inflate(R.layout.peliculas_celda,parent, false);
+        AdaptadorDeListaDePeliculasRecycler.PeliculaViewHolder peliculaViewHolder = new AdaptadorDeListaDePeliculasRecycler.PeliculaViewHolder(celdaGenero);
 
         return peliculaViewHolder;
     }
@@ -44,9 +45,9 @@ public class AdaptadorDeListaDePeliculasRecycler extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
 
-        final  Pelicula unaPeli = peliculasAMostrar.get(position);
-         unaPeli.setPosicion(position);
-        PeliculaViewHolder peliculaViewHolder = (PeliculaViewHolder) holder;
+        final  Pelicula unaPeli = seriesAMostrar.get(position);
+        unaPeli.setPosicion(position);
+        AdaptadorDeListaDePeliculasRecycler.PeliculaViewHolder peliculaViewHolder = (AdaptadorDeListaDePeliculasRecycler.PeliculaViewHolder) holder;
         peliculaViewHolder.cargarPeli(unaPeli);
         View viewDeLaCelda = peliculaViewHolder.itemView;
         viewDeLaCelda.setOnClickListener(new View.OnClickListener() {
@@ -60,7 +61,7 @@ public class AdaptadorDeListaDePeliculasRecycler extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        return peliculasAMostrar.size();
+        return seriesAMostrar.size();
     }
 
     private class PeliculaViewHolder extends RecyclerView.ViewHolder{
@@ -76,11 +77,14 @@ public class AdaptadorDeListaDePeliculasRecycler extends RecyclerView.Adapter {
         }
         public  void cargarPeli(Pelicula unaPeli){
             textviewNombePeli.setText(unaPeli.getNombre());
-           // imageViewPeli.setImageResource(unaPeli.getPoster_path());
-            textViewDescripcionPeli.setText(unaPeli.getOverview());
+            imageViewPeli.setImageResource(unaPeli.getImagenPelicula());
+            textViewDescripcionPeli.setText(unaPeli.getDescripcionPelicula());
         }
     }
-    public interface PeliculasListener{
-        public void seleccionaronA(Pelicula unaPeli);
-    }
+    public interface EscuchadorDeSeriesDetalle{
+        public void seleccionaronA(Serie unaSerie);
+    }*/
 }
+
+
+

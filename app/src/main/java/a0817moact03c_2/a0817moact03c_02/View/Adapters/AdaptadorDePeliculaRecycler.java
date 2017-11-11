@@ -79,7 +79,7 @@ public class AdaptadorDePeliculaRecycler extends RecyclerView.Adapter {
         }
         public void cargarPelicula(Pelicula unaPelicula){
             textViewNombreDeLaPelicula.setText(unaPelicula.getNombre());
-            imageViewDeLaPelicula.setImageResource(unaPelicula.getImagenPelicula());
+           // imageViewDeLaPelicula.setImageResource(unaPelicula.getPoster_path());
         }
 
     }
