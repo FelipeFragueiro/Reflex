@@ -14,4 +14,38 @@ public class Serie {
     private int posicion;
     private List<Capitulo> temporadas;
     private Capitulo capitulo;
+
+    public Serie( String generoSerie, int imagenSerie ){
+        this.nombreSerie = nombreSerie;
+        this.imagenSerie = imagenSerie;
+        this.generoSerie = generoSerie;
+    }
+
+    public String getNombreSerie() {
+        return nombreSerie;
+    }
+
+    public int getImagenSerie() {
+        return imagenSerie;
+    }
+
+    public String getGeneroSerie() {
+        return generoSerie;
+    }
+
+    public String getDescripcionSerie() {
+        return descripcionSerie;
+    }
+
+    public int getPosicion() {
+        return posicion;
+    }
+
+    public List<Capitulo> getTemporadas() {
+        return temporadas;
+    }
+
+    public Capitulo getCapitulo() {
+        return capitulo;
+    }
 }

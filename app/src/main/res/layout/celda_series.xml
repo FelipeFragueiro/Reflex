@@ -3,6 +3,7 @@
     android:orientation="vertical" android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_margin="4dp"
+    android:background="#ffff"
     >
 
 
@@ -10,20 +11,24 @@
         android:id="@+id/imageViewCeldaSeries"
         android:layout_width="150dp"
         android:layout_height="80dp"
-        android:scaleType="centerCrop"
         android:src="@drawable/drama"
+        android:layout_gravity="center"
         android:foreground="#32000000"
         >
     </ImageView>
 
     <TextView
         android:id="@+id/textViewCeldaSeries"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:textSize="30dp"
-        android:textColor="#ffffff"
-        android:text="Accion"
+        android:layout_width="140dp"
+        android:layout_height="80dp"
+        android:text="pelicula"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:textSize="18dp"
         android:layout_gravity="center"
+        android:background="#80000000"
+        android:textColor="#fdfafa"
+        />
         />
 
 </FrameLayout>

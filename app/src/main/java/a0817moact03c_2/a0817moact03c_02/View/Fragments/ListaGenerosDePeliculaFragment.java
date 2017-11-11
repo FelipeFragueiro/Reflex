@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import a0817moact03c_2.a0817moact03c_02.Model.Genero;
+import a0817moact03c_2.a0817moact03c_02.Model.Serie;
 import a0817moact03c_2.a0817moact03c_02.R;
 import a0817moact03c_2.a0817moact03c_02.View.Adapters.AdaptadorGenerosDePelicula;
 

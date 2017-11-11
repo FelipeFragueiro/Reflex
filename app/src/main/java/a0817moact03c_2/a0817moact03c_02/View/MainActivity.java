@@ -10,12 +10,13 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 
 import a0817moact03c_2.a0817moact03c_02.Model.Genero;
+import a0817moact03c_2.a0817moact03c_02.Model.Serie;
 import a0817moact03c_2.a0817moact03c_02.R;
 import a0817moact03c_2.a0817moact03c_02.View.Activities.DetalleGenerosDePeliculaActivity;
 import a0817moact03c_2.a0817moact03c_02.View.Fragments.ListaGenerosDePeliculaFragment;
 import a0817moact03c_2.a0817moact03c_02.View.Fragments.SeriesFragment;
 
-public class MainActivity extends AppCompatActivity implements ListaGenerosDePeliculaFragment.EscuchadorDeGeneros {
+public class MainActivity extends AppCompatActivity implements ListaGenerosDePeliculaFragment.EscuchadorDeGeneros, SeriesFragment.EscuchadorDeSeries{
 
     private final String LOG_TAG = MainActivity.class.getSimpleName();
     private final String[] PAGE_TITLES = new String[] {
@@ -48,6 +49,11 @@ public class MainActivity extends AppCompatActivity implements ListaGenerosDePel
 
 
         
+    }
+
+    @Override
+    public void seleccionaronGenero(Serie unaSerie) {
+
     }
 
     /*public void onClickPelicula(View view){
