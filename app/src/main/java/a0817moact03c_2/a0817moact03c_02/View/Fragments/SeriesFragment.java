@@ -59,7 +59,7 @@ public class SeriesFragment extends Fragment implements SeriesAdapter.Escuchador
 
         recyclerView.setAdapter(adaptador);
 
-        serieList.add(new Serie("Accion",R.drawable.accion));
+       /* serieList.add(new Serie("Accion",R.drawable.accion));
         serieList.add(new Serie("Animadas",R.drawable.animadas));
         serieList.add(new Serie("Anime",R.drawable.anime));
         serieList.add(new Serie("Aventura",R.drawable.aventura));
@@ -74,7 +74,7 @@ public class SeriesFragment extends Fragment implements SeriesAdapter.Escuchador
         serieList.add(new Serie("Terror",R.drawable.terror));
         serieList.add(new Serie("Thriller",R.drawable.thriller));
         serieList.add(new Serie("Suspenso",R.drawable.suspenso));
-
+*/
         return view;
 
     }

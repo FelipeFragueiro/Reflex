@@ -75,7 +75,7 @@ public class AdaptadorDePeliculasFavoritasRecycler extends RecyclerView.Adapter 
 
         public void cargarPeliculaFavorita(Pelicula unaPelicula){
             textViewNombreDeLaPeliculaOSerieFavorita.setText(unaPelicula.getNombre());
-            imageViewDeLaPeliculaOSerieFavorita.setImageResource(unaPelicula.getImagenPelicula());
+           // imageViewDeLaPeliculaOSerieFavorita.setImageResource(unaPelicula.getImagenPelicula());
         }
     }
 
