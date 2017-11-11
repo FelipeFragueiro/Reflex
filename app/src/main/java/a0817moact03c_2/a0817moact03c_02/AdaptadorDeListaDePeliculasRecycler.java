@@ -65,15 +65,18 @@ public class AdaptadorDeListaDePeliculasRecycler extends RecyclerView.Adapter {
     private class PeliculaViewHolder extends RecyclerView.ViewHolder{
         private TextView textviewNombePeli;
         private ImageView imageViewPeli;
+        private TextView textViewDescripcionPeli;
 
         public PeliculaViewHolder(View itemView) {
             super(itemView);
             textviewNombePeli = (TextView)itemView.findViewById(R.id.TextviewPelicula);
             imageViewPeli = (ImageView)itemView.findViewById(R.id.ImageviewPelicula);
+            textViewDescripcionPeli = (TextView)itemView.findViewById(R.id.TextviewDescripcionPelicula);
         }
         public  void cargarPeli(Pelicula unaPeli){
             textviewNombePeli.setText(unaPeli.getNombre());
             imageViewPeli.setImageResource(unaPeli.getImagen());
+            textViewDescripcionPeli.setText(unaPeli.getDescripcion());
         }
     }
     public interface PeliculasListener{
