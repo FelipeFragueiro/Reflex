@@ -45,7 +45,9 @@ public class DetallePeliculaActivity extends AppCompatActivity implements Detall
     }
 
 
+    public void agregarAFavoritos(Pelicula unaPelicula){
 
+    }
 
     @Override
     public void seleccionaronPelicula(Pelicula unaPelicula) {

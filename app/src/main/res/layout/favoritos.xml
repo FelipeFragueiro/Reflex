@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#212121"
+    android:orientation="vertical"
+    tools:context="a0817moact03c_2.a0817moact03c_02.View.Activities.FavoritosActivity">
+
+    <TextView
+
+        android:id="@+id/textViewFavoritos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@color/colorPrimary"
+        android:text="Favoritos"
+        android:textAlignment="center"
+        android:textColor="#212121"
+        android:textSize="50dp" />
+
+    <TextView
+        android:id="@+id/textViewDePeliculasFavoritas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textViewFavoritos"
+        android:layout_marginTop="5dp"
+        android:background="#6a717070"
+        android:text="Peliculas"
+        android:textSize="35dp" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerPeliculasFavoritas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textViewDePeliculasFavoritas"
+        android:layout_marginTop="4dp">
+
+
+    </android.support.v7.widget.RecyclerView>
+
+    <TextView
+        android:id="@+id/textViewDeSeriesFavoritas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/recyclerPeliculasFavoritas"
+        android:layout_marginTop="15dp"
+        android:background="#6a717070"
+        android:text="Series"
+        android:textSize="35dp" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerSeriesFavoritas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textViewDeSeriesFavoritas"
+        android:layout_marginTop="4dp">
+
+    </android.support.v7.widget.RecyclerView>
+
+
+</RelativeLayout>
