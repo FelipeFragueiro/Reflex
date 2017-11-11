@@ -1,9 +1,11 @@
-package a0817moact03c_2.a0817moact03c_02;
+package a0817moact03c_2.a0817moact03c_02.View;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+
+import a0817moact03c_2.a0817moact03c_02.R;
 
 /**
  * Created by ma on 26/10/17.

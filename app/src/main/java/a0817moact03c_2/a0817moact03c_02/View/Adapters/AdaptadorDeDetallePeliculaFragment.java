@@ -1,12 +1,15 @@
-package a0817moact03c_2.a0817moact03c_02;
+package a0817moact03c_2.a0817moact03c_02.View.Adapters;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.view.ViewPager;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import a0817moact03c_2.a0817moact03c_02.Model.Pelicula;
+import a0817moact03c_2.a0817moact03c_02.R;
+import a0817moact03c_2.a0817moact03c_02.View.Fragments.DetallePeliculaFragment;
 
 /**
  * Created by ma on 03/11/17.

@@ -1,12 +1,9 @@
-package a0817moact03c_2.a0817moact03c_02;
+package a0817moact03c_2.a0817moact03c_02.View.Fragments;
 
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -17,6 +14,10 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import a0817moact03c_2.a0817moact03c_02.Model.Pelicula;
+import a0817moact03c_2.a0817moact03c_02.R;
+import a0817moact03c_2.a0817moact03c_02.View.Adapters.AdaptadorDePeliculaRecycler;
 
 
 /**
@@ -37,9 +38,9 @@ public class DetallePeliculaFragment extends Fragment implements AdaptadorDePeli
         DetallePeliculaFragment detallePeliculaFragment = new DetallePeliculaFragment();
         Bundle args = new Bundle();
         args.putString("nombre", unaPelicula.getNombre());
-        args.putInt("imagen", unaPelicula.getImagen());
-        args.putString("descripcion", unaPelicula.getDescripcion());
-        args.putString("genero", unaPelicula.getGenero());
+        args.putInt("imagen", unaPelicula.getImagenPelicula());
+        args.putString("descripcion", unaPelicula.getDescripcionPelicula());
+        args.putString("genero", unaPelicula.getGeneroPelicula());
 
         detallePeliculaFragment.setArguments(args);
         return detallePeliculaFragment;
@@ -122,7 +123,7 @@ public class DetallePeliculaFragment extends Fragment implements AdaptadorDePeli
         escuchadorDePeliculasInterface.seleccionaronPelicula(unaPeli);
     }
 
-    interface EscuchadorDePeliculasInterface {
+    public interface EscuchadorDePeliculasInterface {
         public void seleccionaronPelicula(Pelicula unaPelicula);
         public void seleccionaronImagen(int unInt);
     }

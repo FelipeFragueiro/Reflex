@@ -1,4 +1,4 @@
-package a0817moact03c_2.a0817moact03c_02;
+package a0817moact03c_2.a0817moact03c_02.View.Adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -10,7 +10,8 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import static android.support.v7.recyclerview.R.styleable.RecyclerView;
+import a0817moact03c_2.a0817moact03c_02.Model.Pelicula;
+import a0817moact03c_2.a0817moact03c_02.R;
 
 /**
  * Created by ma on 26/10/17.
@@ -75,8 +76,8 @@ public class AdaptadorDeListaDePeliculasRecycler extends RecyclerView.Adapter {
         }
         public  void cargarPeli(Pelicula unaPeli){
             textviewNombePeli.setText(unaPeli.getNombre());
-            imageViewPeli.setImageResource(unaPeli.getImagen());
-            textViewDescripcionPeli.setText(unaPeli.getDescripcion());
+            imageViewPeli.setImageResource(unaPeli.getImagenPelicula());
+            textViewDescripcionPeli.setText(unaPeli.getDescripcionPelicula());
         }
     }
     public interface PeliculasListener{

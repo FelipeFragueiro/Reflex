@@ -1,4 +1,4 @@
-package a0817moact03c_2.a0817moact03c_02;
+package a0817moact03c_2.a0817moact03c_02.View.Fragments;
 
 
 import android.content.Context;
@@ -9,10 +9,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import a0817moact03c_2.a0817moact03c_02.Model.Genero;
+import a0817moact03c_2.a0817moact03c_02.R;
+import a0817moact03c_2.a0817moact03c_02.View.Adapters.AdaptadorGenerosDePelicula;
 
 
 /**
@@ -81,7 +84,7 @@ public class ListaGenerosDePeliculaFragment extends Fragment implements Adaptado
 
     }
 
-    interface EscuchadorDeGeneros{
+    public interface EscuchadorDeGeneros{
         public void seleccionaronGenero(Genero unGenero);
     }
 }

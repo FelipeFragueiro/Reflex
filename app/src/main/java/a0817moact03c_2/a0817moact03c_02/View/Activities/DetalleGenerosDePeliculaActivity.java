@@ -1,4 +1,4 @@
-package a0817moact03c_2.a0817moact03c_02;
+package a0817moact03c_2.a0817moact03c_02.View.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +7,11 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 
 import java.util.List;
+
+import a0817moact03c_2.a0817moact03c_02.Model.Pelicula;
+import a0817moact03c_2.a0817moact03c_02.R;
+import a0817moact03c_2.a0817moact03c_02.View.Adapters.AdaptadorDeListaDePeliculasRecycler;
+import a0817moact03c_2.a0817moact03c_02.View.Fragments.DetalleGenerosDePeliculaFragment;
 
 public class DetalleGenerosDePeliculaActivity extends AppCompatActivity implements DetalleGenerosDePeliculaFragment.EscuchadorDePelis{
     private List<Pelicula> listaDePelis;
@@ -56,9 +61,9 @@ public class DetalleGenerosDePeliculaActivity extends AppCompatActivity implemen
         Intent unIntent = new Intent(this, DetallePeliculaActivity.class);
         Bundle unBundle = new Bundle();
         unBundle.putString("nombre_pelicula",unaPeli.getNombre());
-        unBundle.putInt("Imagen_Pelicula", unaPeli.getImagen());
-        unBundle.putString("Genero_Pelicula",unaPeli.getGenero());
-        unBundle.putString("descripcion_pelicula",unaPeli.getDescripcion());
+        unBundle.putInt("Imagen_Pelicula", unaPeli.getImagenPelicula());
+        unBundle.putString("Genero_Pelicula",unaPeli.getGeneroPelicula());
+        unBundle.putString("descripcion_pelicula",unaPeli.getDescripcionPelicula());
         unBundle.putInt("posicion_pelicula",unaPeli.getPosicion());
         unIntent.putExtras(unBundle);
         startActivity(unIntent);

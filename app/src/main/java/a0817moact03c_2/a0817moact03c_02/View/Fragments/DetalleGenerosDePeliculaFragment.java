@@ -1,4 +1,4 @@
-package a0817moact03c_2.a0817moact03c_02;
+package a0817moact03c_2.a0817moact03c_02.View.Fragments;
 
 
 import android.content.Context;
@@ -14,6 +14,10 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import a0817moact03c_2.a0817moact03c_02.Model.Pelicula;
+import a0817moact03c_2.a0817moact03c_02.R;
+import a0817moact03c_2.a0817moact03c_02.View.Adapters.AdaptadorDeListaDePeliculasRecycler;
 
 
 /**
@@ -91,7 +95,7 @@ public class DetalleGenerosDePeliculaFragment extends Fragment implements Adapta
 
     }
 
-    interface EscuchadorDePelis{
+    public interface EscuchadorDePelis{
         public void seleccionaronPeli(Pelicula unaPeli);
     }
 }

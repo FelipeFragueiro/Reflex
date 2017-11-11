@@ -1,4 +1,4 @@
-package a0817moact03c_2.a0817moact03c_02;
+package a0817moact03c_2.a0817moact03c_02.View.Adapters;
 
 import android.content.Context;
 
@@ -10,6 +10,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
+
+import a0817moact03c_2.a0817moact03c_02.Model.Pelicula;
+import a0817moact03c_2.a0817moact03c_02.R;
 
 
 /**
@@ -76,7 +79,7 @@ public class AdaptadorDePeliculaRecycler extends RecyclerView.Adapter {
         }
         public void cargarPelicula(Pelicula unaPelicula){
             textViewNombreDeLaPelicula.setText(unaPelicula.getNombre());
-            imageViewDeLaPelicula.setImageResource(unaPelicula.getImagen());
+            imageViewDeLaPelicula.setImageResource(unaPelicula.getImagenPelicula());
         }
 
     }
