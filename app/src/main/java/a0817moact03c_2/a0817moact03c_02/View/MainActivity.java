@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements ListaGenerosDePel
         tabLayout.setupWithViewPager(unViewPager);
 
         PeliculasController peliculasController = new PeliculasController();
-        peliculasController.getPostList(new ResultListener<List<Pelicula>>() {
+        peliculasController.getMoviesList(new ResultListener<List<Pelicula>>() {
             @Override
             public void finish(List<Pelicula> resultado) {
 

@@ -11,12 +11,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import a0817moact03c_2.a0817moact03c_02.Controller.PeliculasController;
 import a0817moact03c_2.a0817moact03c_02.Model.Pelicula;
 import a0817moact03c_2.a0817moact03c_02.R;
+import a0817moact03c_2.a0817moact03c_02.Util.ResultListener;
 import a0817moact03c_2.a0817moact03c_02.View.Adapters.AdaptadorDeListaDePeliculasRecycler;
 
 
@@ -75,6 +78,17 @@ public class DetalleGenerosDePeliculaFragment extends Fragment implements Adapta
     }
 
     private void cargarPelis() {
+
+        PeliculasController peliculasController = new PeliculasController();
+
+        ResultListener<List<Pelicula>> escuchadorDeLaVista = new ResultListener<List<Pelicula>>() {
+            @Override
+            public void finish(List<Pelicula> resultado) {
+                Toast.makeText(getActivity(), resultado.toString(), Toast.LENGTH_SHORT).show();
+            }
+        };
+
+        peliculasController.getMoviesList(escuchadorDeLaVista,getContext());
 
         listaDePelis = new ArrayList<>();
         listaDePelis.add(new Pelicula("El transportador", R.drawable.el_transportador,"1", "Accion", "Un pelado trabado, que anda siempre arriba de un Audi enfierrado.",1,"1"));

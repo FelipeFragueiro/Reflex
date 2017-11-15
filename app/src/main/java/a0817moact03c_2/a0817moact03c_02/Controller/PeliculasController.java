@@ -16,7 +16,7 @@ import a0817moact03c_2.a0817moact03c_02.Util.ResultListener;
 
 public class PeliculasController {
 
-    public void getPostList(final ResultListener<List<Pelicula>> listenerFromView, final Context context){
+    public void getMoviesList(final ResultListener<List<Pelicula>> listenerFromView, final Context context){
 
         if(HTTPConnectionManager.isNetworkingOnline(context)){
 
@@ -37,7 +37,7 @@ public class PeliculasController {
             //CASO OFFLINE: Solicito al DAO la lista de POST que esta almacenada en la base de datos
             PeliculasDAODB peliculasDAODB = new PeliculasDAODB(context);
 
-            List<Pelicula> postList = peliculasDAODB.getAllPostsFromDatabase();
+            List<Pelicula> postList = peliculasDAODB.getAllMoviesFromDatabase();
 
             //Le aviso al listener de la vista que ya tengo la lista.
             listenerFromView.finish(postList);

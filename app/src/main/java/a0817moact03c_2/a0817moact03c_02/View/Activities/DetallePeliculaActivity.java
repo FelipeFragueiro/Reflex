@@ -39,9 +39,7 @@ public class DetallePeliculaActivity extends AppCompatActivity implements Detall
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewPagerDetallePelicula);
         AdaptadorDeDetallePeliculaFragment adapterViewPager = new AdaptadorDeDetallePeliculaFragment(getSupportFragmentManager());
         viewPager.setAdapter(adapterViewPager);
-        viewPager.setCurrentItem(unBundle.getInt("posicion_pelicula")
-        );
-
+        viewPager.setCurrentItem(unBundle.getInt("posicion_pelicula"));
     }
 
 

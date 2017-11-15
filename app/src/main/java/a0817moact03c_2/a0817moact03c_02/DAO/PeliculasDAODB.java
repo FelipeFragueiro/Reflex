@@ -70,7 +70,7 @@ public class PeliculasDAODB extends DataBaseHelper {
         return (count > 0);
     }
 
-    public List<Pelicula> getAllPostsFromDatabase() {
+    public List<Pelicula> getAllMoviesFromDatabase() {
 
         SQLiteDatabase database = getReadableDatabase();
 
