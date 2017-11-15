@@ -11,12 +11,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import a0817moact03c_2.a0817moact03c_02.Controller.PeliculasController;
 import a0817moact03c_2.a0817moact03c_02.Model.Pelicula;
 import a0817moact03c_2.a0817moact03c_02.R;
+import a0817moact03c_2.a0817moact03c_02.Util.ResultListener;
 import a0817moact03c_2.a0817moact03c_02.View.Adapters.AdaptadorDePeliculaRecycler;
 
 
@@ -40,7 +43,7 @@ public class DetallePeliculaFragment extends Fragment implements AdaptadorDePeli
         args.putString("nombre", unaPelicula.getNombre());
         args.putString("imagen", unaPelicula.getPoster_path());
         args.putString("descripcion", unaPelicula.getOverview());
-        args.putString("genero", unaPelicula.getGeneroPelicula());
+        args.putString("genero", unaPelicula.getGenre());
 
         detallePeliculaFragment.setArguments(args);
         return detallePeliculaFragment;
@@ -100,6 +103,17 @@ public class DetallePeliculaFragment extends Fragment implements AdaptadorDePeli
         //3) Setearle el adaptador al recycler view
         //listViewPersonajes.setAdapter(unAdaptadorDePersonaje);
         recyclerViewDePeliculasSugeridas.setAdapter(adaptadorDePeliculaRecycler);
+
+        PeliculasController peliculasController = new PeliculasController();
+
+        ResultListener<List<Pelicula>>escuchadorDeLaVista = new ResultListener<List<Pelicula>>() {
+            @Override
+            public void finish(List<Pelicula> resultado) {
+                Toast.makeText(getActivity(), resultado.toString(), Toast.LENGTH_SHORT).show();
+            }
+        };
+
+        peliculasController.getMoviesList(escuchadorDeLaVista,getActivity());
 
         return fragmentView;
     }

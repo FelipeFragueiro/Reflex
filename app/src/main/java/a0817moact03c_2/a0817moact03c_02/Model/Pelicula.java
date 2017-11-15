@@ -5,19 +5,19 @@ package a0817moact03c_2.a0817moact03c_02.Model;
  */
 
 public class Pelicula {
-    private String tittle;
+    private String title;
     private Integer id;
     private String poster_path;
-    private String generoPelicula;
+    private String genre;
     private String overview;
     private int posicion;
     private String release_date;
 
-    public Pelicula(String tittle, Integer id, String poster_path, String generoPelicula, String overview, int posicion, String release_date) {
-        this.tittle = tittle;
+    public Pelicula(String title, Integer id, String poster_path, String genre, String overview, int posicion, String release_date) {
+        this.title = title;
         this.id = id;
         this.poster_path = poster_path;
-        this.generoPelicula = generoPelicula;
+        this.genre = genre;
         this.overview = overview;
         this.posicion = posicion;
         this.release_date = release_date;
@@ -31,15 +31,15 @@ public class Pelicula {
     }
 
     public String getNombre() {
-        return tittle;
+        return title;
     }
 
     public String getPoster_path() {
         return poster_path;
     }
 
-    public String getGeneroPelicula() {
-        return generoPelicula;
+    public String getGenre() {
+        return genre;
     }
 
     public int getPosicion() {
@@ -50,16 +50,16 @@ public class Pelicula {
         return overview;
     }
 
-    public void setTittle(String tittle) {
-        this.tittle = tittle;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public void setPoster_path(String poster_path) {
         this.poster_path = poster_path;
     }
 
-    public void setGeneroPelicula(String generoPelicula) {
-        this.generoPelicula = generoPelicula;
+    public void setGenre(String genre) {
+        this.genre = genre;
     }
 
     public void setOverview(String overview) {

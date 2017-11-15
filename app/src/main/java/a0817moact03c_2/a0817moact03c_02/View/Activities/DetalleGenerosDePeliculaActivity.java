@@ -62,7 +62,7 @@ public class DetalleGenerosDePeliculaActivity extends AppCompatActivity implemen
         Bundle unBundle = new Bundle();
         unBundle.putString("nombre_pelicula",unaPeli.getNombre());
         unBundle.putString("Imagen_Pelicula", unaPeli.getPoster_path());
-        unBundle.putString("Genero_Pelicula",unaPeli.getGeneroPelicula());
+        unBundle.putString("Genero_Pelicula",unaPeli.getGenre());
         unBundle.putString("descripcion_pelicula",unaPeli.getOverview());
         unBundle.putInt("posicion_pelicula",unaPeli.getPosicion());
         unIntent.putExtras(unBundle);

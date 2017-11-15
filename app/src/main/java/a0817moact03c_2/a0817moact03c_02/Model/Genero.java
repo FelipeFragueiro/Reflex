@@ -7,11 +7,18 @@ package a0817moact03c_2.a0817moact03c_02.Model;
 public class Genero {
     private String nombreGenero;
     private int imagenGenero;
+    private Integer idGenero;
 
-    public Genero(String nombreGenero, int imagenGenero) {
+    public Genero(String nombreGenero, int imagenGenero, Integer idGenero) {
         this.nombreGenero = nombreGenero;
         this.imagenGenero = imagenGenero;
+        this.idGenero = idGenero;
     }
+
+    public Integer getIdGenero() {
+        return idGenero;
+    }
+
 
     public int getImagenGenero() {
         return imagenGenero;

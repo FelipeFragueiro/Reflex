@@ -45,7 +45,6 @@ public class PeliculasDAOInternet {
                 e.printStackTrace();
             }
 
-
             Gson gson = new Gson();
             PeliculasContainer peliculasContainer = gson.fromJson(input, PeliculasContainer.class);
 
@@ -56,4 +55,11 @@ public class PeliculasDAOInternet {
             this.listener.finish(peliculaList);
         }
     }
+
+    public void getMoviesFromGenre(final ResultListener<List<Pelicula>> listenerFromController,Integer genreID) {
+        Integer pagina = 1;
+       // RetrieveMoviesTask retrievePostTask = new RetrieveMoviesByGenreTask(listenerFromController,pagina,genreID);
+        //retrievePostTask.execute();
+    }
+
 }

@@ -44,7 +44,7 @@ public class PeliculasDAODB extends DataBaseHelper {
         //Obtengo los datos y los cargo en el row
         row.put(NOMBRE, pelicula.getNombre());
         row.put(DESCRIPCION, pelicula.getOverview());
-        row.put(GENERO, pelicula.getGeneroPelicula());
+        row.put(GENERO, pelicula.getGenre());
         row.put(POSICION, pelicula.getPosicion());
         row.put(IMAGEN, pelicula.getPoster_path());
 
@@ -58,7 +58,7 @@ public class PeliculasDAODB extends DataBaseHelper {
         SQLiteDatabase database = getReadableDatabase();
 
         String selectQuery = "SELECT * FROM " + TABLE_PELICULA
-                + " WHERE " + GENERO + "==" + aPostID;
+                + " WHERE " + NOMBRE + "== '" + aPostID +"'";
 
         Cursor result = database.rawQuery(selectQuery, null);
         Integer count = result.getCount();

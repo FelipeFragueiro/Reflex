@@ -44,4 +44,14 @@ public class PeliculasController {
         }
     }
 
+
+    public void getMoviesFromGenre(final ResultListener<List<Pelicula>> listenerFromView,Integer genreID,Context context) {
+
+        if(HTTPConnectionManager.isNetworkingOnline(context)) {
+            PeliculasDAOInternet peliculasDAOInternet = new PeliculasDAOInternet();
+           // peliculasDAOInternet.getMoviesFromGenre();
+        }
+
+
+    }
 }
