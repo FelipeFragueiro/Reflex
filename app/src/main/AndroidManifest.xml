@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="a0817moact03c_2.a0817moact03c_02">
 
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -22,7 +22,8 @@
         <activity android:name=".View.Activities.DetalleGenerosDePeliculaActivity" />
         <activity android:name=".View.Activities.DetallePeliculaActivity" />
         <activity android:name=".View.Activities.FotoCompletaPeliculaActivity" />
-        <activity android:name=".View.Activities.FavoritosActivity"></activity>
+        <activity android:name=".View.Activities.FavoritosActivity" />
+        <activity android:name=".View.Activities.DetalleSeriesActivity"></activity>
     </application>
 
 </manifest>

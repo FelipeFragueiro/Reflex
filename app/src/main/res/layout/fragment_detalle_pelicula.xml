@@ -19,7 +19,7 @@
 
         <ImageButton
 
-            android:id="@+id/imageViewDeLaPelicula"
+            android:id="@+id/imageViewDeLaSerieDetalle"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:background="#212121"
@@ -30,9 +30,9 @@
             android:id="@+id/fadMenu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignRight="@id/imageViewDeLaPelicula"
+            android:layout_alignRight="@id/imageViewDeLaSerieDetalle"
             app:fab_addButtonColorNormal="#e53935"
-            android:layout_above="@+id/textViewDelGenero">
+            android:layout_above="@+id/textViewDelGeneroDeLaSerieDetalle">
 
             <com.getbase.floatingactionbutton.FloatingActionButton
                 android:id="@+id/fadCompartir"
@@ -55,7 +55,7 @@
 
 
         <TextView
-            android:id="@+id/textViewDelTituloDeLaPelicula"
+            android:id="@+id/textViewDelTituloDeLaSerieDetalle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -64,21 +64,21 @@
             android:textStyle="bold"
             android:text="Titulo de la pelicula"
             android:textColor="#ffffff"
-            android:layout_below="@id/imageViewDeLaPelicula"/>
+            android:layout_below="@id/imageViewDeLaSerieDetalle"/>
 
         <TextView
             android:layout_marginTop="5dp"
-            android:id="@+id/textViewDelGenero"
+            android:id="@+id/textViewDelGeneroDeLaSerieDetalle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="15dp"
             android:textStyle="bold"
             android:text="Genero"
             android:textColor="#ffffff"
-            android:layout_below="@id/textViewDelTituloDeLaPelicula"/>
+            android:layout_below="@id/textViewDelTituloDeLaSerieDetalle"/>
 
         <TextView
-            android:id="@+id/textViewDeLaDescripcionDeLaPelicula"
+            android:id="@+id/textViewDeLaDescripcionDeLaSerieDetalle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -87,13 +87,13 @@
             android:layout_marginTop="5dp"
             android:layout_marginBottom="15dp"
             android:textColor="#ffffff"
-            android:layout_below="@id/textViewDelGenero"/>
+            android:layout_below="@id/textViewDelGeneroDeLaSerieDetalle"/>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerViewDePeliculasSugeridas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/textViewDeLaDescripcionDeLaPelicula">
+            android:layout_below="@id/textViewDeLaDescripcionDeLaSerieDetalle">
 
         </android.support.v7.widget.RecyclerView>
 

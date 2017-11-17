@@ -4,7 +4,7 @@ package a0817moact03c_2.a0817moact03c_02.View.Fragments;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,16 +16,17 @@ import java.util.List;
 
 import a0817moact03c_2.a0817moact03c_02.Model.Serie;
 import a0817moact03c_2.a0817moact03c_02.R;
-import a0817moact03c_2.a0817moact03c_02.View.Adapters.SeriesAdapter;
+import a0817moact03c_2.a0817moact03c_02.View.Adapters.AdaptadorDeSeries;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SeriesFragment extends Fragment implements SeriesAdapter.EscuchadorDeSerie {
+public class SeriesFragment extends Fragment implements AdaptadorDeSeries.EscuchadorDeSerie {
 
 
-    private List<Serie> serieList;
+    private List<Serie> listaDeSeriesPopulares;
+    private List<Serie> listaDeSeriesEnTV;
     private EscuchadorDeSeries escuchadorDeSeries;
 
     public SeriesFragment() {
@@ -46,35 +47,39 @@ public class SeriesFragment extends Fragment implements SeriesAdapter.Escuchador
         View view = inflater.inflate(R.layout.fragment_series, container, false);
 
         //TextView textView = view.findViewById(R.id.textViewPalabraGeneros);
-        RecyclerView recyclerView = view.findViewById(R.id.recyclerViewGenerosDeSerie);
-        serieList = new ArrayList<>();
+        RecyclerView recyclerViewSeriesPopulares = view.findViewById(R.id.recyclerViewSeriesPopulares);
+        listaDeSeriesPopulares = new ArrayList<>();
 
 
 
-        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getContext(),3);
-        recyclerView.setLayoutManager(layoutManager);
+        recyclerViewSeriesPopulares.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
 
 
-        SeriesAdapter adaptador = new SeriesAdapter(serieList,getContext(),this);
+        AdaptadorDeSeries adaptadorDeSeriesPopulares = new AdaptadorDeSeries(listaDeSeriesPopulares,getContext(),this);
 
-        recyclerView.setAdapter(adaptador);
+        recyclerViewSeriesPopulares.setAdapter(adaptadorDeSeriesPopulares);
 
-       /* serieList.add(new Serie("Accion",R.drawable.accion));
-        serieList.add(new Serie("Animadas",R.drawable.animadas));
-        serieList.add(new Serie("Anime",R.drawable.anime));
-        serieList.add(new Serie("Aventura",R.drawable.aventura));
-        serieList.add(new Serie("Ciencia Ficcion",R.drawable.ciencia_ficcion));
-        serieList.add(new Serie("Comedia",R.drawable.comedia));
-        serieList.add(new Serie("Deporte",R.drawable.deportes));
-        serieList.add(new Serie("Documentales",R.drawable.documentales));
-        serieList.add(new Serie("Drama",R.drawable.drama));
-        serieList.add(new Serie("Infantil",R.drawable.infantil));
-        serieList.add(new Serie("Policiaca",R.drawable.policial));
-        serieList.add(new Serie("Romantico",R.drawable.romantica));
-        serieList.add(new Serie("Terror",R.drawable.terror));
-        serieList.add(new Serie("Thriller",R.drawable.thriller));
-        serieList.add(new Serie("Suspenso",R.drawable.suspenso));
-*/
+        listaDeSeriesPopulares.add(new Serie("Prueba",R.drawable.martes_13,"prueba","prueba",0));
+        listaDeSeriesPopulares.add(new Serie("Prueba",R.drawable.martes_13,"prueba","prueba",1));
+        listaDeSeriesPopulares.add(new Serie("Prueba",R.drawable.martes_13,"prueba","prueba",2));
+        listaDeSeriesPopulares.add(new Serie("Prueba",R.drawable.martes_13,"prueba","prueba",3));
+        listaDeSeriesPopulares.add(new Serie("Prueba",R.drawable.martes_13,"prueba","prueba",4));
+
+        RecyclerView recyclerViewSeriesEnTV = view.findViewById(R.id.recyclerViewSeriesEnTV);
+        listaDeSeriesEnTV = new ArrayList<>();
+
+
+        recyclerViewSeriesEnTV.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        AdaptadorDeSeries adaptadorDeSeriesEnTV = new AdaptadorDeSeries(listaDeSeriesEnTV,getContext(),this);
+        recyclerViewSeriesEnTV.setAdapter(adaptadorDeSeriesEnTV);
+        listaDeSeriesEnTV.add(new Serie("Prueba",R.drawable.martes_13,"prueba","prueba",0));
+        listaDeSeriesEnTV.add(new Serie("Prueba",R.drawable.martes_13,"prueba","prueba",1));
+        listaDeSeriesEnTV.add(new Serie("Prueba",R.drawable.martes_13,"prueba","prueba",2));
+        listaDeSeriesEnTV.add(new Serie("Prueba",R.drawable.martes_13,"prueba","prueba",3));
+        listaDeSeriesEnTV.add(new Serie("Prueba",R.drawable.masacre_de_texas,"prueba","prueba",4));
+
+
+
         return view;
 
     }
@@ -82,11 +87,11 @@ public class SeriesFragment extends Fragment implements SeriesAdapter.Escuchador
 
     @Override
     public void seleccionaronA(Serie unaSerie) {
-        escuchadorDeSeries.seleccionaronGenero(unaSerie);
+        escuchadorDeSeries.seleccionaronSerie(unaSerie);
 
     }
 
     public interface EscuchadorDeSeries{
-        public void seleccionaronGenero(Serie unaSerie);
+        public void seleccionaronSerie(Serie unaSerie);
     }
 }

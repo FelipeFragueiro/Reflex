@@ -75,7 +75,7 @@ public class AdaptadorDePeliculaRecycler extends RecyclerView.Adapter {
         public PeliculaViewHolder(View itemView) {
             super(itemView);
             textViewNombreDeLaPelicula = (TextView)itemView.findViewById(R.id.textViewNombreDeLaPelicula);
-            imageViewDeLaPelicula = (ImageView) itemView.findViewById(R.id.imageViewDeLaPelicula);
+            imageViewDeLaPelicula = (ImageView) itemView.findViewById(R.id.imageViewDeLaSerieDetalle);
         }
         public void cargarPelicula(Pelicula unaPelicula){
             textViewNombreDeLaPelicula.setText(unaPelicula.getNombre());

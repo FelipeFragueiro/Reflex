@@ -23,8 +23,7 @@ public class Pelicula {
         this.release_date = release_date;
     }
 
-    public Pelicula() {
-    }
+
 
     public void setPosicion(int posicion) {
         this.posicion = posicion;
@@ -35,7 +34,7 @@ public class Pelicula {
     }
 
     public String getPoster_path() {
-        return poster_path;
+        return "https://image.tmdb.org/t/p/w500"+poster_path;
     }
 
     public String getGenre() {

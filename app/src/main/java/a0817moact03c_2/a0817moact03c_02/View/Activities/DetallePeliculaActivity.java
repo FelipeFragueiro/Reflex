@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -27,6 +28,8 @@ public class DetallePeliculaActivity extends AppCompatActivity implements Detall
         Intent unIntent = getIntent();
         Bundle unBundle = unIntent.getExtras();
 
+        Toast.makeText(this, "hola", Toast.LENGTH_SHORT).show();
+
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -36,10 +39,10 @@ public class DetallePeliculaActivity extends AppCompatActivity implements Detall
         fragmentTransaction.commit();
 
 
-        ViewPager viewPager = (ViewPager) findViewById(R.id.viewPagerDetallePelicula);
+        /*ViewPager viewPager = (ViewPager) findViewById(R.id.viewPagerDetallePelicula);
         AdaptadorDeDetallePeliculaFragment adapterViewPager = new AdaptadorDeDetallePeliculaFragment(getSupportFragmentManager());
         viewPager.setAdapter(adapterViewPager);
-        viewPager.setCurrentItem(unBundle.getInt("posicion_pelicula"));
+        viewPager.setCurrentItem(unBundle.getInt("posicion_pelicula"));*/
     }
 
 
@@ -62,13 +65,9 @@ public class DetallePeliculaActivity extends AppCompatActivity implements Detall
     }
 
     @Override
-    public void seleccionaronImagen(int unInt) {
-        Intent unIntent = new Intent(this, FotoCompletaPeliculaActivity.class);
-
-        Bundle unBundle = new Bundle();
-        unBundle.putInt("foto_completa", unInt);
-        unIntent.putExtras(unBundle);
-        startActivity(unIntent);
+    public void seleccionaronImagen(String unInt) {
 
     }
+
+
 }

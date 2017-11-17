@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import a0817moact03c_2.a0817moact03c_02.View.Fragments.ListaGenerosDePeliculaFragment;
+import a0817moact03c_2.a0817moact03c_02.View.Fragments.PantallaPrincipalFragmentPeliculas;
 import a0817moact03c_2.a0817moact03c_02.View.Fragments.SeriesFragment;
 
 /**
@@ -25,11 +26,12 @@ public class AdaptadorViewPagerMenuPrincipal extends FragmentStatePagerAdapter {
     public AdaptadorViewPagerMenuPrincipal(FragmentManager fm) {
         super(fm);
         SeriesFragment seriesFragment = new SeriesFragment();
-        ListaGenerosDePeliculaFragment listaGenerosDePeliculaFragment = new ListaGenerosDePeliculaFragment();
+        PantallaPrincipalFragmentPeliculas pantallaPrincipalFragmentPeliculas = new PantallaPrincipalFragmentPeliculas();
 
         listaDeFragments = new ArrayList<>();
-        listaDeFragments.add(listaGenerosDePeliculaFragment);
+       /// listaDeFragments.add(listaGenerosDePeliculaFragment);
         listaDeFragments.add(seriesFragment);
+        listaDeFragments.add(pantallaPrincipalFragmentPeliculas);
     }
 
     @Override

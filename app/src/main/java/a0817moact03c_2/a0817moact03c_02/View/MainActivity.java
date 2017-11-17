@@ -8,6 +8,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -18,10 +19,13 @@ import a0817moact03c_2.a0817moact03c_02.Model.Pelicula;
 import a0817moact03c_2.a0817moact03c_02.R;
 import a0817moact03c_2.a0817moact03c_02.Util.ResultListener;
 import a0817moact03c_2.a0817moact03c_02.View.Activities.DetalleGenerosDePeliculaActivity;
+import a0817moact03c_2.a0817moact03c_02.View.Activities.DetallePeliculaActivity;
+import a0817moact03c_2.a0817moact03c_02.View.Activities.DetalleSeriesActivity;
 import a0817moact03c_2.a0817moact03c_02.View.Fragments.ListaGenerosDePeliculaFragment;
+import a0817moact03c_2.a0817moact03c_02.View.Fragments.PantallaPrincipalFragmentPeliculas;
 import a0817moact03c_2.a0817moact03c_02.View.Fragments.SeriesFragment;
 
-public class MainActivity extends AppCompatActivity implements ListaGenerosDePeliculaFragment.EscuchadorDeGeneros, SeriesFragment.EscuchadorDeSeries{
+public class MainActivity extends AppCompatActivity implements SeriesFragment.EscuchadorDeSeries ,PantallaPrincipalFragmentPeliculas.EscuchadorDePelicula{
 
     private final String LOG_TAG = MainActivity.class.getSimpleName();
     private final String[] PAGE_TITLES = new String[] {
@@ -31,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements ListaGenerosDePel
     };
 
     private final android.support.v4.app.Fragment[] PAGES = new android.support.v4.app.Fragment[] {
-            new ListaGenerosDePeliculaFragment(),
+            new PantallaPrincipalFragmentPeliculas(),
             new SeriesFragment(),
     };
 
@@ -52,20 +56,35 @@ public class MainActivity extends AppCompatActivity implements ListaGenerosDePel
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         tabLayout.setupWithViewPager(unViewPager);
 
-        PeliculasController peliculasController = new PeliculasController();
-        peliculasController.getMoviesList(new ResultListener<List<Pelicula>>() {
-            @Override
-            public void finish(List<Pelicula> resultado) {
-
-            }
-        }, this);
-
-        
     }
 
     @Override
-    public void seleccionaronGenero(Serie unaSerie) {
+    public void seleccionaronSerie(Serie unaSerie) {
+        Intent unIntent = new Intent(this, DetalleSeriesActivity.class);
+        Bundle unBundle = new Bundle();
+        unBundle.putString("nombre_serie",unaSerie.getNombreSerie());
+        unBundle.putString("genero_serie",unaSerie.getGeneroSerie());
+        unBundle.putString("descripcion_serie",unaSerie.getDescripcionSerie());
+        unBundle.putInt("imagen_serie",unaSerie.getImagenSerie());
+        unBundle.putInt("posicion_serie",unaSerie.getPosicion());
+        unIntent.putExtras(unBundle);
+        startActivity(unIntent);
 
+    }
+
+    @Override
+    public void seleccionaronPelicula(Pelicula unaPelicula) {
+        Intent unIntent = new Intent(this, DetallePeliculaActivity.class);
+        Bundle unBundle =  new Bundle();
+        unBundle.putString("nombre_pelicula",unaPelicula.getNombre());
+        unBundle.putInt("posicion_pelicula",unaPelicula.getPosicion());
+        unBundle.putInt("id_pelicula",unaPelicula.getId());
+        unBundle.putString("genre_pelicula",unaPelicula.getGenre());
+        unBundle.putString("overview_pelicula",unaPelicula.getOverview());
+        unBundle.putString("poster_path_pelicula",unaPelicula.getPoster_path());
+        unBundle.putString("release_date_pelicula",unaPelicula.getRelease_date());
+        unIntent.putExtras(unBundle);
+        startActivity(unIntent);
     }
 
     /*public void onClickPelicula(View view){
@@ -118,7 +137,7 @@ public class MainActivity extends AppCompatActivity implements ListaGenerosDePel
 
     }
 
-    @Override
+    /*@Override
     public void seleccionaronGenero(Genero unGenero) {
         Intent unIntent = new Intent(this, DetalleGenerosDePeliculaActivity.class);
         Bundle unBundle = new  Bundle();
@@ -126,5 +145,5 @@ public class MainActivity extends AppCompatActivity implements ListaGenerosDePel
         unIntent.putExtras(unBundle);
         startActivity(unIntent);
 
-    }
+    }*/
 }

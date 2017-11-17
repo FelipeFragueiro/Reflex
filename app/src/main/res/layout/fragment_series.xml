@@ -7,14 +7,37 @@
 
     <!-- TODO: Update blank fragment layout -->
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Series Populares"
+        android:textColor="#fff"
+        android:id="@+id/textViewSeriesPopulares"/>
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerViewGenerosDeSerie"
+        android:id="@+id/recyclerViewSeriesPopulares"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="50dp">
+        android:layout_height="170dp"
+        android:layout_below="@+id/textViewSeriesPopulares"
+        >
 
     </android.support.v7.widget.RecyclerView>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Series en TV"
+        android:textColor="#fff"
+        android:id="@+id/textViewSeriesEnTV"
+        android:layout_below="@+id/recyclerViewSeriesPopulares"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerViewSeriesEnTV"
+        android:layout_width="match_parent"
+        android:layout_height="170dp"
+        android:layout_below="@+id/textViewSeriesEnTV"
+        >
+
+    </android.support.v7.widget.RecyclerView>
 
 </RelativeLayout>

@@ -6,11 +6,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import java.util.List;
 
-import a0817moact03c_2.a0817moact03c_02.Model.Genero;
 import a0817moact03c_2.a0817moact03c_02.Model.Serie;
 import a0817moact03c_2.a0817moact03c_02.R;
 import a0817moact03c_2.a0817moact03c_02.View.Fragments.SeriesFragment;
@@ -19,14 +17,14 @@ import a0817moact03c_2.a0817moact03c_02.View.Fragments.SeriesFragment;
  * Created by ma on 11/11/17.
  */
 
-public class SeriesAdapter extends RecyclerView.Adapter {
-    private List<Serie> listaDeGenerosDeSeries;
+public class AdaptadorDeSeries extends RecyclerView.Adapter {
+    private List<Serie> listaDeSeries;
     private Context unContext;
     private EscuchadorDeSerie escuchadorDeSeries;
 
 
-    public SeriesAdapter(List<Serie> listaDeGenerosDeSeries, Context unContext, SeriesFragment escuchadorDeSeries) {
-        this.listaDeGenerosDeSeries = listaDeGenerosDeSeries;
+    public AdaptadorDeSeries(List<Serie> listaDeSeries, Context unContext, SeriesFragment escuchadorDeSeries) {
+        this.listaDeSeries = listaDeSeries;
         this.unContext = unContext;
         this.escuchadorDeSeries = escuchadorDeSeries;
     }
@@ -42,7 +40,7 @@ public class SeriesAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        final Serie unaSerie = listaDeGenerosDeSeries.get(position);
+        final Serie unaSerie = listaDeSeries.get(position);
         SeriesViewHolder seriesViewHolder = (SeriesViewHolder)holder;
         seriesViewHolder.cargarSerie(unaSerie);
 
@@ -57,12 +55,11 @@ public class SeriesAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        return listaDeGenerosDeSeries.size();
+        return listaDeSeries.size();
     }
 
 
     private class SeriesViewHolder extends RecyclerView.ViewHolder{
-        TextView textViewSerie = itemView.findViewById(R.id.textViewCeldaSeries);
         ImageView imagenSerie = itemView.findViewById(R.id.imageViewCeldaSeries);
 
         public SeriesViewHolder(View itemView) {
@@ -70,7 +67,6 @@ public class SeriesAdapter extends RecyclerView.Adapter {
         }
 
         public void cargarSerie (Serie unaSerie){
-            textViewSerie.setText(unaSerie.getGeneroSerie());
             imagenSerie.setImageResource(unaSerie.getImagenSerie());
         }
     }
@@ -79,5 +75,4 @@ public class SeriesAdapter extends RecyclerView.Adapter {
         public void seleccionaronA(Serie unaSerie);
     }
 }
-
 

@@ -20,8 +20,9 @@ public class AdaptadorDeDetallePeliculaFragment extends FragmentStatePagerAdapte
 
     public AdaptadorDeDetallePeliculaFragment(FragmentManager fm) {
         super(fm);
+        listaDeDetallePelicula = new ArrayList<>();
 
-        DetallePeliculaFragment unFragmentoPeliculaElTransportador = DetallePeliculaFragment.dameUnDetallePeliculaFragment(new Pelicula("El transportador", R.drawable.el_transportador,"1", "Accion", "Un pelado trabado, que anda siempre arriba de un Audi enfierrado.", 1,"1"));
+      /*  DetallePeliculaFragment unFragmentoPeliculaElTransportador = DetallePeliculaFragment.dameUnDetallePeliculaFragment(new Pelicula("El transportador", R.drawable.el_transportador,"1", "Accion", "Un pelado trabado, que anda siempre arriba de un Audi enfierrado.", 1,"1"));
         DetallePeliculaFragment unFragmentoPeliculaIndianaJones = DetallePeliculaFragment.dameUnDetallePeliculaFragment(new Pelicula("Indiana jones", R.drawable.indiana_jones,"1", "Aventura", "Un exploraGay que siempre lleva su latigo encima.", 2,"1"));
         DetallePeliculaFragment unFragmentoPeliculaMartes13 = DetallePeliculaFragment.dameUnDetallePeliculaFragment(new Pelicula("Martes 13", R.drawable.martes_13,"1", "Terror", "Un feo con una mascara que murio ahogado en un lago , resucita todos los martes 13 para matar a todos.", 3,"1"));
         DetallePeliculaFragment unFragmentoPeliculaMasacreDeTexas = DetallePeliculaFragment.dameUnDetallePeliculaFragment(new Pelicula("Masacre de texas", R.drawable.masacre_de_texas,"1", "Terror", "Un carnisero loco con muy pocas pulgas mata a todo habitante nuevo en Texas", 4,"1"));
@@ -39,7 +40,7 @@ public class AdaptadorDeDetallePeliculaFragment extends FragmentStatePagerAdapte
         listaDeDetallePelicula.add(unFragmentoPeliculaAnabelle);
         listaDeDetallePelicula.add(unFragmentoPeliculaFreddyCrugger);
         listaDeDetallePelicula.add(unFragmentoPeliculaIt);
-        listaDeDetallePelicula.add(unFragmentoPeliculaSaw);
+        listaDeDetallePelicula.add(unFragmentoPeliculaSaw);*/
 
 
 

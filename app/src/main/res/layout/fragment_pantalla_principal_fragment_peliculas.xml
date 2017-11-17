@@ -1,0 +1,63 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="a0817moact03c_2.a0817moact03c_02.View.Fragments.ListaGenerosDePeliculaFragment"
+    android:background="#212121">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Peliculas estreno"
+        android:textColor="#fff"
+        android:id="@+id/textViewDePeliculasEstreno"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerViewPeliculasEstreno"
+        android:layout_width="match_parent"
+        android:layout_height="170dp"
+        android:layout_below="@+id/textViewDePeliculasEstreno"
+        >
+
+    </android.support.v7.widget.RecyclerView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Top movies"
+        android:textColor="#fff"
+        android:id="@+id/textViewDeTopMovies"
+        android:layout_below="@+id/recyclerViewPeliculasEstreno"
+        />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerViewDeTopMovies"
+        android:layout_width="match_parent"
+        android:layout_height="170dp"
+        android:layout_below="@+id/textViewDeTopMovies"
+        >
+
+    </android.support.v7.widget.RecyclerView>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Proximamente"
+        android:textColor="#fff"
+        android:id="@+id/textViewDePeliculasProximamente"
+        android:layout_below="@+id/recyclerViewDeTopMovies"
+        />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerViewPeliculasProximamente"
+        android:layout_width="match_parent"
+        android:layout_height="170dp"
+        android:layout_below="@+id/textViewDePeliculasProximamente"
+        >
+
+    </android.support.v7.widget.RecyclerView>
+
+</RelativeLayout>

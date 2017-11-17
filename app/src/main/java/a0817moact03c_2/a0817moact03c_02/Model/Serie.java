@@ -15,7 +15,7 @@ public class Serie {
     private List<Capitulo> temporadas;
     private Capitulo capitulo;
 
-    public Serie(String nombreSerie, int imagenSerie, String generoSerie, String descripcionSerie, int posicion, List<Capitulo> temporadas, Capitulo capitulo) {
+    public Serie(String nombreSerie, int imagenSerie, String generoSerie, String descripcionSerie, int posicion) {
         this.nombreSerie = nombreSerie;
         this.imagenSerie = imagenSerie;
         this.generoSerie = generoSerie;
