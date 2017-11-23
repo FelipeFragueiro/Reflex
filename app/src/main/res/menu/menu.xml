@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/Inicio"
+            android:title="Inicio"></item>
+        <item
+            android:id="@+id/Action"
+            android:title="Acción"></item>
+        <item
+            android:id="@+id/Adventure"
+            android:title="Adventure"></item>
+        <item
+            android:id="@+id/Animation"
+            android:title="Animation"></item>
+        <item
+            android:id="@+id/Comedy"
+            android:title="Comedy"></item>
+        <item
+            android:id="@+id/Crime"
+            android:title="Crime"></item>
+        <item
+            android:id="@+id/Documentary"
+            android:title="Documentary"></item>
+        <item
+            android:id="@+id/Drama"
+            android:title="Drama"></item>
+        <item
+            android:id="@+id/Family"
+            android:title="Family"></item>
+        <item
+            android:id="@+id/Fantasy"
+            android:title="Fantasy"></item>
+        <item
+            android:id="@+id/History"
+            android:title="History"></item>
+        <item
+            android:id="@+id/Horror"
+            android:title="Horror"></item>
+        <item
+            android:id="@+id/Music"
+            android:title="Music"></item>
+        <item
+            android:id="@+id/Mystery"
+            android:title="Mystery"></item>
+        <item
+            android:id="@+id/Romance"
+            android:title="Romance"></item>
+        <item
+            android:id="@+id/ScienceFiction"
+            android:title="Science Fiction"></item>
+        <item
+            android:id="@+id/TVMovie"
+            android:title="TV Movie"></item>
+        <item
+            android:id="@+id/Thriller"
+            android:title="Thriller"></item>
+        <item
+            android:id="@+id/War"
+            android:title="War"></item>
+        <item
+            android:id="@+id/Western"
+            android:title="Western"></item>
+    </group>
+</menu>

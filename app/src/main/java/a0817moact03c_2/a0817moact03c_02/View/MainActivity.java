@@ -1,13 +1,16 @@
 package a0817moact03c_2.a0817moact03c_02.View;
 
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.content.Intent;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import java.util.List;
@@ -55,6 +58,95 @@ public class MainActivity extends AppCompatActivity implements SeriesFragment.Es
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         tabLayout.setupWithViewPager(unViewPager);
+
+
+
+        NavigationView navigationView = (NavigationView)findViewById(R.id.navigationView);
+
+            /* Tenemos que escuchar cuando se hace click en una de las opciones
+            de nuestro menú. En el MainActivity crear el listener como clase
+            privada*/
+
+
+        /*navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+
+
+            @Override
+            public boolean onNavigationItemSelected(MenuItem item) {
+
+                switch (item.getItemId()){
+                    case R.id.Inicio :
+                        cargadorDeFragments(new SegundoFragment());
+                        break;
+                    case R.id.Action :
+                        cargadorDeFragments(new PrimerFragment());
+                        break;
+                    case R.id.Adventure :
+                        cargadorDeFragments(new SegundoFragment());
+                        break;
+                    case R.id.Animation :
+                        cargadorDeFragments(new PrimerFragment());
+                        break;
+                    case R.id.Comedy :
+                        cargadorDeFragments(new SegundoFragment());
+                        break;
+                    case R.id.Crime :
+                        cargadorDeFragments(new PrimerFragment());
+                        break;
+                    case R.id.Documentary :
+                        cargadorDeFragments(new SegundoFragment());
+                        break;
+                    case R.id.Drama :
+                        cargadorDeFragments(new PrimerFragment());
+                        break;
+                    case R.id.Family :
+                        cargadorDeFragments(new SegundoFragment());
+                        break;
+                    case R.id.Fantasy :
+                        cargadorDeFragments(new PrimerFragment());
+                        break;
+                    case R.id.History :
+                        cargadorDeFragments(new SegundoFragment());
+                        break;
+                    case R.id.Horror :
+                        cargadorDeFragments(new PrimerFragment());
+                        break;
+                    case R.id.Music :
+                        cargadorDeFragments(new SegundoFragment());
+                        break;
+                    case R.id.Mystery :
+                        cargadorDeFragments(new PrimerFragment());
+                        break;
+                    case R.id.Romance :
+                        cargadorDeFragments(new SegundoFragment());
+                        break;
+                    case R.id.ScienceFiction :
+                        cargadorDeFragments(new PrimerFragment());
+                        break;
+                    case R.id.TVMovie :
+                        cargadorDeFragments(new SegundoFragment());
+                        break;
+                    case R.id.Thriller :
+                        cargadorDeFragments(new PrimerFragment());
+                        break;
+                    case R.id.War :
+                        cargadorDeFragments(new SegundoFragment());
+                        break;
+                    case R.id.Western :
+                        cargadorDeFragments(new PrimerFragment());
+                        break;
+                    default:
+                        cargadorDeFragments(new PrimerFragment());
+                }
+
+                DrawerLayout drawerLayout = (DrawerLayout)findViewById(R.id.drawerLayout);
+                drawerLayout.closeDrawers();
+
+                return true;
+            }
+        });*/
+
+
 
     }
 

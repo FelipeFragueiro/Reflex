@@ -1,63 +1,84 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="a0817moact03c_2.a0817moact03c_02.View.Fragments.ListaGenerosDePeliculaFragment"
-    android:background="#212121">
+    android:background="#212121"
+    android:orientation="vertical"
+    tools:context="a0817moact03c_2.a0817moact03c_02.View.Fragments.ListaGenerosDePeliculaFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Peliculas estreno"
-        android:textColor="#fff"
-        android:id="@+id/textViewDePeliculasEstreno"/>
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerViewPeliculasEstreno"
-        android:layout_width="match_parent"
-        android:layout_height="170dp"
-        android:layout_below="@+id/textViewDePeliculasEstreno"
-        >
-
-    </android.support.v7.widget.RecyclerView>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Top movies"
-        android:textColor="#fff"
-        android:id="@+id/textViewDeTopMovies"
-        android:layout_below="@+id/recyclerViewPeliculasEstreno"
-        />
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerViewDeTopMovies"
-        android:layout_width="match_parent"
-        android:layout_height="170dp"
-        android:layout_below="@+id/textViewDeTopMovies"
-        >
-
-    </android.support.v7.widget.RecyclerView>
+        android:layout_height="match_parent">
 
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Proximamente"
-        android:textColor="#fff"
-        android:id="@+id/textViewDePeliculasProximamente"
-        android:layout_below="@+id/recyclerViewDeTopMovies"
-        />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerViewPeliculasProximamente"
-        android:layout_width="match_parent"
-        android:layout_height="170dp"
-        android:layout_below="@+id/textViewDePeliculasProximamente"
-        >
+        <!-- dejo el navigation view dentro del relative debido a no podria provar
+            si funciona o no, porque esta el view pager que prohibe usarlo -->
 
-    </android.support.v7.widget.RecyclerView>
 
-</RelativeLayout>
+            <TextView
+                android:id="@+id/textViewDePeliculasEstreno"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:text="Peliculas estreno"
+                android:textColor="#fff" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerViewPeliculasEstreno"
+                android:layout_width="match_parent"
+                android:layout_height="170dp"
+                android:layout_below="@+id/textViewDePeliculasEstreno"
+                android:layout_marginLeft="15dp">
+
+            </android.support.v7.widget.RecyclerView>
+
+            <TextView
+                android:id="@+id/textViewDeTopMovies"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/recyclerViewPeliculasEstreno"
+                android:layout_marginLeft="15dp"
+                android:text="Top movies"
+                android:textColor="#fff" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerViewDeTopMovies"
+                android:layout_width="match_parent"
+                android:layout_height="170dp"
+                android:layout_below="@+id/textViewDeTopMovies"
+                android:layout_marginLeft="15dp">
+
+            </android.support.v7.widget.RecyclerView>
+
+
+            <TextView
+                android:id="@+id/textViewDePeliculasProximamente"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/recyclerViewDeTopMovies"
+                android:layout_marginLeft="15dp"
+                android:text="Proximamente"
+                android:textColor="#fff" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerViewPeliculasProximamente"
+                android:layout_width="match_parent"
+                android:layout_height="170dp"
+                android:layout_below="@+id/textViewDePeliculasProximamente"
+                android:layout_marginLeft="15dp">
+
+            </android.support.v7.widget.RecyclerView>
+
+        </RelativeLayout>
+
+
+    </ScrollView>
+
+
+
+</LinearLayout>
