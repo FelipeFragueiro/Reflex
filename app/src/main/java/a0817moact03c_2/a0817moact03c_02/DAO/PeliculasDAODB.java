@@ -58,7 +58,7 @@ public class PeliculasDAODB extends DataBaseHelper {
         SQLiteDatabase database = getReadableDatabase();
 
         String selectQuery = "SELECT * FROM " + TABLE_PELICULA
-                + " WHERE " + NOMBRE + "== '" + aPostID +"'";
+                + " WHERE " + NOMBRE + "==\""+ aPostID +"\"";
 
         Cursor result = database.rawQuery(selectQuery, null);
         Integer count = result.getCount();

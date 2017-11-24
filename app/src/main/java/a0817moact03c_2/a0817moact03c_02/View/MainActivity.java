@@ -2,13 +2,17 @@ package a0817moact03c_2.a0817moact03c_02.View;
 
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.content.Intent;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +25,7 @@ import a0817moact03c_2.a0817moact03c_02.R;
 import a0817moact03c_2.a0817moact03c_02.Util.ResultListener;
 import a0817moact03c_2.a0817moact03c_02.View.Activities.DetallePeliculaActivity;
 import a0817moact03c_2.a0817moact03c_02.View.Activities.DetalleSeriesActivity;
+import a0817moact03c_2.a0817moact03c_02.View.Fragments.FragmentoGenerosPantallaPrincipal;
 import a0817moact03c_2.a0817moact03c_02.View.Fragments.PantallaPrincipalFragmentPeliculas;
 import a0817moact03c_2.a0817moact03c_02.View.Fragments.SeriesFragment;
 
@@ -63,14 +68,14 @@ public class MainActivity extends AppCompatActivity implements SeriesFragment.Es
 
 
 
-       // NavigationView navigationView = (NavigationView)findViewById(R.id.navigationView);
+        NavigationView navigationView = (NavigationView)findViewById(R.id.navigationView);
 
-            /* Tenemos que escuchar cuando se hace click en una de las opciones
+          /* Tenemos que escuchar cuando se hace click en una de las opciones
             de nuestro menú. En el MainActivity crear el listener como clase
             privada*/
 
 
-        /*navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
 
 
             @Override
@@ -78,67 +83,67 @@ public class MainActivity extends AppCompatActivity implements SeriesFragment.Es
 
                 switch (item.getItemId()){
                     case R.id.Inicio :
-                        cargadorDeFragments(new SegundoFragment());
+                        cargadorDeFragments(new PantallaPrincipalFragmentPeliculas());
                         break;
                     case R.id.Action :
-                        cargadorDeFragments(new PrimerFragment());
+                        cargadorDeFragments(new FragmentoGenerosPantallaPrincipal("28"));
                         break;
                     case R.id.Adventure :
-                        cargadorDeFragments(new SegundoFragment());
+                        cargadorDeFragments(new FragmentoGenerosPantallaPrincipal("12"));
                         break;
                     case R.id.Animation :
-                        cargadorDeFragments(new PrimerFragment());
+                        cargadorDeFragments(new FragmentoGenerosPantallaPrincipal("16"));
                         break;
                     case R.id.Comedy :
-                        cargadorDeFragments(new SegundoFragment());
+                        cargadorDeFragments(new FragmentoGenerosPantallaPrincipal("35"));
                         break;
                     case R.id.Crime :
-                        cargadorDeFragments(new PrimerFragment());
+                        cargadorDeFragments(new FragmentoGenerosPantallaPrincipal("80"));
                         break;
                     case R.id.Documentary :
-                        cargadorDeFragments(new SegundoFragment());
+                        cargadorDeFragments(new FragmentoGenerosPantallaPrincipal("99"));
                         break;
                     case R.id.Drama :
-                        cargadorDeFragments(new PrimerFragment());
+                        cargadorDeFragments(new FragmentoGenerosPantallaPrincipal("18"));
                         break;
                     case R.id.Family :
-                        cargadorDeFragments(new SegundoFragment());
+                        cargadorDeFragments(new FragmentoGenerosPantallaPrincipal("10751"));
                         break;
                     case R.id.Fantasy :
-                        cargadorDeFragments(new PrimerFragment());
+                        cargadorDeFragments(new FragmentoGenerosPantallaPrincipal("14"));
                         break;
                     case R.id.History :
-                        cargadorDeFragments(new SegundoFragment());
+                        cargadorDeFragments(new FragmentoGenerosPantallaPrincipal("36"));
                         break;
                     case R.id.Horror :
-                        cargadorDeFragments(new PrimerFragment());
+                        cargadorDeFragments(new FragmentoGenerosPantallaPrincipal("27"));
                         break;
                     case R.id.Music :
-                        cargadorDeFragments(new SegundoFragment());
+                        cargadorDeFragments(new FragmentoGenerosPantallaPrincipal("10402"));
                         break;
                     case R.id.Mystery :
-                        cargadorDeFragments(new PrimerFragment());
+                        cargadorDeFragments(new FragmentoGenerosPantallaPrincipal("9648"));
                         break;
                     case R.id.Romance :
-                        cargadorDeFragments(new SegundoFragment());
+                        cargadorDeFragments(new FragmentoGenerosPantallaPrincipal("10749"));
                         break;
                     case R.id.ScienceFiction :
-                        cargadorDeFragments(new PrimerFragment());
+                        cargadorDeFragments(new FragmentoGenerosPantallaPrincipal("878"));
                         break;
                     case R.id.TVMovie :
-                        cargadorDeFragments(new SegundoFragment());
+                        cargadorDeFragments(new FragmentoGenerosPantallaPrincipal("10770"));
                         break;
                     case R.id.Thriller :
-                        cargadorDeFragments(new PrimerFragment());
+                        cargadorDeFragments(new FragmentoGenerosPantallaPrincipal("53"));
                         break;
                     case R.id.War :
-                        cargadorDeFragments(new SegundoFragment());
+                        cargadorDeFragments(new FragmentoGenerosPantallaPrincipal("10752"));
                         break;
                     case R.id.Western :
-                        cargadorDeFragments(new PrimerFragment());
+                        cargadorDeFragments(new FragmentoGenerosPantallaPrincipal("37"));
                         break;
                     default:
-                        cargadorDeFragments(new PrimerFragment());
+                        cargadorDeFragments(new PantallaPrincipalFragmentPeliculas());
                 }
 
                 DrawerLayout drawerLayout = (DrawerLayout)findViewById(R.id.drawerLayout);
@@ -146,10 +151,16 @@ public class MainActivity extends AppCompatActivity implements SeriesFragment.Es
 
                 return true;
             }
-        });*/
+        });
 
 
 
+    }
+    private void cargadorDeFragments(Fragment unFragment) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.contenedorDeFragmentsDeGenerosPantallaPrincipal,unFragment);
+        fragmentTransaction.commit();
     }
 
     private void cargarSeriesPopulares() {
