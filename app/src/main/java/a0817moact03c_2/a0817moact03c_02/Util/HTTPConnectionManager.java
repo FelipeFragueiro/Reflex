@@ -51,7 +51,7 @@ public class HTTPConnectionManager {
 	}
 	
 	private String convertStreamToString(InputStream is) {
-	
+
 		byte[] bytes = new byte[1000];
 
 		StringBuilder x = new StringBuilder();
@@ -64,7 +64,7 @@ public class HTTPConnectionManager {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		 
+
 		return x.toString();
 	}
 
