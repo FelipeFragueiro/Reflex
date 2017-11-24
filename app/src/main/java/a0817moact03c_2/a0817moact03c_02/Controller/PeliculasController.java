@@ -16,14 +16,14 @@ import a0817moact03c_2.a0817moact03c_02.Util.ResultListener;
 
 public class PeliculasController {
 
-    public void getMoviesList(final ResultListener<List<Pelicula>> listenerFromView, final Context context){
+    public void getMoviesPlayingNowList(final ResultListener<List<Pelicula>> listenerFromView, final Context context){
 
         if(HTTPConnectionManager.isNetworkingOnline(context)){
 
             PeliculasDAOInternet peliculasDAOInternet = new PeliculasDAOInternet();
 
             //SI ESTOY ONLINE PIDO AL DAO QUE ME TRAIGA LAS COSAS DESDE EL SERVICIO
-            peliculasDAOInternet.getAllMoviesPlayinhNowFromInternet(new ResultListener<List<Pelicula>>() {
+            peliculasDAOInternet.getAllMoviesPlayingNowFromInternet(new ResultListener<List<Pelicula>>() {
                 @Override
                 public void finish(List<Pelicula> resultado) {
                     PeliculasDAODB peliculasDAODB = new PeliculasDAODB(context);
@@ -45,13 +45,24 @@ public class PeliculasController {
     }
 
 
-    public void getMoviesFromGenre(final ResultListener<List<Pelicula>> listenerFromView,Integer genreID,Context context) {
+    public void getMoviesFromGenreList(final ResultListener<List<Pelicula>> listenerFromView, String genreID, final Context context) {
 
         if(HTTPConnectionManager.isNetworkingOnline(context)) {
             PeliculasDAOInternet peliculasDAOInternet = new PeliculasDAOInternet();
-           // peliculasDAOInternet.getMoviesFromGenre();
+            peliculasDAOInternet.getAllMoviesByGenre(new ResultListener<List<Pelicula>>() {
+                @Override
+                public void finish(List<Pelicula> resultado) {
+                    PeliculasDAODB peliculasDAODB = new PeliculasDAODB(context);
+                    peliculasDAODB.addPosts(resultado);
+                    listenerFromView.finish(resultado);
+                }
+            },genreID);
         }
-
+        else{
+            PeliculasDAODB peliculasDAODB = new PeliculasDAODB(context);
+            List<Pelicula>postList = peliculasDAODB.getAllMoviesFromDatabase();
+            listenerFromView.finish(postList);
+        }
 
     }
 }

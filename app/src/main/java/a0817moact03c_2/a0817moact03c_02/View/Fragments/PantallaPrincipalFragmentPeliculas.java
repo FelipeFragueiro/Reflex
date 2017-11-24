@@ -96,7 +96,7 @@ public class PantallaPrincipalFragmentPeliculas extends Fragment implements Adap
             }
         };
 
-        peliculasController.getMoviesList(escuchadorDeLaVista, getContext());
+        peliculasController.getMoviesPlayingNowList(escuchadorDeLaVista, getContext());
 
     }
 
@@ -113,7 +113,7 @@ public class PantallaPrincipalFragmentPeliculas extends Fragment implements Adap
             }
         };
 
-        peliculasController.getMoviesList(escuchadorDeLaVista, getContext());
+        peliculasController.getMoviesPlayingNowList(escuchadorDeLaVista, getContext());
 
     }
 
@@ -130,7 +130,7 @@ public class PantallaPrincipalFragmentPeliculas extends Fragment implements Adap
             }
         };
 
-        peliculasController.getMoviesList(escuchadorDeLaVista, getContext());
+        peliculasController.getMoviesFromGenreList(escuchadorDeLaVista, "27",getContext());
 
     }
 
