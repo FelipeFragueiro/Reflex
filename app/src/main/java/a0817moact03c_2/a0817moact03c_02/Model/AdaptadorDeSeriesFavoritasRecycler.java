@@ -74,8 +74,8 @@ public class AdaptadorDeSeriesFavoritasRecycler extends RecyclerView.Adapter  {
         }
 
         public void cargarSerieFavorita(Serie unaSerie){
-            textViewNombreDeLaPeliculaOSerieFavorita.setText(unaSerie.getNombreSerie());
-            imageViewDeLaPeliculaOSerieFavorita.setImageResource(unaSerie.getImagenSerie());
+            textViewNombreDeLaPeliculaOSerieFavorita.setText(unaSerie.getName());
+            //imageViewDeLaPeliculaOSerieFavorita.setImageResource(unaSerie.getPoster_path());
         }
     }
 

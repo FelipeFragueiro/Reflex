@@ -6,29 +6,28 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.content.Intent;
 import android.support.v4.view.ViewPager;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.view.MenuItem;
-import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import a0817moact03c_2.a0817moact03c_02.Controller.PeliculasController;
-import a0817moact03c_2.a0817moact03c_02.Model.Genero;
+import a0817moact03c_2.a0817moact03c_02.Controller.SeriesController;
+import a0817moact03c_2.a0817moact03c_02.Model.AdaptadorDeSeriesFavoritasRecycler;
 import a0817moact03c_2.a0817moact03c_02.Model.Serie;
 import a0817moact03c_2.a0817moact03c_02.Model.Pelicula;
 import a0817moact03c_2.a0817moact03c_02.R;
 import a0817moact03c_2.a0817moact03c_02.Util.ResultListener;
-import a0817moact03c_2.a0817moact03c_02.View.Activities.DetalleGenerosDePeliculaActivity;
 import a0817moact03c_2.a0817moact03c_02.View.Activities.DetallePeliculaActivity;
 import a0817moact03c_2.a0817moact03c_02.View.Activities.DetalleSeriesActivity;
-import a0817moact03c_2.a0817moact03c_02.View.Fragments.ListaGenerosDePeliculaFragment;
 import a0817moact03c_2.a0817moact03c_02.View.Fragments.PantallaPrincipalFragmentPeliculas;
 import a0817moact03c_2.a0817moact03c_02.View.Fragments.SeriesFragment;
 
 public class MainActivity extends AppCompatActivity implements SeriesFragment.EscuchadorDeSeries ,PantallaPrincipalFragmentPeliculas.EscuchadorDePelicula{
+
+    private List<Serie>listaseriespopulares;
+    private AdaptadorDeSeriesFavoritasRecycler adaptadorDeSeriesFavoritasRecycler;
 
     private final String LOG_TAG = MainActivity.class.getSimpleName();
     private final String[] PAGE_TITLES = new String[] {
@@ -49,6 +48,9 @@ public class MainActivity extends AppCompatActivity implements SeriesFragment.Es
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        listaseriespopulares = new ArrayList<>();
+        cargarSeriesPopulares();
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -61,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements SeriesFragment.Es
 
 
 
-        NavigationView navigationView = (NavigationView)findViewById(R.id.navigationView);
+       // NavigationView navigationView = (NavigationView)findViewById(R.id.navigationView);
 
             /* Tenemos que escuchar cuando se hace click en una de las opciones
             de nuestro menú. En el MainActivity crear el listener como clase
@@ -150,14 +152,31 @@ public class MainActivity extends AppCompatActivity implements SeriesFragment.Es
 
     }
 
+    private void cargarSeriesPopulares() {
+
+        SeriesController seriesController = new SeriesController();
+
+        ResultListener<List<Serie>> escuchadorDeLaVista = new ResultListener<List<Serie>>() {
+            @Override
+            public void finish(List<Serie> resultado) {
+                listaseriespopulares.clear();
+                listaseriespopulares.addAll(resultado);
+               // adaptadorDeSeriesFavoritasRecycler.notifyDataSetChanged();
+            }
+        };
+
+        seriesController.getPopularSeriesList(escuchadorDeLaVista, this);
+
+    }
+
     @Override
     public void seleccionaronSerie(Serie unaSerie) {
         Intent unIntent = new Intent(this, DetalleSeriesActivity.class);
         Bundle unBundle = new Bundle();
-        unBundle.putString("nombre_serie",unaSerie.getNombreSerie());
-        unBundle.putString("genero_serie",unaSerie.getGeneroSerie());
-        unBundle.putString("descripcion_serie",unaSerie.getDescripcionSerie());
-        unBundle.putInt("imagen_serie",unaSerie.getImagenSerie());
+        unBundle.putString("nombre_serie",unaSerie.getName());
+        //unBundle.putString("genero_serie",unaSerie.getGenre_ids());
+        unBundle.putString("descripcion_serie",unaSerie.getOverview());
+        unBundle.putString("imagen_serie",unaSerie.getPoster_path());
         unBundle.putInt("posicion_serie",unaSerie.getPosicion());
         unIntent.putExtras(unBundle);
         startActivity(unIntent);

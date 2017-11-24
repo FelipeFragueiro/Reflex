@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.List;
 
 import a0817moact03c_2.a0817moact03c_02.Model.Serie;
@@ -67,7 +69,9 @@ public class AdaptadorDeSeries extends RecyclerView.Adapter {
         }
 
         public void cargarSerie (Serie unaSerie){
-            imagenSerie.setImageResource(unaSerie.getImagenSerie());
+
+
+            Glide.with(unContext).load(unaSerie.getPoster_path()).into(imagenSerie);
         }
     }
 

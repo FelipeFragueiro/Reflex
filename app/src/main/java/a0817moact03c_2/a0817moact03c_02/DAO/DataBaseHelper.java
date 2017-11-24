@@ -4,6 +4,8 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import a0817moact03c_2.a0817moact03c_02.Model.Serie;
+
 /**
  * Created by ma on 11/11/17.
  */
@@ -27,6 +29,16 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 PeliculasDAODB.IMAGEN +" INTEGER ," +
                 PeliculasDAODB.POSICION +" INTEGER )";
         sqLiteDatabase.execSQL(tablePersona);
+
+        String tableSerie = "CREATE TABLE "+SeriesDAODB.TABLE_SERIE + "("+
+                SeriesDAODB.name + " TEXT ,"+
+                SeriesDAODB.overview +" TEXT ,"+
+                SeriesDAODB.genre_ids +" TEXT ," +
+                SeriesDAODB.poster_path +" TEXT )";
+        sqLiteDatabase.execSQL(tableSerie);
+
+
+
     }
 
     @Override

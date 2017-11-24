@@ -14,8 +14,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+import a0817moact03c_2.a0817moact03c_02.Controller.SeriesController;
 import a0817moact03c_2.a0817moact03c_02.Model.Serie;
 import a0817moact03c_2.a0817moact03c_02.R;
+import a0817moact03c_2.a0817moact03c_02.Util.ResultListener;
 import a0817moact03c_2.a0817moact03c_02.View.Adapters.AdaptadorDeSeries;
 
 
@@ -27,6 +29,8 @@ public class SeriesFragment extends Fragment implements AdaptadorDeSeries.Escuch
 
     private List<Serie> listaDeSeriesPopulares;
     private List<Serie> listaDeSeriesEnTV;
+    private AdaptadorDeSeries adaptadorDeSeriesPopulares;
+    private AdaptadorDeSeries adaptadorDeSeriesEnTV;
     private EscuchadorDeSeries escuchadorDeSeries;
 
     public SeriesFragment() {
@@ -43,10 +47,9 @@ public class SeriesFragment extends Fragment implements AdaptadorDeSeries.Escuch
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
         View view = inflater.inflate(R.layout.fragment_series, container, false);
 
-        //TextView textView = view.findViewById(R.id.textViewPalabraGeneros);
         RecyclerView recyclerViewSeriesPopulares = view.findViewById(R.id.recyclerViewSeriesPopulares);
         listaDeSeriesPopulares = new ArrayList<>();
 
@@ -55,32 +58,57 @@ public class SeriesFragment extends Fragment implements AdaptadorDeSeries.Escuch
         recyclerViewSeriesPopulares.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
 
 
-        AdaptadorDeSeries adaptadorDeSeriesPopulares = new AdaptadorDeSeries(listaDeSeriesPopulares,getContext(),this);
+        adaptadorDeSeriesPopulares = new AdaptadorDeSeries(listaDeSeriesPopulares,getContext(),this);
 
         recyclerViewSeriesPopulares.setAdapter(adaptadorDeSeriesPopulares);
+        cargarSeriesPopulares();
 
-        listaDeSeriesPopulares.add(new Serie("Prueba",R.drawable.martes_13,"prueba","prueba",0));
-        listaDeSeriesPopulares.add(new Serie("Prueba",R.drawable.martes_13,"prueba","prueba",1));
-        listaDeSeriesPopulares.add(new Serie("Prueba",R.drawable.martes_13,"prueba","prueba",2));
-        listaDeSeriesPopulares.add(new Serie("Prueba",R.drawable.martes_13,"prueba","prueba",3));
-        listaDeSeriesPopulares.add(new Serie("Prueba",R.drawable.martes_13,"prueba","prueba",4));
+
 
         RecyclerView recyclerViewSeriesEnTV = view.findViewById(R.id.recyclerViewSeriesEnTV);
         listaDeSeriesEnTV = new ArrayList<>();
 
 
         recyclerViewSeriesEnTV.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-        AdaptadorDeSeries adaptadorDeSeriesEnTV = new AdaptadorDeSeries(listaDeSeriesEnTV,getContext(),this);
+        adaptadorDeSeriesEnTV = new AdaptadorDeSeries(listaDeSeriesEnTV,getContext(),this);
         recyclerViewSeriesEnTV.setAdapter(adaptadorDeSeriesEnTV);
-        listaDeSeriesEnTV.add(new Serie("Prueba",R.drawable.martes_13,"prueba","prueba",0));
-        listaDeSeriesEnTV.add(new Serie("Prueba",R.drawable.martes_13,"prueba","prueba",1));
-        listaDeSeriesEnTV.add(new Serie("Prueba",R.drawable.martes_13,"prueba","prueba",2));
-        listaDeSeriesEnTV.add(new Serie("Prueba",R.drawable.martes_13,"prueba","prueba",3));
-        listaDeSeriesEnTV.add(new Serie("Prueba",R.drawable.masacre_de_texas,"prueba","prueba",4));
-
+        cargarSeriesEnTV();
 
 
         return view;
+
+    }
+    private void cargarSeriesPopulares() {
+
+        SeriesController peliculasController = new SeriesController();
+
+        ResultListener<List<Serie>> escuchadorDeLaVista = new ResultListener<List<Serie>>() {
+            @Override
+            public void finish(List<Serie> resultado) {
+                listaDeSeriesPopulares.clear();
+                listaDeSeriesPopulares.addAll(resultado);
+                adaptadorDeSeriesPopulares.notifyDataSetChanged();
+            }
+        };
+
+        peliculasController.getPopularSeriesList(escuchadorDeLaVista, getContext());
+
+    }
+
+    private void cargarSeriesEnTV() {
+
+        SeriesController peliculasController = new SeriesController();
+
+        ResultListener<List<Serie>> escuchadorDeLaVista = new ResultListener<List<Serie>>() {
+            @Override
+            public void finish(List<Serie> resultado) {
+                listaDeSeriesEnTV.clear();
+                listaDeSeriesEnTV.addAll(resultado);
+                adaptadorDeSeriesEnTV.notifyDataSetChanged();
+            }
+        };
+
+        peliculasController.getPopularSeriesList(escuchadorDeLaVista, getContext());
 
     }
 

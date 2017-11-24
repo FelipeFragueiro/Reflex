@@ -7,19 +7,19 @@ import java.util.List;
  */
 
 public class Serie {
-    private String nombreSerie;
-    private int imagenSerie;
-    private String generoSerie;
-    private String descripcionSerie;
+    private String name;
+    private String poster_path;
+ //   private String genre_ids;
+    private String overview;
     private int posicion;
     private List<Capitulo> temporadas;
     private Capitulo capitulo;
 
-    public Serie(String nombreSerie, int imagenSerie, String generoSerie, String descripcionSerie, int posicion) {
-        this.nombreSerie = nombreSerie;
-        this.imagenSerie = imagenSerie;
-        this.generoSerie = generoSerie;
-        this.descripcionSerie = descripcionSerie;
+    public Serie(String name, String imagenSerie, String descripcionSerie) {
+        this.name = name;
+        this.poster_path = imagenSerie;
+        //this.genre_ids = generoSerie;
+        this.overview = descripcionSerie;
         this.posicion = posicion;
         this.temporadas = temporadas;
         this.capitulo = capitulo;
@@ -29,20 +29,20 @@ public class Serie {
         this.posicion = posicion;
     }
 
-    public String getNombreSerie() {
-        return nombreSerie;
+    public String getName() {
+        return name;
     }
 
-    public int getImagenSerie() {
-        return imagenSerie;
+    public String getPoster_path() {
+       return  "https://image.tmdb.org/t/p/w500"+poster_path;
     }
 
-    public String getGeneroSerie() {
-        return generoSerie;
+   /* public String getGenre_ids() {
+        return genre_ids;
     }
-
-    public String getDescripcionSerie() {
-        return descripcionSerie;
+*/
+    public String getOverview() {
+        return overview;
     }
 
     public int getPosicion() {
@@ -56,5 +56,7 @@ public class Serie {
     public Capitulo getCapitulo() {
         return capitulo;
     }
+
+
 
 }

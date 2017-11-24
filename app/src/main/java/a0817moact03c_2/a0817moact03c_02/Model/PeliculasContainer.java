@@ -18,7 +18,7 @@ public class PeliculasContainer {
         return peliculasList;
     }
 
-    public void setPostList(List<Pelicula> postList) {
+    public void setPeliculasList(List<Pelicula> postList) {
         this.peliculasList = postList;
     }
 }
