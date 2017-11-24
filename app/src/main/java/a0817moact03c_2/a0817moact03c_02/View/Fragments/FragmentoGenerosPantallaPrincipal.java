@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,14 +27,16 @@ import a0817moact03c_2.a0817moact03c_02.View.Adapters.AdapterPantallaPrincipalPe
 public class FragmentoGenerosPantallaPrincipal extends Fragment implements AdapterGenerosDelNavigationView.EscuchadorDePeliculasDelGenero{
     private List<Pelicula>peliculaList;
     private String genero;
+    private String nombreGenero;
     private AdapterGenerosDelNavigationView adapterGenerosDelNavigationView;
     private AdapterGenerosDelNavigationView.EscuchadorDePeliculasDelGenero escuchadorDePeliculasDelGenero;
 
 
 
 
-    public FragmentoGenerosPantallaPrincipal(String genero) {
+    public FragmentoGenerosPantallaPrincipal(String genero,String nombreGenero) {
         this.genero = genero;
+        this.nombreGenero = nombreGenero;
     }
 
     @Override
@@ -41,6 +44,9 @@ public class FragmentoGenerosPantallaPrincipal extends Fragment implements Adapt
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_fragmento_generos_pantalla_principal, container, false);
+
+        TextView nombeGenero = (TextView)view.findViewById(R.id.textViewGeneroPantallaPrincipal);
+        nombeGenero.setText(nombreGenero);
 
 
 
