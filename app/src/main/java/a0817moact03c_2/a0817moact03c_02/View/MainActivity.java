@@ -7,11 +7,14 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.content.Intent;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.Layout;
+import android.util.Log;
 import android.view.MenuItem;
 
 import java.util.ArrayList;
@@ -28,6 +31,9 @@ import a0817moact03c_2.a0817moact03c_02.View.Activities.DetalleSeriesActivity;
 import a0817moact03c_2.a0817moact03c_02.View.Fragments.FragmentoGenerosPantallaPrincipal;
 import a0817moact03c_2.a0817moact03c_02.View.Fragments.PantallaPrincipalFragmentPeliculas;
 import a0817moact03c_2.a0817moact03c_02.View.Fragments.SeriesFragment;
+
+import static a0817moact03c_2.a0817moact03c_02.R.id.drawerLayout;
+import static a0817moact03c_2.a0817moact03c_02.R.id.navigationView;
 
 public class MainActivity extends AppCompatActivity implements SeriesFragment.EscuchadorDeSeries ,PantallaPrincipalFragmentPeliculas.EscuchadorDePelicula{
 
@@ -53,11 +59,15 @@ public class MainActivity extends AppCompatActivity implements SeriesFragment.Es
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         listaseriespopulares = new ArrayList<>();
         cargarSeriesPopulares();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_navigationview);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         unViewPager = (ViewPager)findViewById(R.id.viewPagerPeliculasYSeries);
         unViewPager.setAdapter(new MyPagerAdapter(getSupportFragmentManager()));
@@ -192,6 +202,22 @@ public class MainActivity extends AppCompatActivity implements SeriesFragment.Es
     }
 
     @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        DrawerLayout drawerLayout = (DrawerLayout)findViewById(R.id.drawerLayout);
+
+        Log.d("NICK", "CWECNEWKVNERIPNVIEWNFVIPEWNVIPEWNVPIEWNVPIEWNVPIEWNVPIRWNVPRWVPO");
+        switch (item.getItemId()) {
+            // THIS IS YOUR DRAWER/HAMBURGER BUTTON
+            case android.R.id.home:
+                drawerLayout.openDrawer(GravityCompat.START);  // OPEN DRAWER
+                Log.d("NICK", "CWECNEWKVNERIPNVIEWNFVIPEWNVIPEWNVPIEWNVPIEWNVPIEWNVPIRWNVPRWVPO");
+                return true;
+
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
     public void seleccionaronPelicula(Pelicula unaPelicula) {
         Intent unIntent = new Intent(this, DetallePeliculaActivity.class);
         Bundle unBundle =  new Bundle();
@@ -255,6 +281,29 @@ public class MainActivity extends AppCompatActivity implements SeriesFragment.Es
         }
 
     }
+    /*@Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        DrawerLayout mDrawerLayout = (DrawerLayout)findViewById(R.id.drawerLayout);
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                mDrawerLayout.openDrawer(GravityCompat.START);  // OPEN DRAWER
+                return true;
+
+        }
+        return super.onOptionsItemSelected(item);
+    }*/
+
+    /*navigationView.setNavigationItemSelectedListener(
+            new NavigationView.OnNavigationItemSelectedListener() {
+        @Override
+        public boolean onNavigationItemSelected(MenuItem menuItem) {
+            // Handle menu item clicks here.
+            drawerLayout.closeDrawers();  // CLOSE DRAWER
+            return true;
+        }
+    });*/
+
+
 
     /*@Override
     public void seleccionaronGenero(Genero unGenero) {
