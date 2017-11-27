@@ -29,8 +29,10 @@ public class SeriesFragment extends Fragment implements AdaptadorDeSeries.Escuch
 
     private List<Serie> listaDeSeriesPopulares;
     private List<Serie> listaDeSeriesEnTV;
+    private List<Serie> listaDeSeriesTop;
     private AdaptadorDeSeries adaptadorDeSeriesPopulares;
     private AdaptadorDeSeries adaptadorDeSeriesEnTV;
+    private AdaptadorDeSeries adaptadorDeSeriesTop;
     private EscuchadorDeSeries escuchadorDeSeries;
 
     public SeriesFragment() {
@@ -74,6 +76,14 @@ public class SeriesFragment extends Fragment implements AdaptadorDeSeries.Escuch
         recyclerViewSeriesEnTV.setAdapter(adaptadorDeSeriesEnTV);
         cargarSeriesEnTV();
 
+        RecyclerView recyclerViewSeriesTop = view.findViewById(R.id.recyclerViewSeriesTOP);
+        listaDeSeriesTop = new ArrayList<>();
+
+        recyclerViewSeriesTop.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
+        adaptadorDeSeriesTop = new AdaptadorDeSeries(listaDeSeriesTop,getContext(),this);
+        recyclerViewSeriesTop.setAdapter(adaptadorDeSeriesTop);
+        cargarSeriesTop();
+
 
         return view;
 
@@ -95,6 +105,23 @@ public class SeriesFragment extends Fragment implements AdaptadorDeSeries.Escuch
 
     }
 
+    private void cargarSeriesTop() {
+
+        SeriesController peliculasController = new SeriesController();
+
+        ResultListener<List<Serie>> escuchadorDeLaVista = new ResultListener<List<Serie>>() {
+            @Override
+            public void finish(List<Serie> resultado) {
+                listaDeSeriesTop.clear();
+                listaDeSeriesTop.addAll(resultado);
+                adaptadorDeSeriesTop.notifyDataSetChanged();
+            }
+        };
+
+        peliculasController.getTopSeriesList(escuchadorDeLaVista, getContext());
+
+    }
+
     private void cargarSeriesEnTV() {
 
         SeriesController peliculasController = new SeriesController();
@@ -108,7 +135,7 @@ public class SeriesFragment extends Fragment implements AdaptadorDeSeries.Escuch
             }
         };
 
-        peliculasController.getPopularSeriesList(escuchadorDeLaVista, getContext());
+        peliculasController.getSeriesEnTvList(escuchadorDeLaVista, getContext());
 
     }
 

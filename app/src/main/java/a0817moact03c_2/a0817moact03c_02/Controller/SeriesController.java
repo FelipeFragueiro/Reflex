@@ -17,9 +17,9 @@ import a0817moact03c_2.a0817moact03c_02.Util.ResultListener;
 
 public class SeriesController {
 
-    public void getPopularSeriesList(final ResultListener<List<Serie>> listenerFromView,final Context context){
+    public void getPopularSeriesList(final ResultListener<List<Serie>> listenerFromView, final Context context) {
 
-        if(HTTPConnectionManager.isNetworkingOnline(context)){
+        if (HTTPConnectionManager.isNetworkingOnline(context)) {
             SeriesDAOInternet seriesDAOInternet = new SeriesDAOInternet();
 
             seriesDAOInternet.getAllPopularSeries(new ResultListener<List<Serie>>() {
@@ -30,6 +30,78 @@ public class SeriesController {
                     listenerFromView.finish(resultado);
                 }
             });
+        } else {
+            SeriesDAODB seriesDAODB = new SeriesDAODB(context);
+
+            List<Serie> seriesList = seriesDAODB.getAllSeriesFromDatabase();
+
+            listenerFromView.finish(seriesList);
+        }
+
+
+    }
+
+    public void getTopSeriesList(final ResultListener<List<Serie>> listenerFromView, final Context context) {
+
+        if (HTTPConnectionManager.isNetworkingOnline(context)) {
+            SeriesDAOInternet seriesDAOInternet = new SeriesDAOInternet();
+
+            seriesDAOInternet.getAllTopSeries(new ResultListener<List<Serie>>() {
+                @Override
+                public void finish(List<Serie> resultado) {
+                    SeriesDAODB seriesDAODB = new SeriesDAODB(context);
+                    seriesDAODB.addPosts(resultado);
+                    listenerFromView.finish(resultado);
+                }
+            });
+        } else {
+            SeriesDAODB seriesDAODB = new SeriesDAODB(context);
+
+            List<Serie> seriesList = seriesDAODB.getAllSeriesFromDatabase();
+
+            listenerFromView.finish(seriesList);
+        }
+
+
+    }
+
+    public void getSeriesEnTvList(final ResultListener<List<Serie>> listenerFromView, final Context context) {
+
+        if (HTTPConnectionManager.isNetworkingOnline(context)) {
+            SeriesDAOInternet seriesDAOInternet = new SeriesDAOInternet();
+
+            seriesDAOInternet.getAllSeriesEnTv(new ResultListener<List<Serie>>() {
+                @Override
+                public void finish(List<Serie> resultado) {
+                    SeriesDAODB seriesDAODB = new SeriesDAODB(context);
+                    seriesDAODB.addPosts(resultado);
+                    listenerFromView.finish(resultado);
+                }
+            });
+        } else {
+            SeriesDAODB seriesDAODB = new SeriesDAODB(context);
+
+            List<Serie> seriesList = seriesDAODB.getAllSeriesFromDatabase();
+
+            listenerFromView.finish(seriesList);
+        }
+
+
+    }
+
+    public void getSerieDetail(final ResultListener<List<Serie>> listenerFromView,String serieID, final Context context) {
+
+        if (HTTPConnectionManager.isNetworkingOnline(context)) {
+            SeriesDAOInternet seriesDAOInternet = new SeriesDAOInternet();
+
+            seriesDAOInternet.getSerieDetail(new ResultListener<List<Serie>>() {
+                @Override
+                public void finish(List<Serie> resultado) {
+                    SeriesDAODB seriesDAODB = new SeriesDAODB(context);
+                    seriesDAODB.addPosts(resultado);
+                    listenerFromView.finish(resultado);
+                }
+            },serieID);
         } else {
             SeriesDAODB seriesDAODB = new SeriesDAODB(context);
 

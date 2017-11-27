@@ -2,46 +2,70 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="a0817moact03c_2.a0817moact03c_02.View.Fragments.ListaGenerosDePeliculaFragment"
-    android:background="#212121">
+    android:background="#212121"
+    tools:context="a0817moact03c_2.a0817moact03c_02.View.Fragments.ListaGenerosDePeliculaFragment">
 
     <!-- TODO: Update blank fragment layout -->
-
-    <TextView
-        android:layout_marginLeft="15dp"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Series Populares"
-        android:textColor="#fff"
-        android:id="@+id/textViewSeriesPopulares"/>
+        android:layout_height="match_parent">
 
-    <android.support.v7.widget.RecyclerView
-        android:layout_marginLeft="15dp"
-        android:id="@+id/recyclerViewSeriesPopulares"
-        android:layout_width="match_parent"
-        android:layout_height="170dp"
-        android:layout_below="@+id/textViewSeriesPopulares"
-        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    </android.support.v7.widget.RecyclerView>
+        <TextView
+            android:id="@+id/textViewSeriesPopulares"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:text="Series Populares"
+            android:textColor="#fff" />
 
-    <TextView
-        android:layout_marginLeft="15dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Series en TV"
-        android:textColor="#fff"
-        android:id="@+id/textViewSeriesEnTV"
-        android:layout_below="@+id/recyclerViewSeriesPopulares"/>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerViewSeriesPopulares"
+            android:layout_width="match_parent"
+            android:layout_height="170dp"
+            android:layout_below="@+id/textViewSeriesPopulares"
+            android:layout_marginLeft="15dp">
 
-    <android.support.v7.widget.RecyclerView
-        android:layout_marginLeft="15dp"
-        android:id="@+id/recyclerViewSeriesEnTV"
-        android:layout_width="match_parent"
-        android:layout_height="170dp"
-        android:layout_below="@+id/textViewSeriesEnTV"
-        >
+        </android.support.v7.widget.RecyclerView>
 
-    </android.support.v7.widget.RecyclerView>
+        <TextView
+            android:id="@+id/textViewSeriesEnTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/recyclerViewSeriesPopulares"
+            android:layout_marginLeft="15dp"
+            android:text="Series en TV"
+            android:textColor="#fff" />
 
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerViewSeriesEnTV"
+            android:layout_width="match_parent"
+            android:layout_height="170dp"
+            android:layout_below="@+id/textViewSeriesEnTV"
+            android:layout_marginLeft="15dp">
+
+        </android.support.v7.widget.RecyclerView>
+
+        <TextView
+            android:id="@+id/textViewSeriesTop"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/recyclerViewSeriesEnTV"
+            android:layout_marginLeft="15dp"
+            android:text="Series TOP"
+            android:textColor="#fff" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerViewSeriesTOP"
+            android:layout_width="match_parent"
+            android:layout_height="170dp"
+            android:layout_below="@+id/textViewSeriesTop"
+            android:layout_marginLeft="15dp">
+
+        </android.support.v7.widget.RecyclerView>
+        </RelativeLayout>
+    </ScrollView>
 </RelativeLayout>
