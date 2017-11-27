@@ -28,6 +28,7 @@ import a0817moact03c_2.a0817moact03c_02.R;
 import a0817moact03c_2.a0817moact03c_02.Util.ResultListener;
 import a0817moact03c_2.a0817moact03c_02.View.Activities.DetallePeliculaActivity;
 import a0817moact03c_2.a0817moact03c_02.View.Activities.DetalleSeriesActivity;
+import a0817moact03c_2.a0817moact03c_02.View.Fragments.FavoritosFragment;
 import a0817moact03c_2.a0817moact03c_02.View.Fragments.FragmentoGenerosPantallaPrincipal;
 import a0817moact03c_2.a0817moact03c_02.View.Fragments.PantallaPrincipalFragmentPeliculas;
 import a0817moact03c_2.a0817moact03c_02.View.Fragments.SeriesFragment;
@@ -94,6 +95,9 @@ public class MainActivity extends AppCompatActivity implements SeriesFragment.Es
                 switch (item.getItemId()){
                     case R.id.Inicio :
                         cargadorDeFragments(new PantallaPrincipalFragmentPeliculas());
+                        break;
+                    case R.id.FavoritosItem :
+                        cargadorDeFragments(new FavoritosFragment());
                         break;
                     case R.id.Action :
                         cargadorDeFragments(new FragmentoGenerosPantallaPrincipal("28","Accion"));
@@ -166,6 +170,7 @@ public class MainActivity extends AppCompatActivity implements SeriesFragment.Es
     private void cargadorDeFragments(Fragment unFragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.addToBackStack(null);
         fragmentTransaction.replace(R.id.contenedorDeFragmentsDeGenerosPantallaPrincipal,unFragment);
         fragmentTransaction.commit();
     }
@@ -205,12 +210,12 @@ public class MainActivity extends AppCompatActivity implements SeriesFragment.Es
     public boolean onOptionsItemSelected(MenuItem item) {
         DrawerLayout drawerLayout = (DrawerLayout)findViewById(R.id.drawerLayout);
 
-        Log.d("NICK", "CWECNEWKVNERIPNVIEWNFVIPEWNVIPEWNVPIEWNVPIEWNVPIEWNVPIRWNVPRWVPO");
+        Log.d("Nav", "Open");
         switch (item.getItemId()) {
             // THIS IS YOUR DRAWER/HAMBURGER BUTTON
             case android.R.id.home:
                 drawerLayout.openDrawer(GravityCompat.START);  // OPEN DRAWER
-                Log.d("NICK", "CWECNEWKVNERIPNVIEWNFVIPEWNVIPEWNVPIEWNVPIEWNVPIEWNVPIRWNVPRWVPO");
+                Log.d("Nav", "Close");
                 return true;
 
         }

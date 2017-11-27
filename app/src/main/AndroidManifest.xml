@@ -22,7 +22,6 @@
         <activity android:name=".View.Activities.DetalleGenerosDePeliculaActivity" />
         <activity android:name=".View.Activities.DetallePeliculaActivity" />
         <activity android:name=".View.Activities.FotoCompletaPeliculaActivity" />
-        <activity android:name=".View.Activities.FavoritosActivity" />
         <activity android:name=".View.Activities.DetalleSeriesActivity" />
         <activity android:name=".View.Activities.GenerosActivity"></activity>
     </application>
