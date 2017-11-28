@@ -1,54 +1,86 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#212121"
+    android:fillViewport="true"
     tools:context="a0817moact03c_2.a0817moact03c_02.View.Fragments.DetalleSerieFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-
-    <ImageButton
-
-        android:id="@+id/imageViewDeLaSerieDetalle"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:background="#212121"
-        android:scaleType="centerCrop"
-        android:layout_alignParentTop="true"/>
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textViewDelTituloDeLaSerieDetalle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_marginTop="10dp"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        android:text="Titulo de la pelicula"
-        android:textColor="#ffffff"
-        android:layout_below="@id/imageViewDeLaSerieDetalle"/>
+        <ImageButton
 
-    <TextView
-        android:layout_marginTop="5dp"
-        android:id="@+id/textViewDelGeneroDeLaSerieDetalle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="15dp"
-        android:textStyle="bold"
-        android:text="Genero"
-        android:textColor="#ffffff"
-        android:layout_below="@id/textViewDelTituloDeLaSerieDetalle"/>
+            android:id="@+id/imageViewDeLaSerieDetalle"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_alignParentTop="true"
+            android:background="#212121"
+            android:scaleType="centerCrop" />
 
-    <TextView
-        android:id="@+id/textViewDeLaDescripcionDeLaSerieDetalle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textSize="20dp"
-        android:text="Descripcion de la pelicula"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="15dp"
-        android:textColor="#ffffff"
-        android:layout_below="@id/textViewDelGeneroDeLaSerieDetalle"/>
+        <com.getbase.floatingactionbutton.FloatingActionsMenu
+            android:id="@+id/fadMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@id/imageViewDeLaSerieDetalle"
+            app:fab_addButtonColorNormal="#e53935"
+            android:layout_above="@+id/textViewDelGeneroDeLaSerieDetalle">
 
-</RelativeLayout>
+            <com.getbase.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fadCompartir"
+                android:layout_width="@dimen/fab_size_normal"
+                android:layout_height="@dimen/fab_size_normal"
+                app:fab_colorNormal="#e53935"
+                android:src="@android:drawable/ic_menu_share" />
+
+            <com.getbase.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fadFavoritos"
+                android:layout_width="@dimen/fab_size_normal"
+                android:layout_height="56dp"
+                app:fab_colorNormal="#e53935"
+                android:src="@drawable/ic_star_border_black_24dp" />
+
+
+        </com.getbase.floatingactionbutton.FloatingActionsMenu>
+
+
+        <TextView
+            android:id="@+id/textViewDelTituloDeLaSerieDetalle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/imageViewDeLaSerieDetalle"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="Titulo de la pelicula"
+            android:textColor="#ffffff"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textViewDelGeneroDeLaSerieDetalle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textViewDelTituloDeLaSerieDetalle"
+            android:layout_marginTop="5dp"
+            android:text="Genero"
+            android:textColor="#ffffff"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textViewDeLaDescripcionDeLaSerieDetalle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textViewDelGeneroDeLaSerieDetalle"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:text="Descripcion de la pelicula"
+            android:textColor="#ffffff"
+            android:textSize="20dp" />
+
+    </RelativeLayout>
+
+</ScrollView>

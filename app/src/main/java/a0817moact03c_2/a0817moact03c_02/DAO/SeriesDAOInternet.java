@@ -58,7 +58,7 @@ public class SeriesDAOInternet {
             String input = null;
 
             try{
-                input = httpConnectionManager.getRequestString(TMDBHelper.getTVPopular(TMDBHelper.language_ENGLISH,pagina));
+                input = httpConnectionManager.getRequestString(TMDBHelper.getTVPopular(TMDBHelper.language_SPANISH,pagina));
             }catch (Exception e){
                 e.printStackTrace();
             }
@@ -88,7 +88,7 @@ public class SeriesDAOInternet {
             String input = null;
 
             try{
-                input = httpConnectionManager.getRequestString(TMDBHelper.getTVTopRated(TMDBHelper.language_ENGLISH,pagina));
+                input = httpConnectionManager.getRequestString(TMDBHelper.getTVTopRated(TMDBHelper.language_SPANISH,pagina));
             }catch (Exception e){
                 e.printStackTrace();
             }
@@ -118,7 +118,7 @@ public class SeriesDAOInternet {
             String input = null;
 
             try{
-                input = httpConnectionManager.getRequestString(TMDBHelper.getTVAiringToday(TMDBHelper.language_ENGLISH,pagina));
+                input = httpConnectionManager.getRequestString(TMDBHelper.getTVAiringToday(TMDBHelper.language_SPANISH,pagina));
             }catch (Exception e){
                 e.printStackTrace();
             }
@@ -148,7 +148,7 @@ public class SeriesDAOInternet {
             String input = null;
 
             try{
-                input = httpConnectionManager.getRequestString(TMDBHelper.getTVShowDetail(tvShowId,TMDBHelper.language_ENGLISH));
+                input = httpConnectionManager.getRequestString(TMDBHelper.getTVShowDetail(tvShowId,TMDBHelper.language_SPANISH));
             }catch (Exception e){
                 e.printStackTrace();
             }

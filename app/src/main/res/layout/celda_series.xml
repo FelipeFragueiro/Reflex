@@ -1,5 +1,6 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="wrap_content"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_margin="4dp"
     android:background="#ffff"
@@ -8,9 +9,9 @@
 
     <ImageView
         android:id="@+id/imageViewCeldaSeries"
-        android:layout_width="140dp"
-        android:layout_height="200dp"
-        android:src="@drawable/martes_13"
+        android:layout_width="100dp"
+        android:scaleType="center"
+        android:layout_height="150dp"
         android:layout_gravity="center"/>
 
 </FrameLayout>
