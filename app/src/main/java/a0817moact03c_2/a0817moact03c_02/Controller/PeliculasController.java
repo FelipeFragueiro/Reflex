@@ -44,6 +44,34 @@ public class PeliculasController {
         }
     }
 
+    public void getMoviesSimilarList(final ResultListener<List<Pelicula>> listenerFromView, final Context context,String unId){
+
+        if(HTTPConnectionManager.isNetworkingOnline(context)){
+
+            PeliculasDAOInternet peliculasDAOInternet = new PeliculasDAOInternet();
+
+            //SI ESTOY ONLINE PIDO AL DAO QUE ME TRAIGA LAS COSAS DESDE EL SERVICIO
+            peliculasDAOInternet.getAllMoviesSimilar(new ResultListener<List<Pelicula>>() {
+                @Override
+                public void finish(List<Pelicula> resultado) {
+                    PeliculasDAODB peliculasDAODB = new PeliculasDAODB(context);
+                    peliculasDAODB.addPosts(resultado);
+
+                    listenerFromView.finish(resultado);
+                }
+            },unId);
+        }
+        else{
+            //CASO OFFLINE: Solicito al DAO la lista de POST que esta almacenada en la base de datos
+            PeliculasDAODB peliculasDAODB = new PeliculasDAODB(context);
+
+            List<Pelicula> postList = peliculasDAODB.getAllMoviesFromDatabase();
+
+            //Le aviso al listener de la vista que ya tengo la lista.
+            listenerFromView.finish(postList);
+        }
+    }
+
 
     public void getMoviesFromGenreList(final ResultListener<List<Pelicula>> listenerFromView, String genreID, final Context context) {
 

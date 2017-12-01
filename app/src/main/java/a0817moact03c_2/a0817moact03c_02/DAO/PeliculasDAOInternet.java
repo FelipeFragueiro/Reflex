@@ -29,6 +29,13 @@ public class PeliculasDAOInternet {
         retrieveMoviesPlayingNowTask.execute();
     }
 
+    public void getAllMoviesSimilar(final ResultListener<List<Pelicula>> listenerFromController,String unId) {
+        Integer pagina = 1;
+        String id = unId;
+        RetrieveMoviesSimilarTask retrieveMoviesSimilarTask = new RetrieveMoviesSimilarTask(listenerFromController, pagina,id);
+        retrieveMoviesSimilarTask.execute();
+    }
+
     public void getAllMoviesByGenre(final ResultListener<List<Pelicula>> listenerFromController, String unGenero) {
         Integer pagina = 1;
         String genero = unGenero;
@@ -65,6 +72,40 @@ public class PeliculasDAOInternet {
 
             try {
                 input = connectionManager.getRequestString(TMDBHelper.getNowPlayingMovies(TMDBHelper.language_SPANISH, pagina));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            Gson gson = new Gson();
+            PeliculasContainer peliculasContainer = gson.fromJson(input, PeliculasContainer.class);
+
+            return peliculasContainer.getResults();
+        }
+
+        protected void onPostExecute(List<Pelicula> peliculaList) {
+
+            this.listener.finish(peliculaList);
+        }
+    }
+
+    class RetrieveMoviesSimilarTask extends AsyncTask<String, Void, List<Pelicula>> {
+        private ResultListener<List<Pelicula>> listener;
+        private Integer pagina;
+        private String id;
+
+        public RetrieveMoviesSimilarTask(ResultListener<List<Pelicula>> listener, Integer pagina,String id) {
+            this.listener = listener;
+            this.pagina = pagina;
+            this.id = id;
+        }
+
+        @Override
+        protected List<Pelicula> doInBackground(String... strings) {
+            HTTPConnectionManager connectionManager = new HTTPConnectionManager();
+            String input = null;
+
+            try {
+                input = connectionManager.getRequestString(TMDBHelper.getSimilarMovies(id,TMDBHelper.language_SPANISH, pagina));
             } catch (Exception e) {
                 e.printStackTrace();
             }

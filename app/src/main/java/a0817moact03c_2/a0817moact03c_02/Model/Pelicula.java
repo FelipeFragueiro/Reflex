@@ -6,14 +6,14 @@ package a0817moact03c_2.a0817moact03c_02.Model;
 
 public class Pelicula {
     private String title;
-    private Integer id;
+    private String id;
     private String poster_path;
     private String genre;
     private String overview;
     private int posicion;
     private String release_date;
 
-    public Pelicula(String title, Integer id, String poster_path, String genre, String overview, int posicion, String release_date) {
+    public Pelicula(String title, String id, String poster_path, String genre, String overview, int posicion, String release_date) {
         this.title = title;
         this.id = id;
         this.poster_path = poster_path;
@@ -66,11 +66,11 @@ public class Pelicula {
     }
 
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 

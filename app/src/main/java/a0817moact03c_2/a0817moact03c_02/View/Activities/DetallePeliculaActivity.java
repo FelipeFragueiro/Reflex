@@ -16,7 +16,7 @@ import a0817moact03c_2.a0817moact03c_02.View.Adapters.AdaptadorDeDetallePelicula
 import a0817moact03c_2.a0817moact03c_02.View.Adapters.AdaptadorDePeliculaRecycler;
 import a0817moact03c_2.a0817moact03c_02.View.Fragments.DetallePeliculaFragment;
 
-public class DetallePeliculaActivity extends AppCompatActivity implements DetallePeliculaFragment.EscuchadorDePeliculasInterface {
+public class DetallePeliculaActivity extends AppCompatActivity implements DetallePeliculaFragment.EscuchadorDePelicula {
     private List<Pelicula> listaDePeliculasSugeridas;
     private AdaptadorDePeliculaRecycler unAdaptadorDePeliculaRecycler;
 
@@ -59,15 +59,12 @@ public class DetallePeliculaActivity extends AppCompatActivity implements Detall
         unBundle.putString("Genero_Pelicula", unaPelicula.getGenre());
         unBundle.putString("descripcion_pelicula", unaPelicula.getOverview());
         unBundle.putInt("posicion_pelicula",unaPelicula.getPosicion());
+        unBundle.putString("id_pelicula",unaPelicula.getId());
         unIntent.putExtras(unBundle);
         startActivity(unIntent);
 
     }
 
-    @Override
-    public void seleccionaronImagen(String unInt) {
-
-    }
 
 
 }

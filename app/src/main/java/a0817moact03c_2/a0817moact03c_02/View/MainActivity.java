@@ -228,7 +228,7 @@ public class MainActivity extends AppCompatActivity implements SeriesFragment.Es
         Bundle unBundle =  new Bundle();
         unBundle.putString("nombre_pelicula",unaPelicula.getNombre());
         unBundle.putInt("posicion_pelicula",unaPelicula.getPosicion());
-        unBundle.putInt("id_pelicula",unaPelicula.getId());
+        unBundle.putString("id_pelicula",unaPelicula.getId());
         unBundle.putString("genre_pelicula",unaPelicula.getGenre());
         unBundle.putString("overview_pelicula",unaPelicula.getOverview());
         unBundle.putString("poster_path_pelicula",unaPelicula.getPoster_path());

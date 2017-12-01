@@ -22,15 +22,16 @@ import a0817moact03c_2.a0817moact03c_02.Model.Pelicula;
 import a0817moact03c_2.a0817moact03c_02.R;
 import a0817moact03c_2.a0817moact03c_02.Util.ResultListener;
 import a0817moact03c_2.a0817moact03c_02.View.Adapters.AdaptadorDePeliculaRecycler;
+import a0817moact03c_2.a0817moact03c_02.View.Adapters.AdapterPantallaPrincipalPeliculas;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class DetallePeliculaFragment extends Fragment implements AdaptadorDePeliculaRecycler.EscuchadorDePeliculas {
-    private List<Pelicula> listaDePeliculas;
-    private AdaptadorDePeliculaRecycler adaptadorDePeliculaRecycler;
-    private EscuchadorDePeliculasInterface escuchadorDePeliculasInterface;
+public class DetallePeliculaFragment extends Fragment implements AdapterPantallaPrincipalPeliculas.EscuchadorDePelicula {
+    private List<Pelicula> listaDePeliculasSimilares;
+    private AdapterPantallaPrincipalPeliculas adaptadorDePeliculaRecycler;
+    private EscuchadorDePelicula escuchadorDePeliculasInterface;
 
 
     public DetallePeliculaFragment() {
@@ -43,7 +44,7 @@ public class DetallePeliculaFragment extends Fragment implements AdaptadorDePeli
         Bundle args = new Bundle();
         args.putString("nombre_pelicula2",unaPelicula.getNombre());
         args.putInt("posicion_pelicula2",unaPelicula.getPosicion());
-        args.putInt("id_pelicula2",unaPelicula.getId());
+        args.putString("id_pelicula2",unaPelicula.getId());
         args.putString("genre_pelicula2",unaPelicula.getGenre());
         args.putString("overview_pelicula2",unaPelicula.getOverview());
         args.putString("poster_path_pelicula2",unaPelicula.getPoster_path());
@@ -56,7 +57,7 @@ public class DetallePeliculaFragment extends Fragment implements AdaptadorDePeli
 
     public void onAttach(Context context) {
         super.onAttach(context);
-        escuchadorDePeliculasInterface = (DetallePeliculaFragment.EscuchadorDePeliculasInterface) context;
+        escuchadorDePeliculasInterface = (DetallePeliculaFragment.EscuchadorDePelicula) context;
     }
 
 
@@ -67,6 +68,7 @@ public class DetallePeliculaFragment extends Fragment implements AdaptadorDePeli
 
         View fragmentView = inflater.inflate(R.layout.fragment_detalle_pelicula, container, false);
         Bundle aBundle = getArguments();
+        String unId = aBundle.getString("id_pelicula");
         String unTitulo = aBundle.getString("nombre_pelicula");
         final String unaImagen = aBundle.getString("poster_path_pelicula");
         String unaDescripcion = aBundle.getString("overview_pelicula");
@@ -82,47 +84,36 @@ public class DetallePeliculaFragment extends Fragment implements AdaptadorDePeli
         unTextViewDelGenero.setText(unGenero);
         unTextViewDeLaDescripcion.setText(unaDescripcion);
 
-        unImageViewPelicula.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                escuchadorDePeliculasInterface.seleccionaronImagen(unaImagen);
-            }
-        });
 
 
-        listaDePeliculas = new ArrayList<>();
 
-        //1) Buscar el recycler View
         RecyclerView recyclerViewDePeliculasSugeridas = (RecyclerView) fragmentView.findViewById(R.id.recyclerViewDePeliculasSugeridas);
-
-        //2) Crear el adaptador
-        adaptadorDePeliculaRecycler = new AdaptadorDePeliculaRecycler(listaDePeliculas, getContext(), this);
-
-        //Como quiero que muestre las celdas
+        listaDePeliculasSimilares = new ArrayList<>();
         recyclerViewDePeliculasSugeridas.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-        // recyclerViewPersonaje.setLayoutManager(new GridLayoutManager(this,2));
-
-
-        //3) Setearle el adaptador al recycler view
-        //listViewPersonajes.setAdapter(unAdaptadorDePersonaje);
+        adaptadorDePeliculaRecycler = new AdapterPantallaPrincipalPeliculas(listaDePeliculasSimilares, getContext(), (AdapterPantallaPrincipalPeliculas.EscuchadorDePelicula) this);
         recyclerViewDePeliculasSugeridas.setAdapter(adaptadorDePeliculaRecycler);
+
+
+        cargarPelisSimilares(unId);
+
+        return fragmentView;
+    }
+
+    private void cargarPelisSimilares(String unId) {
 
         PeliculasController peliculasController = new PeliculasController();
 
-        ResultListener<List<Pelicula>>escuchadorDeLaVista = new ResultListener<List<Pelicula>>() {
+        ResultListener<List<Pelicula>> escuchadorDeLaVista = new ResultListener<List<Pelicula>>() {
             @Override
             public void finish(List<Pelicula> resultado) {
-                listaDePeliculas.clear();
-                listaDePeliculas = resultado;
+                listaDePeliculasSimilares.clear();
+                listaDePeliculasSimilares.addAll(resultado);
                 adaptadorDePeliculaRecycler.notifyDataSetChanged();
-
-                //escuchadorDePeliculasInterface.seleccionaronPelicula();
             }
         };
 
-        peliculasController.getMoviesPlayingNowList(escuchadorDeLaVista,getActivity());
+        peliculasController.getMoviesSimilarList(escuchadorDeLaVista, getContext(),unId);
 
-        return fragmentView;
     }
 
 
@@ -132,8 +123,8 @@ public class DetallePeliculaFragment extends Fragment implements AdaptadorDePeli
         escuchadorDePeliculasInterface.seleccionaronPelicula(unaPeli);
     }
 
-    public interface EscuchadorDePeliculasInterface {
+    public interface EscuchadorDePelicula {
         public void seleccionaronPelicula(Pelicula unaPelicula);
-        public void seleccionaronImagen(String unInt);
     }
+
 }

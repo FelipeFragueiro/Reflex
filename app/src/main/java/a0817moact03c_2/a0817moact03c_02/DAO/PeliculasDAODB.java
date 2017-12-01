@@ -21,6 +21,7 @@ public class PeliculasDAODB extends DataBaseHelper {
     public static final String DESCRIPCION = "descripcion_pelicula";
     public static final String IMAGEN = "imagen";
     public static final String POSICION = "posicion";
+    public static final String ID = "id";
     public static final String TABLE_PELICULA = "pelicula";
 
     public PeliculasDAODB(Context context) {
@@ -47,6 +48,7 @@ public class PeliculasDAODB extends DataBaseHelper {
         row.put(GENERO, pelicula.getGenre());
         row.put(POSICION, pelicula.getPosicion());
         row.put(IMAGEN, pelicula.getPoster_path());
+        row.put(ID,pelicula.getId());
 
         database.insert(TABLE_PELICULA, null, row);
 
@@ -84,11 +86,12 @@ public class PeliculasDAODB extends DataBaseHelper {
 
             String nombrePelicula = cursor.getString(cursor.getColumnIndex(NOMBRE));
             String descripcionPelicula = cursor.getString(cursor.getColumnIndex(DESCRIPCION));
-            int imagenPelicula = cursor.getInt(cursor.getColumnIndex(IMAGEN));
+            String imagenPelicula = cursor.getString(cursor.getColumnIndex(IMAGEN));
             String generoPelicula = cursor.getString(cursor.getColumnIndex(GENERO));
             int posicionPelicula = cursor.getInt(cursor.getColumnIndex(POSICION));
+            String idPelicula = cursor.getString(cursor.getColumnIndex(ID));
 
-            Pelicula pelicula = new Pelicula(nombrePelicula,imagenPelicula,"1",generoPelicula,descripcionPelicula,posicionPelicula,"1/1/2001");
+            Pelicula pelicula = new Pelicula(nombrePelicula,idPelicula,imagenPelicula,"1",descripcionPelicula,posicionPelicula,"1/1/2001");
 
             //AGREGO UN POST A LA LISTA
             peliculasList.add(pelicula);
