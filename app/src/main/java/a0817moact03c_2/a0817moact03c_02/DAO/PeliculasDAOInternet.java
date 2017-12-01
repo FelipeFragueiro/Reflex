@@ -1,16 +1,13 @@
 package a0817moact03c_2.a0817moact03c_02.DAO;
 
-import android.database.CursorJoiner;
 import android.os.AsyncTask;
 
 import com.google.gson.Gson;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
 import java.util.List;
 
+import a0817moact03c_2.a0817moact03c_02.Model.Actores;
+import a0817moact03c_2.a0817moact03c_02.Model.ActoresContainer;
 import a0817moact03c_2.a0817moact03c_02.Model.Pelicula;
 import a0817moact03c_2.a0817moact03c_02.Model.PeliculasContainer;
 import a0817moact03c_2.a0817moact03c_02.Util.HTTPConnectionManager;
@@ -34,6 +31,12 @@ public class PeliculasDAOInternet {
         String id = unId;
         RetrieveMoviesSimilarTask retrieveMoviesSimilarTask = new RetrieveMoviesSimilarTask(listenerFromController, pagina,id);
         retrieveMoviesSimilarTask.execute();
+    }
+
+    public void getMovieCredits(final ResultListener<List<Actores>> listenerFromController, String unId) {
+        String id = unId;
+        RetrieveMovieCreditsTask retrieveMovieCreditsTask = new RetrieveMovieCreditsTask(listenerFromController,id);
+        retrieveMovieCreditsTask.execute();
     }
 
     public void getAllMoviesByGenre(final ResultListener<List<Pelicula>> listenerFromController, String unGenero) {
@@ -120,6 +123,43 @@ public class PeliculasDAOInternet {
 
             this.listener.finish(peliculaList);
         }
+    }
+
+    class RetrieveMovieCreditsTask extends AsyncTask<Object, Object, List<Actores>> {
+        private ResultListener<List<Actores>> listener;
+        private String id;
+
+        public RetrieveMovieCreditsTask(ResultListener<List<Actores>> listener, String id) {
+            this.listener = listener;
+            this.id = id;
+        }
+
+        @Override
+        protected List<Actores> doInBackground(Object... strings) {
+            HTTPConnectionManager connectionManager = new HTTPConnectionManager();
+            String input = null;
+
+            try {
+                input = connectionManager.getRequestString(TMDBHelper.getMovieCredits(id,TMDBHelper.language_SPANISH));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            Gson gson = new Gson();
+            ActoresContainer actoresContainer = gson.fromJson(input, ActoresContainer.class);
+
+            return actoresContainer.getResults();
+        }
+
+
+
+        @Override
+        protected void onPostExecute(List<Actores> actores) {
+            super.onPostExecute(actores);
+            listener.finish(actores);
+        }
+
+
     }
 
 

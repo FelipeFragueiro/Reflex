@@ -4,8 +4,10 @@ import android.content.Context;
 
 import java.util.List;
 
+import a0817moact03c_2.a0817moact03c_02.DAO.ActoresDAODB;
 import a0817moact03c_2.a0817moact03c_02.DAO.PeliculasDAODB;
 import a0817moact03c_2.a0817moact03c_02.DAO.PeliculasDAOInternet;
+import a0817moact03c_2.a0817moact03c_02.Model.Actores;
 import a0817moact03c_2.a0817moact03c_02.Model.Pelicula;
 import a0817moact03c_2.a0817moact03c_02.Util.HTTPConnectionManager;
 import a0817moact03c_2.a0817moact03c_02.Util.ResultListener;
@@ -66,6 +68,34 @@ public class PeliculasController {
             PeliculasDAODB peliculasDAODB = new PeliculasDAODB(context);
 
             List<Pelicula> postList = peliculasDAODB.getAllMoviesFromDatabase();
+
+            //Le aviso al listener de la vista que ya tengo la lista.
+            listenerFromView.finish(postList);
+        }
+    }
+
+    public void getMovieCredits(final ResultListener<List<Actores>> listenerFromView, final Context context, String unId){
+
+        if(HTTPConnectionManager.isNetworkingOnline(context)){
+
+            PeliculasDAOInternet peliculasDAOInternet = new PeliculasDAOInternet();
+
+            //SI ESTOY ONLINE PIDO AL DAO QUE ME TRAIGA LAS COSAS DESDE EL SERVICIO
+            peliculasDAOInternet.getMovieCredits(new ResultListener<List<Actores>>() {
+                @Override
+                public void finish(List<Actores> resultado) {
+                    ActoresDAODB actoresDAODB = new ActoresDAODB(context);
+                    actoresDAODB.addPosts(resultado);
+
+                    listenerFromView.finish(resultado);
+                }
+            },unId);
+        }
+        else{
+            //CASO OFFLINE: Solicito al DAO la lista de POST que esta almacenada en la base de datos
+            ActoresDAODB actoresDAODB = new ActoresDAODB(context);
+
+            List<Actores> postList = actoresDAODB.getAllActoresFromDatabase();
 
             //Le aviso al listener de la vista que ya tengo la lista.
             listenerFromView.finish(postList);

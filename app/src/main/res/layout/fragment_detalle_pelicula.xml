@@ -104,6 +104,22 @@
             android:layout_below="@id/textViewPeliculasSimilares">
 
         </android.support.v7.widget.RecyclerView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reparto"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:textColor="#ffffff"
+            android:id="@+id/textViewDelRepartoDeLaPeliculaDetalle"
+            android:layout_below="@+id/recyclerViewDePeliculasSugeridas"/>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerViewDelRepartoPelicula"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textViewDelRepartoDeLaPeliculaDetalle">
+
+        </android.support.v7.widget.RecyclerView>
 
     </RelativeLayout>
 </ScrollView>

@@ -37,7 +37,15 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 SeriesDAODB.poster_path +" TEXT )";
         sqLiteDatabase.execSQL(tableSerie);
 
-
+        String tableActores = "CREATE TABLE "+ActoresDAODB.TABLE_ACTORES + "("+
+                ActoresDAODB.NOMBRE + " TEXT ,"+
+                ActoresDAODB.ALSO_KNOWN_AS +" TEXT ,"+
+                ActoresDAODB.BIOGRAFIA +" TEXT ," +
+                ActoresDAODB.BIRTHDAY +" TEXT ," +
+                ActoresDAODB.PERSONAJE +" TEXT ," +
+                ActoresDAODB.IMAGEN +" TEXT ," +
+                ActoresDAODB.ID +" TEXT )";
+        sqLiteDatabase.execSQL(tableActores);
 
     }
 

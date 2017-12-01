@@ -74,8 +74,6 @@ public class AdapterPantallaPrincipalPeliculas extends RecyclerView.Adapter  {
 
         public void cargarPelicula (Pelicula unaPelicula){
             Glide.with(unContext).load(unaPelicula.getPoster_path()).into(imagenPelicula);
-
-            //imagenPelicula.setImageResource(Integer.parseInt(unaPelicula.getPoster_path()));
         }
     }
 

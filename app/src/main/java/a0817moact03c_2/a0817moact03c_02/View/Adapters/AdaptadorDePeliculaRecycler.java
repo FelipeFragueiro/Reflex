@@ -31,7 +31,6 @@ public class AdaptadorDePeliculaRecycler extends RecyclerView.Adapter {
     }
 
 
-
     //Crea la celda
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {

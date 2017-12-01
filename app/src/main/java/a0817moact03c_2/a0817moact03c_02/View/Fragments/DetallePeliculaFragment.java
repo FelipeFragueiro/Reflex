@@ -18,9 +18,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import a0817moact03c_2.a0817moact03c_02.Controller.PeliculasController;
+import a0817moact03c_2.a0817moact03c_02.Model.Actores;
 import a0817moact03c_2.a0817moact03c_02.Model.Pelicula;
 import a0817moact03c_2.a0817moact03c_02.R;
 import a0817moact03c_2.a0817moact03c_02.Util.ResultListener;
+import a0817moact03c_2.a0817moact03c_02.View.Adapters.AdaptadorDeActoresRecycler;
 import a0817moact03c_2.a0817moact03c_02.View.Adapters.AdaptadorDePeliculaRecycler;
 import a0817moact03c_2.a0817moact03c_02.View.Adapters.AdapterPantallaPrincipalPeliculas;
 
@@ -28,10 +30,14 @@ import a0817moact03c_2.a0817moact03c_02.View.Adapters.AdapterPantallaPrincipalPe
 /**
  * A simple {@link Fragment} subclass.
  */
-public class DetallePeliculaFragment extends Fragment implements AdapterPantallaPrincipalPeliculas.EscuchadorDePelicula {
+public class DetallePeliculaFragment extends Fragment implements AdapterPantallaPrincipalPeliculas.EscuchadorDePelicula, AdaptadorDeActoresRecycler.EscuchadorDeActores {
     private List<Pelicula> listaDePeliculasSimilares;
+    private List<Actores>listaDeActores;
     private AdapterPantallaPrincipalPeliculas adaptadorDePeliculaRecycler;
+    private AdaptadorDeActoresRecycler adaptadorDeActoresRecycler;
     private EscuchadorDePelicula escuchadorDePeliculasInterface;
+    private AdaptadorDeActoresRecycler.EscuchadorDeActores escuchadorDeActores;
+
 
 
     public DetallePeliculaFragment() {
@@ -93,13 +99,18 @@ public class DetallePeliculaFragment extends Fragment implements AdapterPantalla
         adaptadorDePeliculaRecycler = new AdapterPantallaPrincipalPeliculas(listaDePeliculasSimilares, getContext(), (AdapterPantallaPrincipalPeliculas.EscuchadorDePelicula) this);
         recyclerViewDePeliculasSugeridas.setAdapter(adaptadorDePeliculaRecycler);
 
-
         cargarPelisSimilares(unId);
 
+
+        RecyclerView recyclerViewDeActores = (RecyclerView)fragmentView.findViewById(R.id.recyclerViewDelRepartoPelicula);
+        listaDeActores = new ArrayList<>();
+        recyclerViewDeActores.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        adaptadorDeActoresRecycler = new AdaptadorDeActoresRecycler(listaDeActores,getContext(),escuchadorDeActores);
+        recyclerViewDeActores.setAdapter(adaptadorDeActoresRecycler);
         return fragmentView;
     }
 
-    private void cargarPelisSimilares(String unId) {
+    private void cargarPelisSimilares(final String unId) {
 
         PeliculasController peliculasController = new PeliculasController();
 
@@ -109,10 +120,29 @@ public class DetallePeliculaFragment extends Fragment implements AdapterPantalla
                 listaDePeliculasSimilares.clear();
                 listaDePeliculasSimilares.addAll(resultado);
                 adaptadorDePeliculaRecycler.notifyDataSetChanged();
+                cargarActoresRelacionados(unId);
             }
         };
 
         peliculasController.getMoviesSimilarList(escuchadorDeLaVista, getContext(),unId);
+
+    }
+
+    private void cargarActoresRelacionados(String unId) {
+
+        PeliculasController peliculasController = new PeliculasController();
+
+        ResultListener<List<Actores>> escuchadorDeLaVista = new ResultListener<List<Actores>>() {
+            @Override
+            public void finish(List<Actores> resultado) {
+                listaDeActores.clear();
+                listaDeActores.addAll(resultado);
+                adaptadorDeActoresRecycler.setListaDeActores(listaDeActores);
+                adaptadorDeActoresRecycler.notifyDataSetChanged();
+            }
+        };
+
+        peliculasController.getMovieCredits(escuchadorDeLaVista, getContext(),unId);
 
     }
 
@@ -121,6 +151,11 @@ public class DetallePeliculaFragment extends Fragment implements AdapterPantalla
 
     public void seleccionaronA(Pelicula unaPeli) {
         escuchadorDePeliculasInterface.seleccionaronPelicula(unaPeli);
+    }
+
+    @Override
+    public void seleccionaronA(Actores unActor) {
+
     }
 
     public interface EscuchadorDePelicula {
