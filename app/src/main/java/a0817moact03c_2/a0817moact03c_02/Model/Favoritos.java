@@ -1,37 +1,40 @@
 package a0817moact03c_2.a0817moact03c_02.Model;
 
+import java.util.List;
+
 /**
  * Created by Rodrigo on 1/12/2017.
  */
 
 public class Favoritos {
-    private Pelicula unaPelicula;
-    private Serie unaSerie;
+    private List<Pelicula> listaDePeliculas;
+    private List<Serie> listaDeSeries;
 
 
-    public Favoritos(Pelicula unaPelicula, Serie unaSerie) {
-        this.unaPelicula = unaPelicula;
-        this.unaSerie = unaSerie;
+    public Favoritos(List<Pelicula> listaDePeliculas, List<Serie> listaDeSeries) {
+        this.listaDePeliculas = listaDePeliculas;
+        this.listaDeSeries = listaDeSeries;
     }
 
-    public Pelicula getUnaPelicula() {
-        return unaPelicula;
+    public List<Pelicula> getListaDePeliculas() {
+        return listaDePeliculas;
     }
 
-    public void setUnaPelicula(Pelicula unaPelicula) {
-        this.unaPelicula = unaPelicula;
+    public void setListaDePeliculas(List<Pelicula> listaDePeliculas) {
+        this.listaDePeliculas = listaDePeliculas;
     }
 
-    public Serie getUnaSerie() {
-        return unaSerie;
+    public List<Serie> getListaDeSeries() {
+        return listaDeSeries;
     }
 
-    public void setUnaSerie(Serie unaSerie) {
-        this.unaSerie = unaSerie;
+    public void setListaDeSeries(List<Serie> listaDeSeries) {
+        this.listaDeSeries = listaDeSeries;
     }
 
-
-    public void agregarPeliculaAFavorito ( Pelicula unaPelicula){
+    public void agregarPeliculaAFavorito (Pelicula unaPelicula){
+        //agrega a la pelicula seleccionada a la lista de peliculas favoritas, dicha lista
+        // de peliculas se ubica en el recycler de Favoritos
 
 
 
