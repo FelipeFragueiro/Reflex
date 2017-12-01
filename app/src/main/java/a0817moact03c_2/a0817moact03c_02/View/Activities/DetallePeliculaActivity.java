@@ -28,7 +28,7 @@ public class DetallePeliculaActivity extends AppCompatActivity implements Detall
         Intent unIntent = getIntent();
         Bundle unBundle = unIntent.getExtras();
 
-        Toast.makeText(this, "hola", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "hola pelicula", Toast.LENGTH_SHORT).show();
 
 
         FragmentManager fragmentManager = getSupportFragmentManager();
