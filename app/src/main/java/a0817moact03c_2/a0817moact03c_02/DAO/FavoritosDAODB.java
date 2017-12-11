@@ -79,7 +79,7 @@ public class FavoritosDAODB extends DataBaseHelper {
 
             String nombrePelicula = cursor.getString(cursor.getColumnIndex(NOMBRE));
             String descripcionPelicula = cursor.getString(cursor.getColumnIndex(DESCRIPCION));
-            int imagenPelicula = cursor.getInt(cursor.getColumnIndex(IMAGEN));
+            String imagenPelicula = cursor.getString(cursor.getColumnIndex(IMAGEN));
             String generoPelicula = cursor.getString(cursor.getColumnIndex(GENERO));
             int posicionPelicula = cursor.getInt(cursor.getColumnIndex(POSICION));
 

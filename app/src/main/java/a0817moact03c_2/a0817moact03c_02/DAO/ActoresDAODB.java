@@ -60,9 +60,15 @@ public class ActoresDAODB extends DataBaseHelper {
     private Boolean checkIfExist(String aPostID) {
 
         SQLiteDatabase database = getReadableDatabase();
+        String nameWithoutComs = aPostID;
+        if(nameWithoutComs.contains("\"")){
+            nameWithoutComs = nameWithoutComs.replace("\"", "");
+        }
 
-        String selectQuery = "SELECT * FROM " + TABLE_ACTORES
-                + " WHERE " + NOMBRE + "==\""+ aPostID +"\"";
+
+
+                String selectQuery = "SELECT * FROM " + TABLE_ACTORES
+                + " WHERE " + NOMBRE + "==\""+ nameWithoutComs +"\"";
 
         Cursor result = database.rawQuery(selectQuery, null);
         Integer count = result.getCount();

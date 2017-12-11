@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.Toast;
 
 import java.util.List;
@@ -46,9 +47,7 @@ public class DetallePeliculaActivity extends AppCompatActivity implements Detall
     }
 
 
-    public void agregarAFavoritos(Pelicula unaPelicula){
 
-    }
 
     @Override
     public void seleccionaronPelicula(Pelicula unaPelicula) {

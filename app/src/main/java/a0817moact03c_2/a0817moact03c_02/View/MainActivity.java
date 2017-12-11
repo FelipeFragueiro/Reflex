@@ -28,7 +28,7 @@ import a0817moact03c_2.a0817moact03c_02.R;
 import a0817moact03c_2.a0817moact03c_02.Util.ResultListener;
 import a0817moact03c_2.a0817moact03c_02.View.Activities.DetallePeliculaActivity;
 import a0817moact03c_2.a0817moact03c_02.View.Activities.DetalleSeriesActivity;
-import a0817moact03c_2.a0817moact03c_02.View.Fragments.FavoritosFragment;
+import a0817moact03c_2.a0817moact03c_02.View.Activities.FavoritosActivity;
 import a0817moact03c_2.a0817moact03c_02.View.Fragments.FragmentoGenerosPantallaPrincipal;
 import a0817moact03c_2.a0817moact03c_02.View.Fragments.PantallaPrincipalFragmentPeliculas;
 import a0817moact03c_2.a0817moact03c_02.View.Fragments.SeriesFragment;
@@ -94,10 +94,12 @@ public class MainActivity extends AppCompatActivity implements SeriesFragment.Es
 
                 switch (item.getItemId()){
                     case R.id.Inicio :
-                        cargadorDeFragments(new PantallaPrincipalFragmentPeliculas());
+                        Intent intent = getIntent();
+                        finish();
+                        startActivity(intent);;
                         break;
                     case R.id.FavoritosItem :
-                        cargadorDeFragments(new FavoritosFragment());
+                        startActivity(new Intent(MainActivity.this, FavoritosActivity.class));
                         break;
                     case R.id.Action :
                         cargadorDeFragments(new FragmentoGenerosPantallaPrincipal("28","Accion"));

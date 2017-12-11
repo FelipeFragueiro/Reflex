@@ -3,16 +3,20 @@ package a0817moact03c_2.a0817moact03c_02.View.Fragments;
 
 import android.content.Context;
 import android.os.Bundle;
+
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.getbase.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +24,7 @@ import java.util.List;
 import a0817moact03c_2.a0817moact03c_02.Controller.PeliculasController;
 import a0817moact03c_2.a0817moact03c_02.Model.Actores;
 import a0817moact03c_2.a0817moact03c_02.Model.Pelicula;
+import a0817moact03c_2.a0817moact03c_02.Model.PeliculaFavorita;
 import a0817moact03c_2.a0817moact03c_02.R;
 import a0817moact03c_2.a0817moact03c_02.Util.ResultListener;
 import a0817moact03c_2.a0817moact03c_02.View.Adapters.AdaptadorDeActoresRecycler;
@@ -30,7 +35,7 @@ import a0817moact03c_2.a0817moact03c_02.View.Adapters.AdapterPantallaPrincipalPe
 /**
  * A simple {@link Fragment} subclass.
  */
-public class DetallePeliculaFragment extends Fragment implements AdapterPantallaPrincipalPeliculas.EscuchadorDePelicula, AdaptadorDeActoresRecycler.EscuchadorDeActores {
+public class DetallePeliculaFragment extends Fragment implements AdapterPantallaPrincipalPeliculas.EscuchadorDePelicula, AdaptadorDeActoresRecycler.EscuchadorDeActores, View.OnClickListener {
     private List<Pelicula> listaDePeliculasSimilares;
     private List<Actores>listaDeActores;
     private AdapterPantallaPrincipalPeliculas adaptadorDePeliculaRecycler;
@@ -48,6 +53,7 @@ public class DetallePeliculaFragment extends Fragment implements AdapterPantalla
     public static DetallePeliculaFragment dameUnDetallePeliculaFragment(Pelicula unaPelicula) {
         DetallePeliculaFragment detallePeliculaFragment = new DetallePeliculaFragment();
         Bundle args = new Bundle();
+
         args.putString("nombre_pelicula2",unaPelicula.getNombre());
         args.putInt("posicion_pelicula2",unaPelicula.getPosicion());
         args.putString("id_pelicula2",unaPelicula.getId());
@@ -58,6 +64,36 @@ public class DetallePeliculaFragment extends Fragment implements AdapterPantalla
 
         detallePeliculaFragment.setArguments(args);
         return detallePeliculaFragment;
+    }
+
+    public void agregarAFavoritos(View view){
+        //Primero tendria que iniciar sesion con firebase o facebook y poner el nombre en favoritos para luego hacer un if
+        //hacer un listener para saber cuando hacen click en la pelicula seleccionada
+        //crear nueva clase favoritos donde se agregen los datos de la pelicula y el nombre del usuario/ID
+        //subir las cosas a baseDedatos de firebase
+        //ir a la actividad de davoritos y bajar datos de firebase bajando las peliculas macheadas
+        // con el id/nombre de usuario
+
+        Bundle aBundle = getArguments();
+        String unId = aBundle.getString("id_pelicula");
+        String unTitulo = aBundle.getString("nombre_pelicula");
+        final String unaImagen = aBundle.getString("poster_path_pelicula");
+        String unaDescripcion = aBundle.getString("overview_pelicula");
+        String unGenero = aBundle.getString("genre_pelicula");
+
+        PeliculaFavorita peliculaFavorita = new PeliculaFavorita();
+        peliculaFavorita.setId(unId);
+        peliculaFavorita.setGenre(unGenero);
+        peliculaFavorita.setTitle(unTitulo);
+        peliculaFavorita.setPoster_path(unaImagen);
+        peliculaFavorita.setOverview(unaDescripcion);
+
+        Toast.makeText(getContext(),peliculaFavorita.toString(),Toast.LENGTH_SHORT).show();
+
+
+
+
+
     }
 
 
@@ -79,6 +115,11 @@ public class DetallePeliculaFragment extends Fragment implements AdapterPantalla
         final String unaImagen = aBundle.getString("poster_path_pelicula");
         String unaDescripcion = aBundle.getString("overview_pelicula");
         String unGenero = aBundle.getString("genre_pelicula");
+
+
+        FloatingActionButton b = (FloatingActionButton) fragmentView.findViewById(R.id.fadFavoritos);
+        b.setOnClickListener(this);
+
 
 
         TextView textViewNombrePelicula = (TextView) fragmentView.findViewById(R.id.textViewDelTituloDeLaSerieDetalle);
@@ -155,6 +196,18 @@ public class DetallePeliculaFragment extends Fragment implements AdapterPantalla
 
     @Override
     public void seleccionaronA(Actores unActor) {
+
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.fadFavoritos:
+
+                agregarAFavoritos(view);
+
+                break;
+        }
 
     }
 
