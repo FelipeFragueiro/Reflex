@@ -31,7 +31,6 @@ public class AdaptadorDeListaDePeliculasRecycler extends RecyclerView.Adapter {
 
 
 
-
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(unContexto);

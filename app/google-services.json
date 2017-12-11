@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "130982130664",
+    "firebase_url": "https://peliculeando-d4d5e.firebaseio.com",
+    "project_id": "peliculeando-d4d5e",
+    "storage_bucket": "peliculeando-d4d5e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:130982130664:android:699459258bf55d3c",
+        "android_client_info": {
+          "package_name": "a0817moact03c_2.a0817moact03c_02"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "130982130664-um050cl8h6rc4sqnt6c900oithn91mr7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "a0817moact03c_2.a0817moact03c_02",
+            "certificate_hash": "0beb04c7c0581feeba35d212486f2e016728765c"
+          }
+        },
+        {
+          "client_id": "130982130664-8p6frkt5d8dppvce13kcoldtf3ip105n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyACk2EQxyUQ1zgu3sZhrsmipskzuSs7bzc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "130982130664-8p6frkt5d8dppvce13kcoldtf3ip105n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
