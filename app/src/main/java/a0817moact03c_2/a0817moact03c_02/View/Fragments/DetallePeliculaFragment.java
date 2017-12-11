@@ -10,10 +10,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.getbase.floatingactionbutton.FloatingActionButton;
@@ -30,8 +28,8 @@ import a0817moact03c_2.a0817moact03c_02.Model.Pelicula;
 import a0817moact03c_2.a0817moact03c_02.Model.PeliculaFavorita;
 import a0817moact03c_2.a0817moact03c_02.R;
 import a0817moact03c_2.a0817moact03c_02.Util.ResultListener;
+import a0817moact03c_2.a0817moact03c_02.Util.TMDBHelper;
 import a0817moact03c_2.a0817moact03c_02.View.Adapters.AdaptadorDeActoresRecycler;
-import a0817moact03c_2.a0817moact03c_02.View.Adapters.AdaptadorDePeliculaRecycler;
 import a0817moact03c_2.a0817moact03c_02.View.Adapters.AdapterPantallaPrincipalPeliculas;
 
 
@@ -44,7 +42,7 @@ public class DetallePeliculaFragment extends Fragment implements AdapterPantalla
     public static final java.lang.String IMAGEN_PELICULA = "Imagen_Pelicula";
     public static final java.lang.String DESCRIPCION_PELICULA = "overview_pelicula";
     public static final java.lang.String ID_PELICULA = "id_pelicula" ;
-    public static final java.lang.String GENERO_PELICULA = "genre_pelicula" ;
+    public static final java.lang.String GENERO_PELICULA = "genre_ids" ;
     public static final java.lang.String POSICION_PELICULA ="posicion_pelicula";
     public static final java.lang.String FECHAS_ESTRENO_PELICULA = "release_date_pelicula";
 
@@ -69,7 +67,7 @@ public class DetallePeliculaFragment extends Fragment implements AdapterPantalla
         /*args.putString("nombre_pelicula2",unaPelicula.getNombre());
         args.putInt("posicion_pelicula2",unaPelicula.getPosicion());
         args.putString("id_pelicula2",unaPelicula.getId());
-        args.putString("genre_pelicula2",unaPelicula.getGenre());
+        args.putString("genre_pelicula2",unaPelicula.getGenre_ids());
         args.putString("overview_pelicula2",unaPelicula.getOverview());
         args.putString("poster_path_pelicula2",unaPelicula.getPoster_path());
         args.putString("release_date_pelicula2",unaPelicula.getRelease_date());*/
@@ -78,7 +76,7 @@ public class DetallePeliculaFragment extends Fragment implements AdapterPantalla
         args.putString(NOMBRE_PELICULA,unaPelicula.getNombre());
         args.putInt(POSICION_PELICULA,unaPelicula.getPosicion());
         args.putString(ID_PELICULA,unaPelicula.getId());
-        args.putString(GENERO_PELICULA,unaPelicula.getGenre());
+        args.putString(GENERO_PELICULA,unaPelicula.getGenre_ids().toString());
         args.putString(DESCRIPCION_PELICULA,unaPelicula.getOverview());
         args.putString(IMAGEN_PELICULA,unaPelicula.getPoster_path());
         args.putString(FECHAS_ESTRENO_PELICULA,unaPelicula.getRelease_date());
@@ -171,6 +169,8 @@ public class DetallePeliculaFragment extends Fragment implements AdapterPantalla
         Glide.with(getContext()).load(unaImagen).into(unImageViewPelicula);
         unTextViewDelGenero.setText(unGenero);
         unTextViewDeLaDescripcion.setText(unaDescripcion);
+
+
 
 
 

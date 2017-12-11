@@ -63,7 +63,7 @@ public class DetalleGenerosDePeliculaActivity extends AppCompatActivity implemen
         Bundle unBundle = new Bundle();
         unBundle.putString(DetallePeliculaFragment.NOMBRE_PELICULA,unaPeli.getNombre());
         unBundle.putString(DetallePeliculaFragment.IMAGEN_PELICULA, unaPeli.getPoster_path());
-        unBundle.putString(DetallePeliculaFragment.GENERO_PELICULA,unaPeli.getGenre());
+      //  unBundle.putString(DetallePeliculaFragment.GENERO_PELICULA,unaPeli.getGenre_ids());
         unBundle.putString(DetallePeliculaFragment.DESCRIPCION_PELICULA,unaPeli.getOverview());
         unBundle.putInt(DetallePeliculaFragment.POSICION_PELICULA,unaPeli.getPosicion());
         unIntent.putExtras(unBundle);

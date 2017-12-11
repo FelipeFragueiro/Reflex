@@ -1,5 +1,9 @@
 package a0817moact03c_2.a0817moact03c_02.Util;
 
+import java.util.HashMap;
+import java.util.Hashtable;
+import java.util.Map;
+
 /**
  * Created by ma on 11/11/17.
  */
@@ -62,6 +66,61 @@ public class TMDBHelper {
     public static final String TV_GENRE_MUSIC = "10402";
     public static final String TV_GENRE_ROMANCE = "10749";
 
+    //----------------------------------------------------------------------------
+    public static class DiccionarioDeGeneros {
+
+        public static DiccionarioDeGeneros unDiccionario;
+
+        public static Map<String, String>  obtenerDiccionarioDeGeneros () {
+
+            Map<String, String> codigosYGeneros = new HashMap<>();
+
+            // De esta forma asocio a una persona con su edad en el diccionario
+            codigosYGeneros.put("28", "Acción");
+            codigosYGeneros.put("12", "Aventura");
+            codigosYGeneros.put("16", "Animación");
+            codigosYGeneros.put("35", "Comedia");
+            codigosYGeneros.put("80", "Crimen");
+            codigosYGeneros.put("99", "Documental");
+            codigosYGeneros.put("18", "Drama");
+            codigosYGeneros.put("10751", "Familiar");
+            codigosYGeneros.put("14", "Fantasia");
+            codigosYGeneros.put("36", "Historia");
+            codigosYGeneros.put("27", "Horror");
+            codigosYGeneros.put("10402", "Musical");
+            codigosYGeneros.put("9648", "Misterio");
+            codigosYGeneros.put("10749", "Romance");
+            codigosYGeneros.put("870", "Ciencia ficción");
+            codigosYGeneros.put("10770", "Pelicula de TV");
+            codigosYGeneros.put("53", "Thriller");
+            codigosYGeneros.put("10752", "Guerra");
+            codigosYGeneros.put("37", "Lejano Oeste");
+            codigosYGeneros.put("10759", "Acción y aventura");
+            codigosYGeneros.put("16", "Animado");
+            codigosYGeneros.put("35", "Comedia");
+            codigosYGeneros.put("80", "Crimen");
+            codigosYGeneros.put("99", "Documental");
+            codigosYGeneros.put("18", "Drama");
+            codigosYGeneros.put("10751", "Familiar");
+            codigosYGeneros.put("10762", "Kids");
+            codigosYGeneros.put("9648", "Misterio");
+            codigosYGeneros.put("10763", "News");
+            codigosYGeneros.put("10764", "Reality");
+            codigosYGeneros.put("10765", "Ciencia ficción y fantasia");
+            codigosYGeneros.put("14", "Fantasia");
+            codigosYGeneros.put("36", "Historia");
+            codigosYGeneros.put("27", "Horror");
+            codigosYGeneros.put("10402", "Music");
+            codigosYGeneros.put("10749", "Romance");
+
+            return codigosYGeneros;
+
+        }
+
+    }
+
+
+    //--------------------------------------------------------------------------
 
     public static String getMovieDetailURL(String movieID, String language) {
         return baseUrl + "/movie/" + movieID + "?api_key=" + apiKey + "&language=" + language;

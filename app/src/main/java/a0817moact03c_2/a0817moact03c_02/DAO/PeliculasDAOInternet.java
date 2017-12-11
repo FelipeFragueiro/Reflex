@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import com.google.gson.Gson;
 
 import java.util.List;
+import java.util.Map;
 
 import a0817moact03c_2.a0817moact03c_02.Model.Actores;
 import a0817moact03c_2.a0817moact03c_02.Model.ActoresContainer;
@@ -81,6 +82,15 @@ public class PeliculasDAOInternet {
 
             Gson gson = new Gson();
             PeliculasContainer peliculasContainer = gson.fromJson(input, PeliculasContainer.class);
+
+            Map<String,String> diccionarioGenero = TMDBHelper.DiccionarioDeGeneros.obtenerDiccionarioDeGeneros();
+
+            for (Pelicula unaPelicula : peliculasContainer.getResults()){
+
+                for(String unGenero : unaPelicula.getGenre_ids()){
+                        diccionarioGenero.get(unGenero);
+                }
+        }
 
             return peliculasContainer.getResults();
         }

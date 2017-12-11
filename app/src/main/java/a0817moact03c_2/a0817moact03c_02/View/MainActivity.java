@@ -16,7 +16,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.text.Layout;
 import android.util.Base64;
 import android.util.Log;
 import android.view.MenuItem;
@@ -41,9 +40,6 @@ import a0817moact03c_2.a0817moact03c_02.View.Activities.LoginActivity;
 import a0817moact03c_2.a0817moact03c_02.View.Fragments.FragmentoGenerosPantallaPrincipal;
 import a0817moact03c_2.a0817moact03c_02.View.Fragments.PantallaPrincipalFragmentPeliculas;
 import a0817moact03c_2.a0817moact03c_02.View.Fragments.SeriesFragment;
-
-import static a0817moact03c_2.a0817moact03c_02.R.id.drawerLayout;
-import static a0817moact03c_2.a0817moact03c_02.R.id.navigationView;
 
 public class MainActivity extends AppCompatActivity implements SeriesFragment.EscuchadorDeSeries ,PantallaPrincipalFragmentPeliculas.EscuchadorDePelicula{
 
@@ -269,7 +265,7 @@ public class MainActivity extends AppCompatActivity implements SeriesFragment.Es
         unBundle.putString(DetallePeliculaFragment.NOMBRE_PELICULA,unaPelicula.getNombre());
         unBundle.putInt(DetallePeliculaFragment.POSICION_PELICULA,unaPelicula.getPosicion());
         unBundle.putString(DetallePeliculaFragment.ID_PELICULA,unaPelicula.getId());
-        unBundle.putString(DetallePeliculaFragment.GENERO_PELICULA,unaPelicula.getGenre());
+//        unBundle.putString(DetallePeliculaFragment.GENERO_PELICULA,unaPelicula.getGenre_ids());
         unBundle.putString(DetallePeliculaFragment.DESCRIPCION_PELICULA,unaPelicula.getOverview());
         unBundle.putString(DetallePeliculaFragment.IMAGEN_PELICULA,unaPelicula.getPoster_path());
         unBundle.putString(DetallePeliculaFragment.FECHAS_ESTRENO_PELICULA,unaPelicula.getRelease_date());

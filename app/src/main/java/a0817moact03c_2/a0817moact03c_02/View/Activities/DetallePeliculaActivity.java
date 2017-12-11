@@ -4,16 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.widget.Toast;
 
 import java.util.List;
 
 import a0817moact03c_2.a0817moact03c_02.Model.Pelicula;
 import a0817moact03c_2.a0817moact03c_02.R;
-import a0817moact03c_2.a0817moact03c_02.View.Adapters.AdaptadorDeDetallePeliculaFragment;
 import a0817moact03c_2.a0817moact03c_02.View.Adapters.AdaptadorDePeliculaRecycler;
 import a0817moact03c_2.a0817moact03c_02.View.Fragments.DetallePeliculaFragment;
 
@@ -55,7 +52,7 @@ public class DetallePeliculaActivity extends AppCompatActivity implements Detall
         Bundle unBundle = new Bundle();
         unBundle.putString(DetallePeliculaFragment.NOMBRE_PELICULA, unaPelicula.getNombre());
         unBundle.putString(DetallePeliculaFragment.IMAGEN_PELICULA, unaPelicula.getPoster_path());
-        unBundle.putString("genre_pelicula", unaPelicula.getGenre());
+        //unBundle.putString(DetallePeliculaFragment.GENERO_PELICULA, unaPelicula.getGenre_ids());
         unBundle.putString(DetallePeliculaFragment.DESCRIPCION_PELICULA, unaPelicula.getOverview());
         unBundle.putInt("posicion_pelicula",unaPelicula.getPosicion());
         unBundle.putString("id_pelicula",unaPelicula.getId());

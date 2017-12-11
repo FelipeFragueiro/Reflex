@@ -48,12 +48,12 @@ public class DetalleSerieFragment extends Fragment implements AdaptadorDeSeries.
         String descripcionSerie = aBundle.getString("descripcion_serie");
         final String imagenSerie = aBundle.getString("imagen_serie");
 
-        TextView textViewNombreSerie = (TextView) fragmentView.findViewById(R.id.textViewDelTituloDeLaSerieDetalle);
+      //  TextView textViewNombreSerie = (TextView) fragmentView.findViewById(R.id.textViewDelTituloDeLaSerieDetalle);
         ImageView unImageViewSerie = (ImageView) fragmentView.findViewById(R.id.imageViewDeLaSerieDetalle);
         TextView unTextViewDelGenero = (TextView) fragmentView.findViewById(R.id.textViewDelGeneroDeLaSerieDetalle);
         TextView unTextViewDeLaDescripcion = (TextView) fragmentView.findViewById(R.id.textViewDeLaDescripcionDeLaSerieDetalle);
 
-        textViewNombreSerie.setText(nombreSerie);
+     //   textViewNombreSerie.setText(nombreSerie);
         unTextViewDelGenero.setText(generoSerie);
         unTextViewDeLaDescripcion.setText(descripcionSerie);
         Glide.with(getContext()).load(imagenSerie).into(unImageViewSerie);

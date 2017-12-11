@@ -41,7 +41,7 @@ public class FavoritosDAODB extends DataBaseHelper {
 
         row.put(NOMBRE, pelicula.getNombre());
         row.put(DESCRIPCION, pelicula.getOverview());
-        row.put(GENERO, pelicula.getGenre());
+       // row.put(GENERO, pelicula.getGenre_ids());
         row.put(POSICION, pelicula.getPosicion());
         row.put(IMAGEN, pelicula.getPoster_path());
 
@@ -83,7 +83,7 @@ public class FavoritosDAODB extends DataBaseHelper {
             String generoPelicula = cursor.getString(cursor.getColumnIndex(GENERO));
             int posicionPelicula = cursor.getInt(cursor.getColumnIndex(POSICION));
 
-            Pelicula pelicula = new Pelicula(nombrePelicula, imagenPelicula, "1", generoPelicula, descripcionPelicula, posicionPelicula, "1/1/2001");
+            Pelicula pelicula = new Pelicula(nombrePelicula, imagenPelicula, "1", null, descripcionPelicula, posicionPelicula, "1/1/2001");
 
             peliculaList.add(pelicula);
 

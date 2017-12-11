@@ -45,7 +45,7 @@ public class PeliculasDAODB extends DataBaseHelper {
         //Obtengo los datos y los cargo en el row
         row.put(NOMBRE, pelicula.getNombre());
         row.put(DESCRIPCION, pelicula.getOverview());
-        row.put(GENERO, pelicula.getGenre());
+        row.put(GENERO, pelicula.getGenre_ids().toString());
         row.put(POSICION, pelicula.getPosicion());
         row.put(IMAGEN, pelicula.getPoster_path());
         row.put(ID,pelicula.getId());
@@ -91,7 +91,7 @@ public class PeliculasDAODB extends DataBaseHelper {
             int posicionPelicula = cursor.getInt(cursor.getColumnIndex(POSICION));
             String idPelicula = cursor.getString(cursor.getColumnIndex(ID));
 
-            Pelicula pelicula = new Pelicula(nombrePelicula,idPelicula,imagenPelicula,"1",descripcionPelicula,posicionPelicula,"1/1/2001");
+            Pelicula pelicula = new Pelicula(nombrePelicula,idPelicula,imagenPelicula,null,descripcionPelicula,posicionPelicula,"1/1/2001");
 
             //AGREGO UN POST A LA LISTA
             peliculasList.add(pelicula);
