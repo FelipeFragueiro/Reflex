@@ -24,6 +24,11 @@ public class AdaptadorDeActoresRecycler extends RecyclerView.Adapter {
     private List<Actores>listaDeActores;
     private Context unContext;
     private EscuchadorDeActores escuchadorDeActores;
+    private Actores actorADetallar;
+
+    public void setActorADetallar (Actores unActor){
+        actorADetallar = unActor;
+    }
 
     public void setListaDeActores(List<Actores> listaDeActores) {
         this.listaDeActores = listaDeActores;

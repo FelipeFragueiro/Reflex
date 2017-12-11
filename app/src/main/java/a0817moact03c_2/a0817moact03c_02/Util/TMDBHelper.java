@@ -71,9 +71,6 @@ public class TMDBHelper {
         return baseUrl + "/movie/" + movideID + "/videos?api_key=" + apiKey + "&language=" + language;
     }
 
-    public static String getMovieCredits(String movideID, String language) {
-        return baseUrl + "/movie/" + movideID + "/credits?api_key=" + apiKey + "&language=" + language;
-    }
 
     public static String getMoviesRecomended(String movideID, String language, Integer page) {
         return baseUrl + "/movie/" + movideID + "/recomendations?api_key=" + apiKey + "&language=" + language + "&page=" + page.toString();
@@ -171,6 +168,11 @@ public class TMDBHelper {
         return baseUrl + "/tv/airing_today?api_key=" + apiKey + "&language=" + language + "&page=" + page.toString();
 
     }
+
+    public static String getMovieCredits(String movideID, String language) {
+        return baseUrl + "/movie/" + movideID + "/credits?api_key=" + apiKey + "&language=" + language;
+    }
+    public static String getPersonDetails(String personID, String language){
+        return baseUrl +"/person/" + personID + "?api_key=" + apiKey + "&language=" + language;
+    }
 }
-
-

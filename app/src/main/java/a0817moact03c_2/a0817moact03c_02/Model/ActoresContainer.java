@@ -18,6 +18,10 @@ public class ActoresContainer {
         return actoresList;
     }
 
+    public Actores getActor(){
+        return actoresList.get(0);
+    }
+
     public void setActoresList(List<Actores> postList) {
         this.actoresList = postList;
     }

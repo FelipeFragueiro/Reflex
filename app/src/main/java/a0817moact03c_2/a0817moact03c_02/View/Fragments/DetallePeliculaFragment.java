@@ -10,10 +10,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.getbase.floatingactionbutton.FloatingActionButton;
@@ -24,6 +22,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
+import a0817moact03c_2.a0817moact03c_02.Controller.ActoresController;
 import a0817moact03c_2.a0817moact03c_02.Controller.PeliculasController;
 import a0817moact03c_2.a0817moact03c_02.Model.Actores;
 import a0817moact03c_2.a0817moact03c_02.Model.Pelicula;
@@ -31,7 +30,6 @@ import a0817moact03c_2.a0817moact03c_02.Model.PeliculaFavorita;
 import a0817moact03c_2.a0817moact03c_02.R;
 import a0817moact03c_2.a0817moact03c_02.Util.ResultListener;
 import a0817moact03c_2.a0817moact03c_02.View.Adapters.AdaptadorDeActoresRecycler;
-import a0817moact03c_2.a0817moact03c_02.View.Adapters.AdaptadorDePeliculaRecycler;
 import a0817moact03c_2.a0817moact03c_02.View.Adapters.AdapterPantallaPrincipalPeliculas;
 
 
@@ -50,10 +48,11 @@ public class DetallePeliculaFragment extends Fragment implements AdapterPantalla
 
     private List<Pelicula> listaDePeliculasSimilares;
     private List<Actores>listaDeActores;
+    private Actores actorADetallar;
     private AdapterPantallaPrincipalPeliculas adaptadorDePeliculaRecycler;
     private AdaptadorDeActoresRecycler adaptadorDeActoresRecycler;
-    private EscuchadorDePelicula escuchadorDePeliculasInterface;
-    private AdaptadorDeActoresRecycler.EscuchadorDeActores escuchadorDeActores;
+    private CallBackDetallePeliculaFragment callBackDetallePeliculasInterfaceFragment;
+
 
 
 
@@ -140,7 +139,8 @@ public class DetallePeliculaFragment extends Fragment implements AdapterPantalla
 
     public void onAttach(Context context) {
         super.onAttach(context);
-        escuchadorDePeliculasInterface = (DetallePeliculaFragment.EscuchadorDePelicula) context;
+        callBackDetallePeliculasInterfaceFragment = (CallBackDetallePeliculaFragment) context;
+
     }
 
 
@@ -163,10 +163,10 @@ public class DetallePeliculaFragment extends Fragment implements AdapterPantalla
 
 
 
-        TextView textViewNombrePelicula = (TextView) fragmentView.findViewById(R.id.textViewDelTituloDeLaPeliculaDetalle);
-        ImageView unImageViewPelicula = (ImageView) fragmentView.findViewById(R.id.imageViewDeLaPeliculaDetalle);
-        TextView unTextViewDelGenero = (TextView) fragmentView.findViewById(R.id.textViewDelGeneroDeLaPeliculaDetalle);
-        TextView unTextViewDeLaDescripcion = (TextView) fragmentView.findViewById(R.id.textViewDeLaDescripcionDeLaPeliculaDetalle);
+        TextView textViewNombrePelicula = (TextView) fragmentView.findViewById(R.id.textViewDelNombreDelActorDetalle);
+        ImageView unImageViewPelicula = (ImageView) fragmentView.findViewById(R.id.imageViewDelActorDetalle);
+        TextView unTextViewDelGenero = (TextView) fragmentView.findViewById(R.id.textViewDelPersonajeActorDetalle);
+        TextView unTextViewDeLaDescripcion = (TextView) fragmentView.findViewById(R.id.textViewDeLaBiografiaDelActorDetalle);
         textViewNombrePelicula.setText(unTitulo);
         Glide.with(getContext()).load(unaImagen).into(unImageViewPelicula);
         unTextViewDelGenero.setText(unGenero);
@@ -178,7 +178,7 @@ public class DetallePeliculaFragment extends Fragment implements AdapterPantalla
         RecyclerView recyclerViewDePeliculasSugeridas = (RecyclerView) fragmentView.findViewById(R.id.recyclerViewDePeliculasSugeridas);
         listaDePeliculasSimilares = new ArrayList<>();
         recyclerViewDePeliculasSugeridas.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-        adaptadorDePeliculaRecycler = new AdapterPantallaPrincipalPeliculas(listaDePeliculasSimilares, getContext(), (AdapterPantallaPrincipalPeliculas.EscuchadorDePelicula) this);
+        adaptadorDePeliculaRecycler = new AdapterPantallaPrincipalPeliculas(listaDePeliculasSimilares, getContext(), this);
         recyclerViewDePeliculasSugeridas.setAdapter(adaptadorDePeliculaRecycler);
 
         cargarPelisSimilares(unId);
@@ -187,8 +187,9 @@ public class DetallePeliculaFragment extends Fragment implements AdapterPantalla
         RecyclerView recyclerViewDeActores = (RecyclerView)fragmentView.findViewById(R.id.recyclerViewDelRepartoPelicula);
         listaDeActores = new ArrayList<>();
         recyclerViewDeActores.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-        adaptadorDeActoresRecycler = new AdaptadorDeActoresRecycler(listaDeActores,getContext(),escuchadorDeActores);
+        adaptadorDeActoresRecycler = new AdaptadorDeActoresRecycler(listaDeActores,getContext(),this);
         recyclerViewDeActores.setAdapter(adaptadorDeActoresRecycler);
+
         return fragmentView;
     }
 
@@ -228,16 +229,27 @@ public class DetallePeliculaFragment extends Fragment implements AdapterPantalla
 
     }
 
+    private Actores cargarDetalleActor(String unId){
+        ActoresController actoresController = new ActoresController();
 
+        ResultListener<Actores> escuchadorDeLaVista=new ResultListener<Actores>() {
+            @Override
+            public void finish(Actores resultado) {
+                actorADetallar = resultado;
+            }
+        };
 
+        actoresController.getActorDetail(escuchadorDeLaVista,getContext(),unId);
+        return actorADetallar;
+    }
 
     public void seleccionaronA(Pelicula unaPeli) {
-        escuchadorDePeliculasInterface.seleccionaronPelicula(unaPeli);
+        callBackDetallePeliculasInterfaceFragment.seleccionaronPelicula(unaPeli);
     }
 
     @Override
     public void seleccionaronA(Actores unActor) {
-
+        callBackDetallePeliculasInterfaceFragment.seleccionaronActor(unActor);
     }
 
     @Override
@@ -252,8 +264,13 @@ public class DetallePeliculaFragment extends Fragment implements AdapterPantalla
 
     }
 
-    public interface EscuchadorDePelicula {
+
+
+    public interface CallBackDetallePeliculaFragment {
         public void seleccionaronPelicula(Pelicula unaPelicula);
+        public void seleccionaronActor(Actores unActor);
     }
+
+
 
 }
