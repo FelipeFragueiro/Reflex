@@ -53,10 +53,10 @@ public class DetallePeliculaActivity extends AppCompatActivity implements Detall
     public void seleccionaronPelicula(Pelicula unaPelicula) {
         Intent unIntent = new Intent(DetallePeliculaActivity.this, DetallePeliculaActivity.class);
         Bundle unBundle = new Bundle();
-        unBundle.putString("nombre_pelicula", unaPelicula.getNombre());
-        unBundle.putString("Imagen_Pelicula", unaPelicula.getPoster_path());
-        unBundle.putString("Genero_Pelicula", unaPelicula.getGenre());
-        unBundle.putString("descripcion_pelicula", unaPelicula.getOverview());
+        unBundle.putString(DetallePeliculaFragment.NOMBRE_PELICULA, unaPelicula.getNombre());
+        unBundle.putString(DetallePeliculaFragment.IMAGEN_PELICULA, unaPelicula.getPoster_path());
+        unBundle.putString("genre_pelicula", unaPelicula.getGenre());
+        unBundle.putString(DetallePeliculaFragment.DESCRIPCION_PELICULA, unaPelicula.getOverview());
         unBundle.putInt("posicion_pelicula",unaPelicula.getPosicion());
         unBundle.putString("id_pelicula",unaPelicula.getId());
         unIntent.putExtras(unBundle);

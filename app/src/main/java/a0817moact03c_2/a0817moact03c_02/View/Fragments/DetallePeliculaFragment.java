@@ -36,6 +36,15 @@ import a0817moact03c_2.a0817moact03c_02.View.Adapters.AdapterPantallaPrincipalPe
  * A simple {@link Fragment} subclass.
  */
 public class DetallePeliculaFragment extends Fragment implements AdapterPantallaPrincipalPeliculas.EscuchadorDePelicula, AdaptadorDeActoresRecycler.EscuchadorDeActores, View.OnClickListener {
+
+    public static final java.lang.String NOMBRE_PELICULA = "nombre_pelicula";
+    public static final java.lang.String IMAGEN_PELICULA = "Imagen_Pelicula";
+    public static final java.lang.String DESCRIPCION_PELICULA = "overview_pelicula";
+    public static final java.lang.String ID_PELICULA = "id_pelicula" ;
+    public static final java.lang.String GENERO_PELICULA = "genre_pelicula" ;
+    public static final java.lang.String POSICION_PELICULA ="posicion_pelicula";
+    public static final java.lang.String FECHAS_ESTRENO_PELICULA = "release_date_pelicula";
+
     private List<Pelicula> listaDePeliculasSimilares;
     private List<Actores>listaDeActores;
     private AdapterPantallaPrincipalPeliculas adaptadorDePeliculaRecycler;
@@ -54,13 +63,23 @@ public class DetallePeliculaFragment extends Fragment implements AdapterPantalla
         DetallePeliculaFragment detallePeliculaFragment = new DetallePeliculaFragment();
         Bundle args = new Bundle();
 
-        args.putString("nombre_pelicula2",unaPelicula.getNombre());
+        /*args.putString("nombre_pelicula2",unaPelicula.getNombre());
         args.putInt("posicion_pelicula2",unaPelicula.getPosicion());
         args.putString("id_pelicula2",unaPelicula.getId());
         args.putString("genre_pelicula2",unaPelicula.getGenre());
         args.putString("overview_pelicula2",unaPelicula.getOverview());
         args.putString("poster_path_pelicula2",unaPelicula.getPoster_path());
-        args.putString("release_date_pelicula2",unaPelicula.getRelease_date());
+        args.putString("release_date_pelicula2",unaPelicula.getRelease_date());*/
+
+
+        args.putString(NOMBRE_PELICULA,unaPelicula.getNombre());
+        args.putInt(POSICION_PELICULA,unaPelicula.getPosicion());
+        args.putString(ID_PELICULA,unaPelicula.getId());
+        args.putString(GENERO_PELICULA,unaPelicula.getGenre());
+        args.putString(DESCRIPCION_PELICULA,unaPelicula.getOverview());
+        args.putString(IMAGEN_PELICULA,unaPelicula.getPoster_path());
+        args.putString(FECHAS_ESTRENO_PELICULA,unaPelicula.getRelease_date());
+
 
         detallePeliculaFragment.setArguments(args);
         return detallePeliculaFragment;
@@ -75,11 +94,11 @@ public class DetallePeliculaFragment extends Fragment implements AdapterPantalla
         // con el id/nombre de usuario
 
         Bundle aBundle = getArguments();
-        String unId = aBundle.getString("id_pelicula");
-        String unTitulo = aBundle.getString("nombre_pelicula");
-        final String unaImagen = aBundle.getString("poster_path_pelicula");
-        String unaDescripcion = aBundle.getString("overview_pelicula");
-        String unGenero = aBundle.getString("genre_pelicula");
+        String unId = aBundle.getString(ID_PELICULA);
+        String unTitulo = aBundle.getString(NOMBRE_PELICULA);
+        final String unaImagen = aBundle.getString(IMAGEN_PELICULA);
+        String unaDescripcion = aBundle.getString(DESCRIPCION_PELICULA);
+        String unGenero = aBundle.getString(GENERO_PELICULA);
 
         PeliculaFavorita peliculaFavorita = new PeliculaFavorita();
         peliculaFavorita.setId(unId);
@@ -110,22 +129,22 @@ public class DetallePeliculaFragment extends Fragment implements AdapterPantalla
 
         View fragmentView = inflater.inflate(R.layout.fragment_detalle_pelicula, container, false);
         Bundle aBundle = getArguments();
-        String unId = aBundle.getString("id_pelicula");
-        String unTitulo = aBundle.getString("nombre_pelicula");
-        final String unaImagen = aBundle.getString("poster_path_pelicula");
-        String unaDescripcion = aBundle.getString("overview_pelicula");
-        String unGenero = aBundle.getString("genre_pelicula");
+        String unId = aBundle.getString(ID_PELICULA);
+        String unTitulo = aBundle.getString(NOMBRE_PELICULA);
+        String unaImagen = aBundle.getString(IMAGEN_PELICULA);
+        String unaDescripcion = aBundle.getString(DESCRIPCION_PELICULA);
+        String unGenero = aBundle.getString(GENERO_PELICULA);
 
 
-        FloatingActionButton b = (FloatingActionButton) fragmentView.findViewById(R.id.fadFavoritos);
-        b.setOnClickListener(this);
+        FloatingActionButton botonFlotante = (FloatingActionButton) fragmentView.findViewById(R.id.fadFavoritos);
+        botonFlotante.setOnClickListener(this);
 
 
 
-        TextView textViewNombrePelicula = (TextView) fragmentView.findViewById(R.id.textViewDelTituloDeLaSerieDetalle);
-        ImageView unImageViewPelicula = (ImageView) fragmentView.findViewById(R.id.imageViewDeLaSerieDetalle);
-        TextView unTextViewDelGenero = (TextView) fragmentView.findViewById(R.id.textViewDelGeneroDeLaSerieDetalle);
-        TextView unTextViewDeLaDescripcion = (TextView) fragmentView.findViewById(R.id.textViewDeLaDescripcionDeLaSerieDetalle);
+        TextView textViewNombrePelicula = (TextView) fragmentView.findViewById(R.id.textViewDelTituloDeLaPeliculaDetalle);
+        ImageView unImageViewPelicula = (ImageView) fragmentView.findViewById(R.id.imageViewDeLaPeliculaDetalle);
+        TextView unTextViewDelGenero = (TextView) fragmentView.findViewById(R.id.textViewDelGeneroDeLaPeliculaDetalle);
+        TextView unTextViewDeLaDescripcion = (TextView) fragmentView.findViewById(R.id.textViewDeLaDescripcionDeLaPeliculaDetalle);
         textViewNombrePelicula.setText(unTitulo);
         Glide.with(getContext()).load(unaImagen).into(unImageViewPelicula);
         unTextViewDelGenero.setText(unGenero);

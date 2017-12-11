@@ -29,6 +29,7 @@ import a0817moact03c_2.a0817moact03c_02.Util.ResultListener;
 import a0817moact03c_2.a0817moact03c_02.View.Activities.DetallePeliculaActivity;
 import a0817moact03c_2.a0817moact03c_02.View.Activities.DetalleSeriesActivity;
 import a0817moact03c_2.a0817moact03c_02.View.Activities.FavoritosActivity;
+import a0817moact03c_2.a0817moact03c_02.View.Fragments.DetallePeliculaFragment;
 import a0817moact03c_2.a0817moact03c_02.View.Fragments.FragmentoGenerosPantallaPrincipal;
 import a0817moact03c_2.a0817moact03c_02.View.Fragments.PantallaPrincipalFragmentPeliculas;
 import a0817moact03c_2.a0817moact03c_02.View.Fragments.SeriesFragment;
@@ -228,13 +229,13 @@ public class MainActivity extends AppCompatActivity implements SeriesFragment.Es
     public void seleccionaronPelicula(Pelicula unaPelicula) {
         Intent unIntent = new Intent(this, DetallePeliculaActivity.class);
         Bundle unBundle =  new Bundle();
-        unBundle.putString("nombre_pelicula",unaPelicula.getNombre());
-        unBundle.putInt("posicion_pelicula",unaPelicula.getPosicion());
-        unBundle.putString("id_pelicula",unaPelicula.getId());
-        unBundle.putString("genre_pelicula",unaPelicula.getGenre());
-        unBundle.putString("overview_pelicula",unaPelicula.getOverview());
-        unBundle.putString("poster_path_pelicula",unaPelicula.getPoster_path());
-        unBundle.putString("release_date_pelicula",unaPelicula.getRelease_date());
+        unBundle.putString(DetallePeliculaFragment.NOMBRE_PELICULA,unaPelicula.getNombre());
+        unBundle.putInt(DetallePeliculaFragment.POSICION_PELICULA,unaPelicula.getPosicion());
+        unBundle.putString(DetallePeliculaFragment.ID_PELICULA,unaPelicula.getId());
+        unBundle.putString(DetallePeliculaFragment.GENERO_PELICULA,unaPelicula.getGenre());
+        unBundle.putString(DetallePeliculaFragment.DESCRIPCION_PELICULA,unaPelicula.getOverview());
+        unBundle.putString(DetallePeliculaFragment.IMAGEN_PELICULA,unaPelicula.getPoster_path());
+        unBundle.putString(DetallePeliculaFragment.FECHAS_ESTRENO_PELICULA,unaPelicula.getRelease_date());
         unIntent.putExtras(unBundle);
         startActivity(unIntent);
     }
