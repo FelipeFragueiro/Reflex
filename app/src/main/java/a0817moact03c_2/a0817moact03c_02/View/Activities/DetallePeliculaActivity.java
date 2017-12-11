@@ -9,12 +9,13 @@ import android.widget.Toast;
 
 import java.util.List;
 
+import a0817moact03c_2.a0817moact03c_02.Model.Actores;
 import a0817moact03c_2.a0817moact03c_02.Model.Pelicula;
 import a0817moact03c_2.a0817moact03c_02.R;
 import a0817moact03c_2.a0817moact03c_02.View.Adapters.AdaptadorDePeliculaRecycler;
 import a0817moact03c_2.a0817moact03c_02.View.Fragments.DetallePeliculaFragment;
 
-public class DetallePeliculaActivity extends AppCompatActivity implements DetallePeliculaFragment.EscuchadorDePelicula {
+public class DetallePeliculaActivity extends AppCompatActivity implements DetallePeliculaFragment.CallBackDetallePeliculaFragment {
     private List<Pelicula> listaDePeliculasSugeridas;
     private AdaptadorDePeliculaRecycler unAdaptadorDePeliculaRecycler;
 
@@ -61,6 +62,20 @@ public class DetallePeliculaActivity extends AppCompatActivity implements Detall
 
     }
 
+    @Override
+    public void seleccionaronActor(Actores unActor) {
+        Intent unIntent = new Intent(DetallePeliculaActivity.this, DetalleActoresActivity.class);
+        Bundle unBundle = new Bundle();
+        unBundle.putString("nombre_actor", unActor.getName());
+        unBundle.putString("also_known_as_actor",unActor.getAlso_known_as());
+        unBundle.putString("character_actor",unActor.getCharacter());
+        unBundle.putString("profile_path_actor",unActor.getProfile_path());
+        unBundle.putString("birthday_actor",unActor.getBirthday());
+        unBundle.putString("biografia_actor",unActor.getBiography());
+
+        unIntent.putExtras(unBundle);
+        startActivity(unIntent);
+    }
 
 
 }
