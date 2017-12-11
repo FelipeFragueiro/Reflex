@@ -5,6 +5,9 @@ package a0817moact03c_2.a0817moact03c_02.Model;
  */
 
 public class Pelicula {
+
+    //hacer pelicula serialiaada para el bundle
+
     private String title;
     private String id;
     private String poster_path;

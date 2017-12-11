@@ -17,6 +17,9 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.getbase.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -92,6 +95,12 @@ public class DetallePeliculaFragment extends Fragment implements AdapterPantalla
         //subir las cosas a baseDedatos de firebase
         //ir a la actividad de davoritos y bajar datos de firebase bajando las peliculas macheadas
         // con el id/nombre de usuario
+        FirebaseAuth mAuth;
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference databaseReference = database.getReference();
+        DatabaseReference pelifavorita = databaseReference.child("Favoritos");
+
 
         Bundle aBundle = getArguments();
         String unId = aBundle.getString(ID_PELICULA);
@@ -107,7 +116,20 @@ public class DetallePeliculaFragment extends Fragment implements AdapterPantalla
         peliculaFavorita.setPoster_path(unaImagen);
         peliculaFavorita.setOverview(unaDescripcion);
 
-        Toast.makeText(getContext(),peliculaFavorita.toString(),Toast.LENGTH_SHORT).show();
+        DatabaseReference newpelifavoritaref = pelifavorita.push();
+        peliculaFavorita.setUserID(mAuth.getCurrentUser().getUid());
+        newpelifavoritaref.setValue(peliculaFavorita);
+
+
+        /*UserPhoto anUserPhoto = new UserPhoto();
+        anUserPhoto.setId(mAuth.getCurrentUser().getUid());
+        anUserPhoto.setName(mAuth.getCurrentUser().getDisplayName());
+        anUserPhoto.setImage(unEditText.getText()+".jpg");
+        newFotoRef.setValue(anUserPhoto);*/
+
+
+
+       // Toast.makeText(getContext(),peliculaFavorita.toString(),Toast.LENGTH_SHORT).show();
 
 
 

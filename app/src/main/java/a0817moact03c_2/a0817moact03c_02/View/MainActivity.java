@@ -1,5 +1,8 @@
 package a0817moact03c_2.a0817moact03c_02.View;
 
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -14,9 +17,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.Layout;
+import android.util.Base64;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +37,7 @@ import a0817moact03c_2.a0817moact03c_02.View.Activities.DetallePeliculaActivity;
 import a0817moact03c_2.a0817moact03c_02.View.Activities.DetalleSeriesActivity;
 import a0817moact03c_2.a0817moact03c_02.View.Activities.FavoritosActivity;
 import a0817moact03c_2.a0817moact03c_02.View.Fragments.DetallePeliculaFragment;
+import a0817moact03c_2.a0817moact03c_02.View.Activities.LoginActivity;
 import a0817moact03c_2.a0817moact03c_02.View.Fragments.FragmentoGenerosPantallaPrincipal;
 import a0817moact03c_2.a0817moact03c_02.View.Fragments.PantallaPrincipalFragmentPeliculas;
 import a0817moact03c_2.a0817moact03c_02.View.Fragments.SeriesFragment;
@@ -54,13 +62,39 @@ public class MainActivity extends AppCompatActivity implements SeriesFragment.Es
             new SeriesFragment(),
     };
 
+
+    private void printHash(){
+        PackageInfo info;
+        try {
+
+            info = getPackageManager().getPackageInfo(
+                    getApplicationContext().getPackageName(), PackageManager.GET_SIGNATURES);
+
+            for (Signature signature : info.signatures) {
+                MessageDigest md;
+                md = MessageDigest.getInstance("SHA");
+                md.update(signature.toByteArray());
+                String something = new String(Base64.encode(md.digest(), 0));
+                Log.e("Hash key", something);
+                System.out.println("Hash key" + something);
+            }
+
+        } catch (PackageManager.NameNotFoundException e1) {
+            Log.e("name not found", e1.toString());
+        } catch (NoSuchAlgorithmException e) {
+            Log.e("no such an algorithm", e.toString());
+        } catch (Exception e) {
+            Log.e("exception", e.toString());
+        }
+
+    }
     private ViewPager unViewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        printHash();
 
         listaseriespopulares = new ArrayList<>();
         cargarSeriesPopulares();
@@ -169,6 +203,9 @@ public class MainActivity extends AppCompatActivity implements SeriesFragment.Es
 
 
 
+    }
+    public void login(View view){
+        startActivity(new Intent(this, LoginActivity.class));
     }
     private void cargadorDeFragments(Fragment unFragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();

@@ -6,10 +6,16 @@
     android:background="#212121"
     android:orientation="vertical"
     tools:context="a0817moact03c_2.a0817moact03c_02.View.Fragments.ListaGenerosDePeliculaFragment">
-
+    <Button
+        android:text="login"
+        style="@style/Widget.AppCompat.Button.Borderless.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="login"/>
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
 
 
         <RelativeLayout
