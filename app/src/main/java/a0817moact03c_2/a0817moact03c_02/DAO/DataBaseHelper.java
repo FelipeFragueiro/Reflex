@@ -27,6 +27,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 PeliculasDAODB.DESCRIPCION +" TEXT ,"+
                 PeliculasDAODB.GENERO +" TEXT ," +
                 PeliculasDAODB.IMAGEN +" INTEGER ," +
+                PeliculasDAODB.ID +" INTEGER ,"+
                 PeliculasDAODB.POSICION +" INTEGER )";
         sqLiteDatabase.execSQL(tablePersona);
 
