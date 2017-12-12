@@ -1,5 +1,7 @@
 package a0817moact03c_2.a0817moact03c_02.View;
 
+import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
@@ -13,6 +15,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -20,6 +23,10 @@ import android.util.Base64;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -122,15 +129,21 @@ public class MainActivity extends AppCompatActivity implements SeriesFragment.Es
 
             @Override
             public boolean onNavigationItemSelected(MenuItem item) {
+                FirebaseAuth mAuth = FirebaseAuth.getInstance();
+                FirebaseUser user = mAuth.getCurrentUser();
 
                 switch (item.getItemId()){
                     case R.id.Inicio :
                         Intent intent = getIntent();
                         finish();
-                        startActivity(intent);;
+                        startActivity(intent);
                         break;
                     case R.id.FavoritosItem :
-                        startActivity(new Intent(MainActivity.this, FavoritosActivity.class));
+                        if (user != null) {
+                            startActivity(new Intent(MainActivity.this, FavoritosActivity.class));
+                        }else {
+                            showDialog(MainActivity.this,"No estas registrado.", "tienes que iniciar secion para completar la siguiente accion.");
+                        }
                         break;
                     case R.id.Action :
                         cargadorDeFragments(new FragmentoGenerosPantallaPrincipal("28","Accion"));
@@ -209,6 +222,20 @@ public class MainActivity extends AppCompatActivity implements SeriesFragment.Es
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.replace(R.id.contenedorDeFragmentsDeGenerosPantallaPrincipal,unFragment);
         fragmentTransaction.commit();
+    }
+    public void showDialog(final Activity activity, String title, CharSequence message) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity,R.style.MyDialogTheme);
+
+        if (title != null) builder.setTitle(title);
+
+        builder.setMessage(message);
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                startActivity(new Intent(activity, LoginActivity.class));
+            }
+        });
+        builder.setNegativeButton("Cancel", null);
+        builder.show();
     }
 
     private void cargarSeriesPopulares() {

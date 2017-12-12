@@ -1,10 +1,15 @@
 package a0817moact03c_2.a0817moact03c_02.View.Fragments;
 
 
+import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,10 +17,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -30,6 +37,8 @@ import a0817moact03c_2.a0817moact03c_02.Model.PeliculaFavorita;
 import a0817moact03c_2.a0817moact03c_02.R;
 import a0817moact03c_2.a0817moact03c_02.Util.ResultListener;
 import a0817moact03c_2.a0817moact03c_02.Util.TMDBHelper;
+import a0817moact03c_2.a0817moact03c_02.View.Activities.DetallePeliculaActivity;
+import a0817moact03c_2.a0817moact03c_02.View.Activities.LoginActivity;
 import a0817moact03c_2.a0817moact03c_02.View.Adapters.AdaptadorDeActoresRecycler;
 import a0817moact03c_2.a0817moact03c_02.View.Adapters.AdapterPantallaPrincipalPeliculas;
 
@@ -97,30 +106,36 @@ public class DetallePeliculaFragment extends Fragment implements AdapterPantalla
         // con el id/nombre de usuario
         FirebaseAuth mAuth;
         mAuth = FirebaseAuth.getInstance();
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference databaseReference = database.getReference();
-        DatabaseReference pelifavorita = databaseReference.child("Favoritos").child(mAuth.getCurrentUser().getUid());
+        FirebaseUser user = mAuth.getCurrentUser();
+        if(user != null) {
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
+            DatabaseReference databaseReference = database.getReference();
+            DatabaseReference pelifavorita = databaseReference.child("Favoritos").child(mAuth.getCurrentUser().getUid());
 
 
-        Bundle aBundle = getArguments();
-        String unId = aBundle.getString(ID_PELICULA);
-        String unTitulo = aBundle.getString(NOMBRE_PELICULA);
-        final String unaImagen = aBundle.getString(IMAGEN_PELICULA);
-        String unaDescripcion = aBundle.getString(DESCRIPCION_PELICULA);
-        String unGenero = aBundle.getString(GENERO_PELICULA);
+            Bundle aBundle = getArguments();
+            String unId = aBundle.getString(ID_PELICULA);
+            String unTitulo = aBundle.getString(NOMBRE_PELICULA);
+            final String unaImagen = aBundle.getString(IMAGEN_PELICULA);
+            String unaDescripcion = aBundle.getString(DESCRIPCION_PELICULA);
+            String unGenero = aBundle.getString(GENERO_PELICULA);
 
-        PeliculaFavorita peliculaFavorita = new PeliculaFavorita();
-        peliculaFavorita.setId(unId);
-        peliculaFavorita.setGenre(unGenero);
-        peliculaFavorita.setTitle(unTitulo);
-        peliculaFavorita.setPoster_path(unaImagen);
-        peliculaFavorita.setOverview(unaDescripcion);
+            PeliculaFavorita peliculaFavorita = new PeliculaFavorita();
+            peliculaFavorita.setId(unId);
+            peliculaFavorita.setGenre(unGenero);
+            peliculaFavorita.setTitle(unTitulo);
+            peliculaFavorita.setPoster_path(unaImagen);
+            peliculaFavorita.setOverview(unaDescripcion);
 
-        DatabaseReference newpelifavoritaref = pelifavorita.push();
+            DatabaseReference newpelifavoritaref = pelifavorita.push();
 
-        peliculaFavorita.setUserID(mAuth.getCurrentUser().getUid());
-        peliculaFavorita.setKey(newpelifavoritaref.getKey());
-        newpelifavoritaref.setValue(peliculaFavorita);
+            peliculaFavorita.setUserID(mAuth.getCurrentUser().getUid());
+            peliculaFavorita.setKey(newpelifavoritaref.getKey());
+            newpelifavoritaref.setValue(peliculaFavorita);
+        }else {
+            showDialog(getActivity(),"No estas registrado.", "tienes que iniciar secion para completar la siguiente accion.");
+
+        }
 
 
         /*UserPhoto anUserPhoto = new UserPhoto();
@@ -137,6 +152,20 @@ public class DetallePeliculaFragment extends Fragment implements AdapterPantalla
 
 
 
+    }
+    public void showDialog(final Activity activity, String title, CharSequence message) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity,R.style.MyDialogTheme);
+
+        if (title != null) builder.setTitle(title);
+
+        builder.setMessage(message);
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                startActivity(new Intent(activity, LoginActivity.class));
+            }
+                });
+        builder.setNegativeButton("Cancel", null);
+        builder.show();
     }
 
 

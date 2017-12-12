@@ -5,8 +5,10 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -35,6 +37,9 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.activity_login);
+        ImageView imageView = (ImageView)findViewById(R.id.imageviewlogin);
+
+        Glide.with(getApplicationContext()).load("https://i.kinja-img.com/gawker-media/image/upload/t_original/ljtry40abluorsmb7hnh.gif").into(imageView);
 
 
         LoginButton loginButton = (LoginButton)findViewById(R.id.login_button);
