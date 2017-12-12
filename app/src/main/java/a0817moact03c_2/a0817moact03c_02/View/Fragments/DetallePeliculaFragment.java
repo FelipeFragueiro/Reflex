@@ -133,7 +133,7 @@ public class DetallePeliculaFragment extends Fragment implements AdapterPantalla
             peliculaFavorita.setKey(newpelifavoritaref.getKey());
             newpelifavoritaref.setValue(peliculaFavorita);
         }else {
-            showDialog(getActivity(),"No estas registrado.", "tienes que iniciar secion para completar la siguiente accion.");
+            showDialog(getActivity(),"No estas registrado.", "tienes que iniciar sesión para completar la siguiente accion.");
 
         }
 

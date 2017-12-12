@@ -25,6 +25,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -138,11 +139,26 @@ public class MainActivity extends AppCompatActivity implements SeriesFragment.Es
                         finish();
                         startActivity(intent);
                         break;
+                    case R.id.Login :
+                        startActivity(new Intent(MainActivity.this,LoginActivity.class));
+                        break;
+                    case R.id.Logout :
+                        if(user != null) {
+                            FirebaseAuth.getInstance().signOut();
+                            LoginManager.getInstance().logOut();
+                            Toast.makeText(getApplicationContext(),"Logout completado",Toast.LENGTH_SHORT).show();
+
+
+                        }else {
+                            Toast.makeText(getApplicationContext(),"No estas registrado",Toast.LENGTH_SHORT).show();
+                        }
+                        break;
+
                     case R.id.FavoritosItem :
                         if (user != null) {
                             startActivity(new Intent(MainActivity.this, FavoritosActivity.class));
                         }else {
-                            showDialog(MainActivity.this,"No estas registrado.", "tienes que iniciar secion para completar la siguiente accion.");
+                            showDialog(MainActivity.this,"No estas registrado.", "tienes que iniciar sesión para completar la siguiente accion.");
                         }
                         break;
                     case R.id.Action :
@@ -213,9 +229,7 @@ public class MainActivity extends AppCompatActivity implements SeriesFragment.Es
 
 
     }
-    public void login(View view){
-        startActivity(new Intent(this, LoginActivity.class));
-    }
+
     private void cargadorDeFragments(Fragment unFragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
