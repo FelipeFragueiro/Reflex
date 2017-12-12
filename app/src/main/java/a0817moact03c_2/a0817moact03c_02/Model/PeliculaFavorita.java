@@ -13,6 +13,15 @@ public class PeliculaFavorita {
     private String overview;
     private int posicion;
     private String release_date;
+    private String key;
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
 
     public String getTitle() {
         return title;

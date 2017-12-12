@@ -38,7 +38,7 @@
                 android:src="@android:drawable/ic_menu_share" />
 
             <com.getbase.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fadFavoritos"
+                android:id="@+id/fadSerieFavoritos"
                 android:layout_width="@dimen/fab_size_normal"
                 android:layout_height="56dp"
                 app:fab_colorNormal="#e53935"

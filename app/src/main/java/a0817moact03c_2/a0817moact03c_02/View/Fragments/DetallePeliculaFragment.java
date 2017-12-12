@@ -99,7 +99,7 @@ public class DetallePeliculaFragment extends Fragment implements AdapterPantalla
         mAuth = FirebaseAuth.getInstance();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = database.getReference();
-        DatabaseReference pelifavorita = databaseReference.child("Favoritos");
+        DatabaseReference pelifavorita = databaseReference.child("Favoritos").child(mAuth.getCurrentUser().getUid());
 
 
         Bundle aBundle = getArguments();
@@ -117,7 +117,9 @@ public class DetallePeliculaFragment extends Fragment implements AdapterPantalla
         peliculaFavorita.setOverview(unaDescripcion);
 
         DatabaseReference newpelifavoritaref = pelifavorita.push();
+
         peliculaFavorita.setUserID(mAuth.getCurrentUser().getUid());
+        peliculaFavorita.setKey(newpelifavoritaref.getKey());
         newpelifavoritaref.setValue(peliculaFavorita);
 
 
