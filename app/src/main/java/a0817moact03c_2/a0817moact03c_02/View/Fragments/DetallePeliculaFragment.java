@@ -126,6 +126,7 @@ public class DetallePeliculaFragment extends Fragment implements AdapterPantalla
             peliculaFavorita.setTitle(unTitulo);
             peliculaFavorita.setPoster_path(unaImagen);
             peliculaFavorita.setOverview(unaDescripcion);
+            peliculaFavorita.setSerieOpeli("pelicula");
 
             DatabaseReference newpelifavoritaref = pelifavorita.push();
 
@@ -147,12 +148,11 @@ public class DetallePeliculaFragment extends Fragment implements AdapterPantalla
 
 
        // Toast.makeText(getContext(),peliculaFavorita.toString(),Toast.LENGTH_SHORT).show();
-
-
-
-
+    }
+    public void share(){
 
     }
+
     public void showDialog(final Activity activity, String title, CharSequence message) {
         AlertDialog.Builder builder = new AlertDialog.Builder(activity,R.style.MyDialogTheme);
 

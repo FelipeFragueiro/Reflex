@@ -55,13 +55,14 @@ public class DetalleSerieFragment extends Fragment implements AdaptadorDeSeries.
         String descripcionSerie = aBundle.getString("descripcion_serie");
         final String imagenSerie = aBundle.getString("imagen_serie");
 
-      //  TextView textViewNombreSerie = (TextView) fragmentView.findViewById(R.id.textViewDelTituloDeLaSerieDetalle);
+        TextView textViewNombreSerie = (TextView) fragmentView.findViewById(R.id.textViewDelTituloDeLaSerieDetalle);
         ImageView unImageViewSerie = (ImageView) fragmentView.findViewById(R.id.imageViewDeLaSerieDetalle);
         TextView unTextViewDelGenero = (TextView) fragmentView.findViewById(R.id.textViewDelGeneroDeLaSerieDetalle);
         TextView unTextViewDeLaDescripcion = (TextView) fragmentView.findViewById(R.id.textViewDeLaDescripcionDeLaSerieDetalle);
 
      //   textViewNombreSerie.setText(nombreSerie);
         unTextViewDelGenero.setText(generoSerie);
+        textViewNombreSerie.setText(nombreSerie);
         unTextViewDeLaDescripcion.setText(descripcionSerie);
         Glide.with(getContext()).load(imagenSerie).into(unImageViewSerie);
 
@@ -103,17 +104,21 @@ public class DetalleSerieFragment extends Fragment implements AdaptadorDeSeries.
         String nombreSerie = aBundle.getString("nombre_serie");
         String generoSerie = aBundle.getString("genero_serie");
         String descripcionSerie = aBundle.getString("descripcion_serie");
+        String id = aBundle.getString("id");
         final String imagenSerie = aBundle.getString("imagen_serie");
 
         PeliculaFavorita peliculaFavorita = new PeliculaFavorita();
-        peliculaFavorita.setId(mAuth.getCurrentUser().getProviderId());
+        peliculaFavorita.setId(id);
         peliculaFavorita.setGenre(generoSerie);
         peliculaFavorita.setTitle(nombreSerie);
         peliculaFavorita.setPoster_path(imagenSerie);
         peliculaFavorita.setOverview(descripcionSerie);
+        peliculaFavorita.setSerieOpeli("serie");
+
 
         DatabaseReference newpelifavoritaref = pelifavorita.push();
         peliculaFavorita.setUserID(mAuth.getCurrentUser().getUid());
+        peliculaFavorita.setKey(newpelifavoritaref.getKey());
         newpelifavoritaref.setValue(peliculaFavorita);
 
 

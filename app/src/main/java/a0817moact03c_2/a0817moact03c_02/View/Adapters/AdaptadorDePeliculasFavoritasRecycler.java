@@ -1,4 +1,4 @@
-package a0817moact03c_2.a0817moact03c_02.Model;
+package a0817moact03c_2.a0817moact03c_02.View.Adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -20,6 +20,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
 
+import a0817moact03c_2.a0817moact03c_02.Model.PeliculaFavorita;
 import a0817moact03c_2.a0817moact03c_02.R;
 
 /**

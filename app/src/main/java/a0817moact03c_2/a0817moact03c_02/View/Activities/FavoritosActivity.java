@@ -1,6 +1,5 @@
 package a0817moact03c_2.a0817moact03c_02.View.Activities;
 
-import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,7 +18,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import a0817moact03c_2.a0817moact03c_02.Model.AdaptadorDePeliculasFavoritasRecycler;
+import a0817moact03c_2.a0817moact03c_02.View.Adapters.AdaptadorDePeliculasFavoritasRecycler;
 import a0817moact03c_2.a0817moact03c_02.Model.PeliculaFavorita;
 import a0817moact03c_2.a0817moact03c_02.R;
 import a0817moact03c_2.a0817moact03c_02.Util.Callback;
@@ -27,7 +26,6 @@ import a0817moact03c_2.a0817moact03c_02.View.Fragments.DetallePeliculaFragment;
 
 public class FavoritosActivity extends AppCompatActivity implements AdaptadorDePeliculasFavoritasRecycler.EscuchadorDeFavoritos{
     private RecyclerView recyclerViewCollage;
-    private Context context;
     private List<PeliculaFavorita> userPhotoList = new ArrayList<>();
     private AdaptadorDePeliculasFavoritasRecycler paintCollageAdapter;
 
@@ -40,11 +38,6 @@ public class FavoritosActivity extends AppCompatActivity implements AdaptadorDeP
 
         paintCollageAdapter =  new AdaptadorDePeliculasFavoritasRecycler(getApplicationContext(), userPhotoList,this);
         cargarFotos();
-
-
-
-
-
     }
     public void cargarFotos() {
         final FirebaseAuth mAuth;
@@ -97,21 +90,34 @@ public class FavoritosActivity extends AppCompatActivity implements AdaptadorDeP
         }
         return true;
     }
-
+private String pelicula = "pelicula";
     @Override
     public void seleccionaronA(PeliculaFavorita unaPelicula) {
-            Toast.makeText(getApplicationContext(),unaPelicula.getTitle().toString(),Toast.LENGTH_SHORT).show();
-        Intent unIntent = new Intent(this, DetallePeliculaActivity.class);
-        Bundle unBundle =  new Bundle();
-        unBundle.putString(DetallePeliculaFragment.NOMBRE_PELICULA,unaPelicula.getTitle());
-        unBundle.putInt(DetallePeliculaFragment.POSICION_PELICULA,unaPelicula.getPosicion());
-        unBundle.putString(DetallePeliculaFragment.ID_PELICULA,unaPelicula.getId());
-//        unBundle.putString(DetallePeliculaFragment.GENERO_PELICULA,unaPelicula.getGenre_ids());
-        unBundle.putString(DetallePeliculaFragment.DESCRIPCION_PELICULA,unaPelicula.getOverview());
-        unBundle.putString(DetallePeliculaFragment.IMAGEN_PELICULA,unaPelicula.getPoster_path());
-        unBundle.putString(DetallePeliculaFragment.FECHAS_ESTRENO_PELICULA,unaPelicula.getRelease_date());
-        unIntent.putExtras(unBundle);
-        startActivity(unIntent);
+        if(unaPelicula.getSerieOpeli().equals(pelicula)) {
+            Toast.makeText(getApplicationContext(), unaPelicula.getTitle(), Toast.LENGTH_SHORT).show();
+            Intent unIntent = new Intent(this, DetallePeliculaActivity.class);
+            Bundle unBundle = new Bundle();
+            unBundle.putString(DetallePeliculaFragment.NOMBRE_PELICULA, unaPelicula.getTitle());
+            unBundle.putInt(DetallePeliculaFragment.POSICION_PELICULA, unaPelicula.getPosicion());
+            unBundle.putString(DetallePeliculaFragment.ID_PELICULA, unaPelicula.getId());
+            //unBundle.putString(DetallePeliculaFragment.GENERO_PELICULA,unaPelicula.getGenre_ids());
+            unBundle.putString(DetallePeliculaFragment.DESCRIPCION_PELICULA, unaPelicula.getOverview());
+            unBundle.putString(DetallePeliculaFragment.IMAGEN_PELICULA, unaPelicula.getPoster_path());
+            unBundle.putString(DetallePeliculaFragment.FECHAS_ESTRENO_PELICULA, unaPelicula.getRelease_date());
+            unIntent.putExtras(unBundle);
+            startActivity(unIntent);
+        }else {
+            Intent unIntent = new Intent(this, DetalleSeriesActivity.class);
+            Bundle unBundle = new Bundle();
+            unBundle.putString("nombre_serie",unaPelicula.getTitle());
+            //unBundle.putString("genero_serie",unaSerie.getGenre_ids());
+            unBundle.putString("descripcion_serie",unaPelicula.getOverview());
+            unBundle.putString("imagen_serie",unaPelicula.getPoster_path());
+            unBundle.putInt("posicion_serie",unaPelicula.getPosicion());
+            unIntent.putExtras(unBundle);
+            startActivity(unIntent);
+
+        }
 
         //esto nos da alto errror lo que se me ocurrio fue si es una pelicula, ponerle como valor "serie" si es una serie y "pelicula" si es una pelicula
         //entonces hacemos un if en el escuchador y asi vemos que metodo usar con cada peli/serie

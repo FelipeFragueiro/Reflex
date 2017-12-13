@@ -14,6 +14,15 @@ public class PeliculaFavorita {
     private int posicion;
     private String release_date;
     private String key;
+    private String serieOpeli;
+
+    public String getSerieOpeli() {
+        return serieOpeli;
+    }
+
+    public void setSerieOpeli(String serieOpeli) {
+        this.serieOpeli = serieOpeli;
+    }
 
     public String getKey() {
         return key;

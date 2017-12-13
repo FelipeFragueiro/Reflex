@@ -9,6 +9,7 @@ import java.util.List;
 public class Serie {
     private String name;
     private String poster_path;
+    private String id;
  //   private String genre_ids;
     private String overview;
     private int posicion;
@@ -23,6 +24,14 @@ public class Serie {
         this.posicion = posicion;
         this.temporadas = temporadas;
         this.capitulo = capitulo;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public void setPosicion(int posicion) {
