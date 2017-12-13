@@ -71,6 +71,7 @@ public class FavoritosActivity extends AppCompatActivity implements AdaptadorDeP
 
                 ItemTouchHelper touchHelper = new ItemTouchHelper(simpleItemTouchCallback);
 
+
                 touchHelper.attachToRecyclerView(recyclerViewCollage);
             }
 
