@@ -1,6 +1,7 @@
 package a0817moact03c_2.a0817moact03c_02.View.Fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
@@ -10,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +20,7 @@ import a0817moact03c_2.a0817moact03c_02.Controller.PeliculasController;
 import a0817moact03c_2.a0817moact03c_02.Model.Pelicula;
 import a0817moact03c_2.a0817moact03c_02.R;
 import a0817moact03c_2.a0817moact03c_02.Util.ResultListener;
+import a0817moact03c_2.a0817moact03c_02.View.Activities.DetallePeliculaActivity;
 import a0817moact03c_2.a0817moact03c_02.View.Adapters.AdapterGenerosDelNavigationView;
 import a0817moact03c_2.a0817moact03c_02.View.Adapters.AdapterPantallaPrincipalPeliculas;
 
@@ -52,10 +55,11 @@ public class FragmentoGenerosPantallaPrincipal extends Fragment implements Adapt
 
         RecyclerView recyclerViewlistaDePeliculasDeXGenero = view.findViewById(R.id.RecyclerPeliculasDelGenero);
         peliculaList = new ArrayList<>();
-        recyclerViewlistaDePeliculasDeXGenero.setLayoutManager(new GridLayoutManager(getContext(),3));
-        adapterGenerosDelNavigationView = new AdapterGenerosDelNavigationView(peliculaList,getContext(),escuchadorDePeliculasDelGenero);
-        recyclerViewlistaDePeliculasDeXGenero.setAdapter(adapterGenerosDelNavigationView);
         cargarGenero();
+        recyclerViewlistaDePeliculasDeXGenero.setLayoutManager(new GridLayoutManager(getContext(),3));
+        adapterGenerosDelNavigationView = new AdapterGenerosDelNavigationView(peliculaList,getContext(),this);
+        recyclerViewlistaDePeliculasDeXGenero.setAdapter(adapterGenerosDelNavigationView);
+
 
         return view;
     }
@@ -76,6 +80,17 @@ public class FragmentoGenerosPantallaPrincipal extends Fragment implements Adapt
 
     @Override
     public void seleccionaronA(Pelicula unaPelicula) {
-
+        Toast.makeText(getContext(),unaPelicula.getNombre().toString(),Toast.LENGTH_SHORT).show();
+        Intent unIntent = new Intent(getActivity(), DetallePeliculaActivity.class);
+        Bundle unBundle =  new Bundle();
+        unBundle.putString(DetallePeliculaFragment.NOMBRE_PELICULA,unaPelicula.getNombre());
+        unBundle.putInt(DetallePeliculaFragment.POSICION_PELICULA,unaPelicula.getPosicion());
+        unBundle.putString(DetallePeliculaFragment.ID_PELICULA,unaPelicula.getId());
+//        unBundle.putString(DetallePeliculaFragment.GENERO_PELICULA,unaPelicula.getGenre_ids());
+        unBundle.putString(DetallePeliculaFragment.DESCRIPCION_PELICULA,unaPelicula.getOverview());
+        unBundle.putString(DetallePeliculaFragment.IMAGEN_PELICULA,unaPelicula.getPoster_path());
+        unBundle.putString(DetallePeliculaFragment.FECHAS_ESTRENO_PELICULA,unaPelicula.getRelease_date());
+        unIntent.putExtras(unBundle);
+        startActivity(unIntent);
     }
 }
