@@ -31,7 +31,7 @@ public class AdaptadorDePeliculasFavoritasRecycler extends RecyclerView.Adapter 
     private Context unContexto;
     private EscuchadorDeFavoritos escuchadorDeFavoritos;
 
-    public AdaptadorDePeliculasFavoritasRecycler(Context unContexto, List<PeliculaFavorita> lista) {
+    public AdaptadorDePeliculasFavoritasRecycler(Context unContexto, List<PeliculaFavorita> lista, EscuchadorDeFavoritos escuchadorDeFavoritos) {
         this.listaDePeliculasfavoritas = lista;
         this.unContexto = unContexto;
         this.escuchadorDeFavoritos = escuchadorDeFavoritos;
