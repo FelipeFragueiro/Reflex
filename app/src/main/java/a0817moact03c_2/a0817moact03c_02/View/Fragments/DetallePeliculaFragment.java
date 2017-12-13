@@ -127,9 +127,7 @@ public class DetallePeliculaFragment extends Fragment implements AdapterPantalla
             peliculaFavorita.setPoster_path(unaImagen);
             peliculaFavorita.setOverview(unaDescripcion);
             peliculaFavorita.setSerieOpeli("pelicula");
-
             DatabaseReference newpelifavoritaref = pelifavorita.push();
-
             peliculaFavorita.setUserID(mAuth.getCurrentUser().getUid());
             peliculaFavorita.setKey(newpelifavoritaref.getKey());
             newpelifavoritaref.setValue(peliculaFavorita);
@@ -192,6 +190,9 @@ public class DetallePeliculaFragment extends Fragment implements AdapterPantalla
 
         FloatingActionButton botonFlotante = (FloatingActionButton) fragmentView.findViewById(R.id.fadFavoritos);
         botonFlotante.setOnClickListener(this);
+
+        FloatingActionButton botonFlotanteShare = (FloatingActionButton) fragmentView.findViewById(R.id.fadCompartir);
+        botonFlotanteShare.setOnClickListener(this);
 
 
 
@@ -293,6 +294,18 @@ public class DetallePeliculaFragment extends Fragment implements AdapterPantalla
 
                 agregarAFavoritos(view);
 
+                break;
+            case R.id.fadCompartir:
+                //Creamos un share de tipo ACTION_SENT
+                Intent share = new Intent(android.content.Intent.ACTION_SEND);
+                //Indicamos que voy a compartir texto
+                share.setType("text/plain");
+                //Le agrego un título
+                share.putExtra(Intent.EXTRA_SUBJECT, "Compartir en Instagram");
+                //Le agrego el texto a compartir (Puede ser un link tambien)
+                share.putExtra(Intent.EXTRA_TEXT, "Hola como estan");
+                //Hacemos un start para que comparta el contenido.
+                startActivity(Intent.createChooser(share, "Share link!"));
                 break;
         }
 
