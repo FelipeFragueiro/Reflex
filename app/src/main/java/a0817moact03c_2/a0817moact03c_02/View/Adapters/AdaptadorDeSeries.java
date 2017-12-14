@@ -25,7 +25,7 @@ public class AdaptadorDeSeries extends RecyclerView.Adapter {
     private EscuchadorDeSerie escuchadorDeSeries;
 
 
-    public AdaptadorDeSeries(List<Serie> listaDeSeries, Context unContext, SeriesFragment escuchadorDeSeries) {
+    public AdaptadorDeSeries(List<Serie> listaDeSeries, Context unContext, EscuchadorDeSerie escuchadorDeSeries) {
         this.listaDeSeries = listaDeSeries;
         this.unContext = unContext;
         this.escuchadorDeSeries = escuchadorDeSeries;

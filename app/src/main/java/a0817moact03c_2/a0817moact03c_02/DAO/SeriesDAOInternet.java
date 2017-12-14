@@ -23,6 +23,12 @@ public class SeriesDAOInternet {
         RetrieveSeriesPopularesTask retrieveSeriesPopularesTask = new RetrieveSeriesPopularesTask(listResultListener,pagina);
         retrieveSeriesPopularesTask.execute();
     }
+    public void getAllSeriesSimilar(final ResultListener<List<Serie>> listenerFromController,String unId) {
+        Integer pagina = 1;
+        String id = unId;
+        RetrieveSerieSimilarTask retrieveMoviesSimilarTask = new RetrieveSerieSimilarTask(listenerFromController, pagina,id);
+        retrieveMoviesSimilarTask.execute();
+    }
 
     public void getAllTopSeries(final ResultListener<List<Serie>> listResultListener){
         Integer pagina = 1;
@@ -70,6 +76,40 @@ public class SeriesDAOInternet {
         protected void onPostExecute(List<Serie> serieList) {
 
             this.listener.finish(serieList);
+        }
+    }
+
+    class RetrieveSerieSimilarTask extends AsyncTask<String, Void, List<Serie>> {
+        private ResultListener<List<Serie>> listener;
+        private Integer pagina;
+        private String id;
+
+        public RetrieveSerieSimilarTask(ResultListener<List<Serie>> listener, Integer pagina,String id) {
+            this.listener = listener;
+            this.pagina = pagina;
+            this.id = id;
+        }
+
+        @Override
+        protected List<Serie> doInBackground(String... strings) {
+            HTTPConnectionManager connectionManager = new HTTPConnectionManager();
+            String input = null;
+
+            try {
+                input = connectionManager.getRequestString(TMDBHelper.getSimilarSeries(id,TMDBHelper.language_SPANISH, pagina));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            Gson gson = new Gson();
+            SeriesContainer peliculasContainer = gson.fromJson(input, SeriesContainer.class);
+
+            return peliculasContainer.getResults();
+        }
+
+        protected void onPostExecute(List<Serie> peliculaList) {
+
+            this.listener.finish(peliculaList);
         }
     }
 

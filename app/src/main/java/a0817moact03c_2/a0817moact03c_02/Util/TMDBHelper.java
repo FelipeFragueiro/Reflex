@@ -234,4 +234,8 @@ public class TMDBHelper {
     public static String getPersonDetails(String personID, String language){
         return baseUrl +"/person/" + personID + "?api_key=" + apiKey + "&language=" + language;
     }
+
+    public static String getSimilarSeries(String seriesId,String language, Integer page){
+        return baseUrl + "/tv/"+seriesId+"/similar?api_key="+apiKey+"&language="+language+"&page="+page.toString();
+    }
 }

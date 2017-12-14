@@ -64,6 +64,33 @@ public class SeriesController {
 
 
     }
+    public void getSerieSimilarList(final ResultListener<List<Serie>> listenerFromView, final Context context,String unId){
+
+        if(HTTPConnectionManager.isNetworkingOnline(context)){
+
+            SeriesDAOInternet seriesDAOInternet = new SeriesDAOInternet();
+
+            //SI ESTOY ONLINE PIDO AL DAO QUE ME TRAIGA LAS COSAS DESDE EL SERVICIO
+            seriesDAOInternet.getAllSeriesSimilar(new ResultListener<List<Serie>>() {
+                @Override
+                public void finish(List<Serie> resultado) {
+                    SeriesDAODB SERIEDAODB = new SeriesDAODB(context);
+                    SERIEDAODB.addPosts(resultado);
+
+                    listenerFromView.finish(resultado);
+                }
+            },unId);
+        }
+        else{
+            //CASO OFFLINE: Solicito al DAO la lista de POST que esta almacenada en la base de datos
+            SeriesDAODB serieDAODB = new SeriesDAODB(context);
+
+            List<Serie> postList = serieDAODB.getAllSeriesFromDatabase();
+
+            //Le aviso al listener de la vista que ya tengo la lista.
+            listenerFromView.finish(postList);
+        }
+    }
 
     public void getSeriesEnTvList(final ResultListener<List<Serie>> listenerFromView, final Context context) {
 

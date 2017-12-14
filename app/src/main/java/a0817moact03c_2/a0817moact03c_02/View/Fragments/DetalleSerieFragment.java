@@ -1,8 +1,10 @@
 package a0817moact03c_2.a0817moact03c_02.View.Fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,6 +35,7 @@ import a0817moact03c_2.a0817moact03c_02.View.Adapters.AdaptadorDeSeries;
  */
 public class DetalleSerieFragment extends Fragment implements AdaptadorDeSeries.EscuchadorDeSerie, View.OnClickListener {
     private List<Serie> listaDeSeries;
+    private List<Serie> listaDeSeriesSimilares;
     private AdaptadorDeSeries adaptadorDeSeries;
     //private EscuchadorDeSeriesInterface escuchadorDeSeriesInterface;
 
@@ -51,6 +54,7 @@ public class DetalleSerieFragment extends Fragment implements AdaptadorDeSeries.
         botonFlotante.setOnClickListener(this);
 
         String nombreSerie = aBundle.getString("nombre_serie");
+        String idDeSerie = aBundle.getString("idDeSerie");
         String generoSerie = aBundle.getString("genero_serie");
         String descripcionSerie = aBundle.getString("descripcion_serie");
         final String imagenSerie = aBundle.getString("imagen_serie");
@@ -69,6 +73,14 @@ public class DetalleSerieFragment extends Fragment implements AdaptadorDeSeries.
         listaDeSeries = new ArrayList<>();
         //RecyclerView recyclerViewSeries = (RecyclerView)fragmentView.findViewById(R.id.rec)
         SeriesController peliculasController = new SeriesController();
+
+
+        RecyclerView recyclerViewDeSimilares = (RecyclerView)fragmentView.findViewById(R.id.recyclerViewDeSeriesSugeridas);
+        listaDeSeriesSimilares = new ArrayList<>();
+        cargarSeriesSimilares(idDeSerie);
+        recyclerViewDeSimilares.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        adaptadorDeSeries = new AdaptadorDeSeries(listaDeSeriesSimilares,getContext(),this);
+        recyclerViewDeSimilares.setAdapter(adaptadorDeSeries);
 
         /*ResultListener<List<Serie>> escuchadorDeLaVista = new ResultListener<List<Serie>>() {
             @Override
@@ -132,7 +144,36 @@ public class DetalleSerieFragment extends Fragment implements AdaptadorDeSeries.
                 agregarAFavoritos(view);
 
                 break;
+            case R.id.fadSerieCompartir:
+                //Creamos un share de tipo ACTION_SENT
+                Intent share = new Intent(android.content.Intent.ACTION_SEND);
+                //Indicamos que voy a compartir texto
+                share.setType("text/plain");
+                //Le agrego un título
+                share.putExtra(Intent.EXTRA_SUBJECT, "Compartir en Instagram");
+                //Le agrego el texto a compartir (Puede ser un link tambien)
+                share.putExtra(Intent.EXTRA_TEXT, "Hola como estan");
+                //Hacemos un start para que comparta el contenido.
+                startActivity(Intent.createChooser(share, "Share link!"));
+                break;
         }
+
+    }
+    private void cargarSeriesSimilares(final String unId) {
+
+        SeriesController seriesController = new SeriesController();
+
+        ResultListener<List<Serie>> escuchadorDeLaVista = new ResultListener<List<Serie>>() {
+            @Override
+            public void finish(List<Serie> resultado) {
+                listaDeSeriesSimilares.clear();
+                listaDeSeriesSimilares.addAll(resultado);
+                adaptadorDeSeries.notifyDataSetChanged();
+                ///cargarActoresRelacionados(unId);
+            }
+        };
+
+        seriesController.getSerieSimilarList(escuchadorDeLaVista, getContext(),unId);
 
     }
 

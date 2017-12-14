@@ -140,6 +140,7 @@ public class SeriesFragment extends Fragment implements AdaptadorDeSeries.Escuch
     }
 
 
+
     @Override
     public void seleccionaronA(Serie unaSerie) {
         escuchadorDeSeries.seleccionaronSerie(unaSerie);

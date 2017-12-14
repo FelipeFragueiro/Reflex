@@ -279,6 +279,7 @@ public class MainActivity extends AppCompatActivity implements SeriesFragment.Es
         unBundle.putString("descripcion_serie",unaSerie.getOverview());
         unBundle.putString("imagen_serie",unaSerie.getPoster_path());
         unBundle.putInt("posicion_serie",unaSerie.getPosicion());
+        unBundle.putString("idDeSerie", unaSerie.getId());
         unIntent.putExtras(unBundle);
         startActivity(unIntent);
 
