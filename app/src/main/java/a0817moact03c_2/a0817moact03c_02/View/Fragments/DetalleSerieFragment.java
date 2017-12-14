@@ -22,24 +22,39 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
-import a0817moact03c_2.a0817moact03c_02.Controller.PeliculasController;
+import a0817moact03c_2.a0817moact03c_02.Controller.ActoresController;
 import a0817moact03c_2.a0817moact03c_02.Controller.SeriesController;
-import a0817moact03c_2.a0817moact03c_02.Model.Pelicula;
+import a0817moact03c_2.a0817moact03c_02.Model.Actores;
 import a0817moact03c_2.a0817moact03c_02.Model.PeliculaFavorita;
 import a0817moact03c_2.a0817moact03c_02.Model.Serie;
 import a0817moact03c_2.a0817moact03c_02.R;
 import a0817moact03c_2.a0817moact03c_02.Util.ResultListener;
+import a0817moact03c_2.a0817moact03c_02.View.Adapters.AdaptadorDeActoresRecycler;
 import a0817moact03c_2.a0817moact03c_02.View.Adapters.AdaptadorDeSeries;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class DetalleSerieFragment extends Fragment implements AdaptadorDeSeries.EscuchadorDeSerie, View.OnClickListener {
+public class DetalleSerieFragment extends Fragment implements AdaptadorDeSeries.EscuchadorDeSerie,AdaptadorDeActoresRecycler.EscuchadorDeActores, View.OnClickListener {
+    public static final java.lang.String NOMBRE_SERIE = "nombre_serie";
+    public static final java.lang.String IMAGEN_SERIE = "imagen_serie";
+    public static final java.lang.String DESCRIPCION_SERIE = "descripcion_serie";
+    public static final java.lang.String ID_SERIE = "idDeSerie" ;
+    public static final java.lang.String GENERO_SERIE = "genero_serie" ;
+
+
+
+
     private List<Serie> listaDeSeries;
     private List<Serie> listaDeSeriesSimilares;
     private AdaptadorDeSeries adaptadorDeSeries;
+
     //private EscuchadorDeSeriesInterface escuchadorDeSeriesInterface;
     private CallBackDetalleSerieFragment callBackDetalleSerieInterfaceFragment;
+
+    private List<Actores>listaDeActores;
+    private Actores actorADetallar;
+    private AdaptadorDeActoresRecycler adaptadorDeActoresRecycler;
 
     public DetalleSerieFragment() {
         // Required empty public constructor
@@ -63,11 +78,11 @@ public class DetalleSerieFragment extends Fragment implements AdaptadorDeSeries.
         FloatingActionButton botonFlotante = (FloatingActionButton) fragmentView.findViewById(R.id.fadSerieFavoritos);
         botonFlotante.setOnClickListener(this);
 
-        String nombreSerie = aBundle.getString("nombre_serie");
-        String idDeSerie = aBundle.getString("idDeSerie");
-        String generoSerie = aBundle.getString("genero_serie");
-        String descripcionSerie = aBundle.getString("descripcion_serie");
-        final String imagenSerie = aBundle.getString("imagen_serie");
+        String nombreSerie = aBundle.getString(NOMBRE_SERIE);
+        String idDeSerie = aBundle.getString(ID_SERIE);
+        String generoSerie = aBundle.getString(GENERO_SERIE);
+        String descripcionSerie = aBundle.getString(DESCRIPCION_SERIE);
+        final String imagenSerie = aBundle.getString(IMAGEN_SERIE);
 
         TextView textViewNombreSerie = (TextView) fragmentView.findViewById(R.id.textViewDelTituloDeLaSerieDetalle);
         ImageView unImageViewSerie = (ImageView) fragmentView.findViewById(R.id.imageViewDeLaSerieDetalle);
@@ -88,24 +103,19 @@ public class DetalleSerieFragment extends Fragment implements AdaptadorDeSeries.
 
         RecyclerView recyclerViewDeSimilares = (RecyclerView)fragmentView.findViewById(R.id.recyclerViewDeSeriesSugeridas);
         listaDeSeriesSimilares = new ArrayList<>();
-        cargarSeriesSimilares(idDeSerie);
         recyclerViewDeSimilares.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         adaptadorDeSeries = new AdaptadorDeSeries(listaDeSeriesSimilares,getContext(),this);
         recyclerViewDeSimilares.setAdapter(adaptadorDeSeries);
 
-        /*ResultListener<List<Serie>> escuchadorDeLaVista = new ResultListener<List<Serie>>() {
-            @Override
-            public void finish(List<Serie> resultado) {
-                listaDeSeries.clear();
-                listaDeSeries = resultado;
-                adaptadorDePeliculaRecycler.notifyDataSetChanged();
+        cargarSeriesSimilares(idDeSerie);
 
-                //escuchadorDePeliculasInterface.seleccionaronPelicula();
-            }
-        };
 
-        peliculasController.getMoviesList(escuchadorDeLaVista,getActivity());
-*/
+        RecyclerView recyclerViewDeActores = (RecyclerView)fragmentView.findViewById(R.id.recyclerViewDelRepartoSerie);
+        listaDeActores = new ArrayList<>();
+        recyclerViewDeActores.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        adaptadorDeActoresRecycler = new AdaptadorDeActoresRecycler(listaDeActores,getContext(),this);
+        recyclerViewDeActores.setAdapter(adaptadorDeActoresRecycler);
+
 
         return fragmentView;
     }
@@ -124,11 +134,11 @@ public class DetalleSerieFragment extends Fragment implements AdaptadorDeSeries.
 
 
         Bundle aBundle = getArguments();
-        String nombreSerie = aBundle.getString("nombre_serie");
-        String generoSerie = aBundle.getString("genero_serie");
-        String descripcionSerie = aBundle.getString("descripcion_serie");
-        String id = aBundle.getString("id");
-        final String imagenSerie = aBundle.getString("imagen_serie");
+        String nombreSerie = aBundle.getString(NOMBRE_SERIE);
+        String generoSerie = aBundle.getString(GENERO_SERIE);
+        String descripcionSerie = aBundle.getString(DESCRIPCION_SERIE);
+        String id = aBundle.getString(ID_SERIE);
+        final String imagenSerie = aBundle.getString(IMAGEN_SERIE);
 
         PeliculaFavorita peliculaFavorita = new PeliculaFavorita();
         peliculaFavorita.setId(id);
@@ -170,6 +180,28 @@ public class DetalleSerieFragment extends Fragment implements AdaptadorDeSeries.
         }
 
     }
+
+    private void cargarActoresRelacionados(String unId) {
+
+        SeriesController seriesController = new SeriesController();
+
+        ResultListener<List<Actores>> escuchadorDeLaVista = new ResultListener<List<Actores>>() {
+            @Override
+            public void finish(List<Actores> resultado) {
+                listaDeActores.clear();
+                listaDeActores.addAll(resultado);
+                adaptadorDeActoresRecycler.setListaDeActores(listaDeActores);
+                adaptadorDeActoresRecycler.notifyDataSetChanged();
+            }
+        };
+
+        seriesController.getTvCredits(escuchadorDeLaVista, getContext(),unId);
+
+    }
+
+
+
+
     private void cargarSeriesSimilares(final String unId) {
 
         SeriesController seriesController = new SeriesController();
@@ -180,7 +212,7 @@ public class DetalleSerieFragment extends Fragment implements AdaptadorDeSeries.
                 listaDeSeriesSimilares.clear();
                 listaDeSeriesSimilares.addAll(resultado);
                 adaptadorDeSeries.notifyDataSetChanged();
-                ///cargarActoresRelacionados(unId);
+                cargarActoresRelacionados(unId);
             }
         };
 
@@ -188,12 +220,34 @@ public class DetalleSerieFragment extends Fragment implements AdaptadorDeSeries.
 
     }
 
+
+    private Actores cargarDetalleActor(String unId){
+        ActoresController actoresController = new ActoresController();
+
+        ResultListener<Actores> escuchadorDeLaVista=new ResultListener<Actores>() {
+            @Override
+            public void finish(Actores resultado) {
+                actorADetallar = resultado;
+            }
+        };
+
+        actoresController.getActorDetail(escuchadorDeLaVista,getContext(),unId);
+        return actorADetallar;
+    }
+
+
     @Override
     public void seleccionaronA(Serie unaSerie) {
-            callBackDetalleSerieInterfaceFragment.seleccionaronPelicula(unaSerie);
+            callBackDetalleSerieInterfaceFragment.seleccionaronSerie(unaSerie);
+    }
+
+    @Override
+    public void seleccionaronA(Actores unActor) {
+        callBackDetalleSerieInterfaceFragment.seleccionaronActor(unActor);
     }
 
     public interface CallBackDetalleSerieFragment{
-        public void seleccionaronPelicula(Serie serie);
+        public void seleccionaronSerie(Serie serie);
+        public void seleccionaronActor(Actores unActor);
     }
 }
