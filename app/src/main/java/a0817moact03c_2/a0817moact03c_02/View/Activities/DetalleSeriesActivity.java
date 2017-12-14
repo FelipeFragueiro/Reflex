@@ -7,10 +7,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import a0817moact03c_2.a0817moact03c_02.Model.Serie;
 import a0817moact03c_2.a0817moact03c_02.R;
 import a0817moact03c_2.a0817moact03c_02.View.Fragments.DetalleSerieFragment;
 
-public class DetalleSeriesActivity extends AppCompatActivity {
+public class DetalleSeriesActivity extends AppCompatActivity implements DetalleSerieFragment.CallBackDetalleSerieFragment {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,5 +29,20 @@ public class DetalleSeriesActivity extends AppCompatActivity {
         detalleSerieFragment.setArguments(unBundle);
         fragmentTransaction.replace(R.id.contenedorFragmentDetalleSerie, detalleSerieFragment);
         fragmentTransaction.commit();
+    }
+
+    @Override
+    public void seleccionaronPelicula(Serie unaSerie) {
+        Intent unIntent = new Intent(this, DetalleSeriesActivity.class);
+        Bundle unBundle = new Bundle();
+        unBundle.putString("nombre_serie",unaSerie.getName());
+        //unBundle.putString("genero_serie",unaSerie.getGenre_ids());
+        unBundle.putString("id",unaSerie.getId());
+        unBundle.putString("descripcion_serie",unaSerie.getOverview());
+        unBundle.putString("imagen_serie",unaSerie.getPoster_path());
+        unBundle.putInt("posicion_serie",unaSerie.getPosicion());
+        unBundle.putString("idDeSerie", unaSerie.getId());
+        unIntent.putExtras(unBundle);
+        startActivity(unIntent);
     }
 }

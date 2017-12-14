@@ -1,6 +1,7 @@
 package a0817moact03c_2.a0817moact03c_02.View.Fragments;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -38,10 +39,19 @@ public class DetalleSerieFragment extends Fragment implements AdaptadorDeSeries.
     private List<Serie> listaDeSeriesSimilares;
     private AdaptadorDeSeries adaptadorDeSeries;
     //private EscuchadorDeSeriesInterface escuchadorDeSeriesInterface;
+    private CallBackDetalleSerieFragment callBackDetalleSerieInterfaceFragment;
 
     public DetalleSerieFragment() {
         // Required empty public constructor
     }
+
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        callBackDetalleSerieInterfaceFragment = (CallBackDetalleSerieFragment) context;
+
+    }
+
+
 
 
     @Override
@@ -63,6 +73,7 @@ public class DetalleSerieFragment extends Fragment implements AdaptadorDeSeries.
         ImageView unImageViewSerie = (ImageView) fragmentView.findViewById(R.id.imageViewDeLaSerieDetalle);
         TextView unTextViewDelGenero = (TextView) fragmentView.findViewById(R.id.textViewDelGeneroDeLaSerieDetalle);
         TextView unTextViewDeLaDescripcion = (TextView) fragmentView.findViewById(R.id.textViewDeLaDescripcionDeLaSerieDetalle);
+
 
      //   textViewNombreSerie.setText(nombreSerie);
         unTextViewDelGenero.setText(generoSerie);
@@ -179,6 +190,10 @@ public class DetalleSerieFragment extends Fragment implements AdaptadorDeSeries.
 
     @Override
     public void seleccionaronA(Serie unaSerie) {
+            callBackDetalleSerieInterfaceFragment.seleccionaronPelicula(unaSerie);
+    }
 
+    public interface CallBackDetalleSerieFragment{
+        public void seleccionaronPelicula(Serie serie);
     }
 }
