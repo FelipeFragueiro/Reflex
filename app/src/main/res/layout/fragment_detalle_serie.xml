@@ -55,7 +55,7 @@
             android:layout_below="@id/imageViewDeLaSerieDetalle"
             android:layout_marginTop="10dp"
             android:gravity="center"
-            android:text="Titulo de la pelicula"
+            android:text="Titulo de la serie"
             android:textColor="#ffffff"
             android:textSize="20dp"
             android:textStyle="bold" />
@@ -79,7 +79,7 @@
             android:layout_marginBottom="15dp"
             android:layout_marginTop="5dp"
             android:gravity="center"
-            android:text="Descripcion de la pelicula"
+            android:text="Descripcion de la serie"
             android:textColor="#ffffff"
             android:textSize="20dp" />
         <TextView
@@ -111,7 +111,7 @@
             android:layout_below="@+id/recyclerViewDeSeriesSugeridas"/>
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/recyclerViewDelRepartoPelicula"
+            android:id="@+id/recyclerViewDelRepartoSerie"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/textViewDelRepartoDeLaSerieDetalle">

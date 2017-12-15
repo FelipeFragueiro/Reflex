@@ -6,6 +6,8 @@ import com.google.gson.Gson;
 
 import java.util.List;
 
+import a0817moact03c_2.a0817moact03c_02.Model.Actores;
+import a0817moact03c_2.a0817moact03c_02.Model.ActoresContainer;
 import a0817moact03c_2.a0817moact03c_02.Model.Serie;
 import a0817moact03c_2.a0817moact03c_02.Model.SeriesContainer;
 import a0817moact03c_2.a0817moact03c_02.Util.HTTPConnectionManager;
@@ -46,6 +48,12 @@ public class SeriesDAOInternet {
         String serieId = unSerieId;
         RetrieveSeriesDetailTask retrieveSeriesDetailTask = new RetrieveSeriesDetailTask(serieId,listResultListener);
         retrieveSeriesDetailTask.execute();
+    }
+
+    public void getTvCredits(final ResultListener<List<Actores>> listenerFromController, String unId) {
+        String id = unId;
+        RetrieveTvCreditsTask retrieveTvCreditsTask = new RetrieveTvCreditsTask(listenerFromController,id);
+        retrieveTvCreditsTask.execute();
     }
 
 
@@ -202,4 +210,42 @@ public class SeriesDAOInternet {
             this.listener.finish(serieList);
         }
     }
+
+    class RetrieveTvCreditsTask extends AsyncTask<Object, Object, List<Actores>> {
+        private ResultListener<List<Actores>> listener;
+        private String id;
+
+        public RetrieveTvCreditsTask(ResultListener<List<Actores>> listener, String id) {
+            this.listener = listener;
+            this.id = id;
+        }
+
+        @Override
+        protected List<Actores> doInBackground(Object... strings) {
+            HTTPConnectionManager connectionManager = new HTTPConnectionManager();
+            String input = null;
+
+            try {
+                input = connectionManager.getRequestString(TMDBHelper.getTvCredits(id,TMDBHelper.language_SPANISH));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            Gson gson = new Gson();
+            ActoresContainer actoresContainer = gson.fromJson(input, ActoresContainer.class);
+
+            return actoresContainer.getResults();
+        }
+
+
+
+        @Override
+        protected void onPostExecute(List<Actores> actores) {
+            super.onPostExecute(actores);
+            listener.finish(actores);
+        }
+
+
+    }
+
 }

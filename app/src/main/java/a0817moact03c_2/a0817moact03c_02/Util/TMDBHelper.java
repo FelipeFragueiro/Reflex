@@ -231,6 +231,11 @@ public class TMDBHelper {
     public static String getMovieCredits(String movideID, String language) {
         return baseUrl + "/movie/" + movideID + "/credits?api_key=" + apiKey + "&language=" + language;
     }
+
+    public static String getTvCredits(String tvShowId, String language) {
+        return baseUrl + "/tv/" + tvShowId + "/credits?api_key=" + apiKey + "&language=" + language;
+    }
+
     public static String getPersonDetails(String personID, String language){
         return baseUrl +"/person/" + personID + "?api_key=" + apiKey + "&language=" + language;
     }

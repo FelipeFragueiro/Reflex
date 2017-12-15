@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import a0817moact03c_2.a0817moact03c_02.Model.Actores;
 import a0817moact03c_2.a0817moact03c_02.Model.Serie;
 import a0817moact03c_2.a0817moact03c_02.R;
 import a0817moact03c_2.a0817moact03c_02.View.Fragments.DetalleSerieFragment;
@@ -32,7 +33,7 @@ public class DetalleSeriesActivity extends AppCompatActivity implements DetalleS
     }
 
     @Override
-    public void seleccionaronPelicula(Serie unaSerie) {
+    public void seleccionaronSerie(Serie unaSerie) {
         Intent unIntent = new Intent(this, DetalleSeriesActivity.class);
         Bundle unBundle = new Bundle();
         unBundle.putString("nombre_serie",unaSerie.getName());
@@ -42,6 +43,21 @@ public class DetalleSeriesActivity extends AppCompatActivity implements DetalleS
         unBundle.putString("imagen_serie",unaSerie.getPoster_path());
         unBundle.putInt("posicion_serie",unaSerie.getPosicion());
         unBundle.putString("idDeSerie", unaSerie.getId());
+        unIntent.putExtras(unBundle);
+        startActivity(unIntent);
+    }
+
+    @Override
+    public void seleccionaronActor(Actores unActor) {
+        Intent unIntent = new Intent(DetalleSeriesActivity.this, DetalleActoresActivity.class);
+        Bundle unBundle = new Bundle();
+        unBundle.putString("nombre_actor", unActor.getName());
+        unBundle.putString("also_known_as_actor",unActor.getAlso_known_as());
+        unBundle.putString("character_actor",unActor.getCharacter());
+        unBundle.putString("profile_path_actor",unActor.getProfile_path());
+        unBundle.putString("birthday_actor",unActor.getBirthday());
+        unBundle.putString("biografia_actor",unActor.getBiography());
+
         unIntent.putExtras(unBundle);
         startActivity(unIntent);
     }
