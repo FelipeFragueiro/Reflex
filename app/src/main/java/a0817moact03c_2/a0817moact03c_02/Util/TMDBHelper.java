@@ -239,7 +239,7 @@ public class TMDBHelper {
         return baseUrl + "/tv/"+seriesId+"/similar?api_key="+apiKey+"&language="+language+"&page="+page.toString();
     }
     public static String getMovieTrailer(String id, String language){
-        return baseUrl + "/movie/"+id+"/?api_key="+apiKey+"&language"+language;
+        return baseUrl + "/movie/"+id+"/videos?api_key="+apiKey+"&language"+language;
                 //https://api.themoviedb.org/3/movie/{movie_id}?api_key=<<api_key>>&language=en-US
 
 

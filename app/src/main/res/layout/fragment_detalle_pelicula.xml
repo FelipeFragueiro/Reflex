@@ -17,40 +17,15 @@
         android:background="#212121">
 
 
-        <ImageButton
+        <FrameLayout
 
-            android:id="@+id/imageViewDelActorDetalle"
+            android:id="@+id/youtubeTrailerMovie"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:background="#212121"
-            android:scaleType="centerCrop"
-            android:layout_alignParentTop="true"/>
-
-        <com.getbase.floatingactionbutton.FloatingActionsMenu
-            android:id="@+id/fadMenu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignRight="@id/imageViewDelActorDetalle"
-            app:fab_addButtonColorNormal="#e53935"
-            android:layout_above="@+id/textViewDelPersonajeActorDetalle">
-
-            <com.getbase.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fadCompartir"
-                android:layout_width="@dimen/fab_size_normal"
-                android:layout_height="@dimen/fab_size_normal"
-                app:fab_colorNormal="#e53935"
-                android:src="@android:drawable/ic_menu_share" />
-
-            <com.getbase.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fadFavoritos"
-                android:layout_width="@dimen/fab_size_normal"
-                android:layout_height="56dp"
-                app:fab_colorNormal="#e53935"
-                android:onClick="agregarAFavoritos"
-                android:src="@drawable/ic_star_border_black_24dp" />
+            android:layout_height="200dp" />
 
 
-        </com.getbase.floatingactionbutton.FloatingActionsMenu>
+
+
 
 
 
@@ -65,7 +40,7 @@
             android:textStyle="bold"
             android:text="Titulo de la pelicula"
             android:textColor="#ffffff"
-            android:layout_below="@id/imageViewDelActorDetalle"/>
+            android:layout_below="@id/youtubeTrailerMovie"/>
 
         <TextView
             android:layout_marginTop="5dp"
@@ -79,13 +54,14 @@
             android:layout_below="@id/textViewDelNombreDelActorDetalle"/>
 
         <TextView
+
             android:id="@+id/textViewDeLaBiografiaDelActorDetalle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textSize="20dp"
             android:text="Descripcion de la pelicula"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="20dp"
             android:layout_marginBottom="15dp"
             android:textColor="#ffffff"
             android:layout_below="@id/textViewDelPersonajeActorDetalle"/>
@@ -124,6 +100,35 @@
             android:layout_below="@id/textViewDelRepartoDeLaPeliculaDetalle">
 
         </android.support.v7.widget.RecyclerView>
+
+        <com.getbase.floatingactionbutton.FloatingActionsMenu
+            android:id="@+id/fadMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textViewDelNombreDelActorDetalle"
+            android:layout_alignParentRight="true"
+            app:fab_expandDirection="down"
+            app:fab_addButtonColorNormal="@color/colorPrimary">
+
+            <com.getbase.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fadCompartir"
+                android:layout_width="@dimen/fab_size_normal"
+                android:layout_height="@dimen/fab_size_normal"
+                app:fab_colorNormal="@color/colorPrimary"
+                android:src="@android:drawable/ic_menu_share" />
+
+            <com.getbase.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fadFavoritos"
+                android:layout_width="@dimen/fab_size_normal"
+                android:layout_height="56dp"
+                app:fab_colorNormal="@color/colorPrimary"
+                android:onClick="agregarAFavoritos"
+                android:src="@drawable/ic_star_border_black_24dp" />
+
+
+        </com.getbase.floatingactionbutton.FloatingActionsMenu>
+
+
 
     </RelativeLayout>
 </ScrollView>

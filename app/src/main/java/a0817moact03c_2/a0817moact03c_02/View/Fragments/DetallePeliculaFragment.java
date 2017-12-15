@@ -2,13 +2,15 @@ package a0817moact03c_2.a0817moact03c_02.View.Fragments;
 
 
 import android.app.Activity;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -17,10 +19,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.getbase.floatingactionbutton.FloatingActionButton;
+import com.google.android.youtube.player.YouTubeInitializationResult;
+import com.google.android.youtube.player.YouTubePlayer;
+import com.google.android.youtube.player.YouTubePlayerFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -34,10 +38,10 @@ import a0817moact03c_2.a0817moact03c_02.Controller.PeliculasController;
 import a0817moact03c_2.a0817moact03c_02.Model.Actores;
 import a0817moact03c_2.a0817moact03c_02.Model.Pelicula;
 import a0817moact03c_2.a0817moact03c_02.Model.PeliculaFavorita;
+import a0817moact03c_2.a0817moact03c_02.Model.Trailer;
 import a0817moact03c_2.a0817moact03c_02.R;
 import a0817moact03c_2.a0817moact03c_02.Util.ResultListener;
-import a0817moact03c_2.a0817moact03c_02.Util.TMDBHelper;
-import a0817moact03c_2.a0817moact03c_02.View.Activities.DetallePeliculaActivity;
+import a0817moact03c_2.a0817moact03c_02.Util.YoutubeFragment;
 import a0817moact03c_2.a0817moact03c_02.View.Activities.LoginActivity;
 import a0817moact03c_2.a0817moact03c_02.View.Adapters.AdaptadorDeActoresRecycler;
 import a0817moact03c_2.a0817moact03c_02.View.Adapters.AdapterPantallaPrincipalPeliculas;
@@ -51,19 +55,21 @@ public class DetallePeliculaFragment extends Fragment implements AdapterPantalla
     public static final java.lang.String NOMBRE_PELICULA = "nombre_pelicula";
     public static final java.lang.String IMAGEN_PELICULA = "Imagen_Pelicula";
     public static final java.lang.String DESCRIPCION_PELICULA = "overview_pelicula";
-    public static final java.lang.String ID_PELICULA = "id_pelicula" ;
-    public static final java.lang.String GENERO_PELICULA = "genre_ids" ;
-    public static final java.lang.String POSICION_PELICULA ="posicion_pelicula";
+    public static final java.lang.String ID_PELICULA = "id_pelicula";
+    public static final java.lang.String GENERO_PELICULA = "genre_ids";
+    public static final java.lang.String POSICION_PELICULA = "posicion_pelicula";
     public static final java.lang.String FECHAS_ESTRENO_PELICULA = "release_date_pelicula";
+    public static final String API_KEY = "AIzaSyACk2EQxyUQ1zgu3sZhrsmipskzuSs7bzc";
+    private String VIDEO_ID = "J5cU6Y-oFU4";
+
 
     private List<Pelicula> listaDePeliculasSimilares;
-    private List<Actores>listaDeActores;
+    private List<Actores> listaDeActores;
+    private List<Trailer> listaDeTrailers;
     private Actores actorADetallar;
     private AdapterPantallaPrincipalPeliculas adaptadorDePeliculaRecycler;
     private AdaptadorDeActoresRecycler adaptadorDeActoresRecycler;
     private CallBackDetallePeliculaFragment callBackDetallePeliculasInterfaceFragment;
-
-
 
 
     public DetallePeliculaFragment() {
@@ -84,20 +90,20 @@ public class DetallePeliculaFragment extends Fragment implements AdapterPantalla
         args.putString("release_date_pelicula2",unaPelicula.getRelease_date());*/
 
 
-        args.putString(NOMBRE_PELICULA,unaPelicula.getNombre());
-        args.putInt(POSICION_PELICULA,unaPelicula.getPosicion());
-        args.putString(ID_PELICULA,unaPelicula.getId());
-        args.putString(GENERO_PELICULA,unaPelicula.getGenre_ids().toString());
-        args.putString(DESCRIPCION_PELICULA,unaPelicula.getOverview());
-        args.putString(IMAGEN_PELICULA,unaPelicula.getPoster_path());
-        args.putString(FECHAS_ESTRENO_PELICULA,unaPelicula.getRelease_date());
+        args.putString(NOMBRE_PELICULA, unaPelicula.getNombre());
+        args.putInt(POSICION_PELICULA, unaPelicula.getPosicion());
+        args.putString(ID_PELICULA, unaPelicula.getId());
+        args.putString(GENERO_PELICULA, unaPelicula.getGenre_ids().toString());
+        args.putString(DESCRIPCION_PELICULA, unaPelicula.getOverview());
+        args.putString(IMAGEN_PELICULA, unaPelicula.getPoster_path());
+        args.putString(FECHAS_ESTRENO_PELICULA, unaPelicula.getRelease_date());
 
 
         detallePeliculaFragment.setArguments(args);
         return detallePeliculaFragment;
     }
 
-    public void agregarAFavoritos(View view){
+    public void agregarAFavoritos(View view) {
         //Primero tendria que iniciar sesion con firebase o facebook y poner el nombre en favoritos para luego hacer un if
         //hacer un listener para saber cuando hacen click en la pelicula seleccionada
         //crear nueva clase favoritos donde se agregen los datos de la pelicula y el nombre del usuario/ID
@@ -107,7 +113,7 @@ public class DetallePeliculaFragment extends Fragment implements AdapterPantalla
         FirebaseAuth mAuth;
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
-        if(user != null) {
+        if (user != null) {
             FirebaseDatabase database = FirebaseDatabase.getInstance();
             DatabaseReference databaseReference = database.getReference();
             DatabaseReference pelifavorita = databaseReference.child("Favoritos").child(mAuth.getCurrentUser().getUid());
@@ -131,8 +137,8 @@ public class DetallePeliculaFragment extends Fragment implements AdapterPantalla
             peliculaFavorita.setUserID(mAuth.getCurrentUser().getUid());
             peliculaFavorita.setKey(newpelifavoritaref.getKey());
             newpelifavoritaref.setValue(peliculaFavorita);
-        }else {
-            showDialog(getActivity(),"No estas registrado.", "tienes que iniciar sesión para completar la siguiente accion.");
+        } else {
+            showDialog(getActivity(), "No estas registrado.", "tienes que iniciar sesión para completar la siguiente accion.");
 
         }
 
@@ -144,15 +150,12 @@ public class DetallePeliculaFragment extends Fragment implements AdapterPantalla
         newFotoRef.setValue(anUserPhoto);*/
 
 
-
-       // Toast.makeText(getContext(),peliculaFavorita.toString(),Toast.LENGTH_SHORT).show();
+        // Toast.makeText(getContext(),peliculaFavorita.toString(),Toast.LENGTH_SHORT).show();
     }
-    public void share(){
 
-    }
 
     public void showDialog(final Activity activity, String title, CharSequence message) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(activity,R.style.MyDialogTheme);
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity, R.style.MyDialogTheme);
 
         if (title != null) builder.setTitle(title);
 
@@ -161,7 +164,7 @@ public class DetallePeliculaFragment extends Fragment implements AdapterPantalla
             public void onClick(DialogInterface dialog, int which) {
                 startActivity(new Intent(activity, LoginActivity.class));
             }
-                });
+        });
         builder.setNegativeButton("Cancel", null);
         builder.show();
     }
@@ -187,6 +190,8 @@ public class DetallePeliculaFragment extends Fragment implements AdapterPantalla
         String unaDescripcion = aBundle.getString(DESCRIPCION_PELICULA);
         String unGenero = aBundle.getString(GENERO_PELICULA);
 
+        //YouTubePlayerFragment youTubePlayerView = fragmentView.findViewById(R.id.youtubetrailermovie);
+
 
         FloatingActionButton botonFlotante = (FloatingActionButton) fragmentView.findViewById(R.id.fadFavoritos);
         botonFlotante.setOnClickListener(this);
@@ -195,34 +200,34 @@ public class DetallePeliculaFragment extends Fragment implements AdapterPantalla
         botonFlotanteShare.setOnClickListener(this);
 
 
-
         TextView textViewNombrePelicula = (TextView) fragmentView.findViewById(R.id.textViewDelNombreDelActorDetalle);
-        ImageView unImageViewPelicula = (ImageView) fragmentView.findViewById(R.id.imageViewDelActorDetalle);
+        //ImageView unImageViewPelicula = (ImageView) fragmentView.findViewById(R.id.youtubeTrailerMovie);
         TextView unTextViewDelGenero = (TextView) fragmentView.findViewById(R.id.textViewDelPersonajeActorDetalle);
         TextView unTextViewDeLaDescripcion = (TextView) fragmentView.findViewById(R.id.textViewDeLaBiografiaDelActorDetalle);
         textViewNombrePelicula.setText(unTitulo);
-        Glide.with(getContext()).load(unaImagen).into(unImageViewPelicula);
+        //Glide.with(getContext()).load(unaImagen).into(unImageViewPelicula);
         unTextViewDelGenero.setText(unGenero);
         unTextViewDeLaDescripcion.setText(unaDescripcion);
 
 
-
-
-
-
         RecyclerView recyclerViewDePeliculasSugeridas = (RecyclerView) fragmentView.findViewById(R.id.recyclerViewDePeliculasSugeridas);
         listaDePeliculasSimilares = new ArrayList<>();
+        cargarPelisSimilares(unId);
         recyclerViewDePeliculasSugeridas.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         adaptadorDePeliculaRecycler = new AdapterPantallaPrincipalPeliculas(listaDePeliculasSimilares, getContext(), this);
         recyclerViewDePeliculasSugeridas.setAdapter(adaptadorDePeliculaRecycler);
 
-        cargarPelisSimilares(unId);
+        listaDeTrailers = new ArrayList<>();
+        cargarMovieTrailer(unId);
 
 
-        RecyclerView recyclerViewDeActores = (RecyclerView)fragmentView.findViewById(R.id.recyclerViewDelRepartoPelicula);
+
+
+
+        RecyclerView recyclerViewDeActores = (RecyclerView) fragmentView.findViewById(R.id.recyclerViewDelRepartoPelicula);
         listaDeActores = new ArrayList<>();
         recyclerViewDeActores.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-        adaptadorDeActoresRecycler = new AdaptadorDeActoresRecycler(listaDeActores,getContext(),this);
+        adaptadorDeActoresRecycler = new AdaptadorDeActoresRecycler(listaDeActores, getContext(), this);
         recyclerViewDeActores.setAdapter(adaptadorDeActoresRecycler);
 
         return fragmentView;
@@ -242,8 +247,30 @@ public class DetallePeliculaFragment extends Fragment implements AdapterPantalla
             }
         };
 
-        peliculasController.getMoviesSimilarList(escuchadorDeLaVista, getContext(),unId);
+        peliculasController.getMoviesSimilarList(escuchadorDeLaVista, getContext(), unId);
 
+    }
+
+    public void cargarMovieTrailer(final String id) {
+        PeliculasController peliculasController = new PeliculasController();
+
+        final ResultListener<List<Trailer>> listResultListener = new ResultListener<List<Trailer>>() {
+            @Override
+            public void finish(List<Trailer> resultado) {
+                listaDeTrailers.clear();
+                listaDeTrailers.addAll(resultado);
+                //adaptadorDePeliculaRecycler.notifyDataSetChanged();
+                Trailer trailer;
+                trailer = listaDeTrailers.get(0);
+
+                YoutubeFragment fragment = new YoutubeFragment();
+                fragment.setKeyto(trailer.getKey());
+                FragmentManager manager = getFragmentManager();
+                manager.beginTransaction().replace(R.id.youtubeTrailerMovie, fragment).addToBackStack(null).commit();
+
+            }
+        };
+        peliculasController.getMovieTrailer(listResultListener, getContext(), id);
     }
 
     private void cargarActoresRelacionados(String unId) {
@@ -260,21 +287,21 @@ public class DetallePeliculaFragment extends Fragment implements AdapterPantalla
             }
         };
 
-        peliculasController.getMovieCredits(escuchadorDeLaVista, getContext(),unId);
+        peliculasController.getMovieCredits(escuchadorDeLaVista, getContext(), unId);
 
     }
 
-    private Actores cargarDetalleActor(String unId){
+    private Actores cargarDetalleActor(String unId) {
         ActoresController actoresController = new ActoresController();
 
-        ResultListener<Actores> escuchadorDeLaVista=new ResultListener<Actores>() {
+        ResultListener<Actores> escuchadorDeLaVista = new ResultListener<Actores>() {
             @Override
             public void finish(Actores resultado) {
                 actorADetallar = resultado;
             }
         };
 
-        actoresController.getActorDetail(escuchadorDeLaVista,getContext(),unId);
+        actoresController.getActorDetail(escuchadorDeLaVista, getContext(), unId);
         return actorADetallar;
     }
 
@@ -286,6 +313,7 @@ public class DetallePeliculaFragment extends Fragment implements AdapterPantalla
     public void seleccionaronA(Actores unActor) {
         callBackDetallePeliculasInterfaceFragment.seleccionaronActor(unActor);
     }
+
 
     @Override
     public void onClick(View view) {
@@ -313,10 +341,15 @@ public class DetallePeliculaFragment extends Fragment implements AdapterPantalla
 
 
 
+
+
+
     public interface CallBackDetallePeliculaFragment {
         public void seleccionaronPelicula(Pelicula unaPelicula);
+
         public void seleccionaronActor(Actores unActor);
     }
+
 
 
 

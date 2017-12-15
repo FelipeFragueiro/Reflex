@@ -38,7 +38,7 @@ public class DetalleActorFragment extends Fragment {
         String birthday = aBundle.getString("birthday_actor");
         String biografia = aBundle.getString("biografia_actor");
 
-        ImageView imageViewActor = (ImageView)view.findViewById(R.id.imageViewDelActorDetalle);
+        ImageView imageViewActor = (ImageView)view.findViewById(R.id.youtubeTrailerMovie);
         TextView textViewNombreActor = (TextView)view.findViewById(R.id.textViewDelNombreDelActorDetalle);
         TextView textViewAlsoKnownAs = (TextView)view.findViewById(R.id.textViewTambienConocidoPorActorDetalle);
         TextView textViewCharacter = (TextView)view.findViewById(R.id.textViewDelPersonajeActorDetalle);

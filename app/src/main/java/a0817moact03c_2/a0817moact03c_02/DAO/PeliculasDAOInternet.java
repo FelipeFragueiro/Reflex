@@ -11,6 +11,8 @@ import a0817moact03c_2.a0817moact03c_02.Model.Actores;
 import a0817moact03c_2.a0817moact03c_02.Model.ActoresContainer;
 import a0817moact03c_2.a0817moact03c_02.Model.Pelicula;
 import a0817moact03c_2.a0817moact03c_02.Model.PeliculasContainer;
+import a0817moact03c_2.a0817moact03c_02.Model.Trailer;
+import a0817moact03c_2.a0817moact03c_02.Model.TrailerContainer;
 import a0817moact03c_2.a0817moact03c_02.Util.HTTPConnectionManager;
 import a0817moact03c_2.a0817moact03c_02.Util.ResultListener;
 import a0817moact03c_2.a0817moact03c_02.Util.TMDBHelper;
@@ -33,6 +35,14 @@ public class PeliculasDAOInternet {
         RetrieveMoviesSimilarTask retrieveMoviesSimilarTask = new RetrieveMoviesSimilarTask(listenerFromController, pagina,id);
         retrieveMoviesSimilarTask.execute();
     }
+
+    public void getMovieTrailer(final ResultListener<List<Trailer>> listenerFromController,String unId) {
+        String id = unId;
+        RetrieveMovieTrailer retrieveMoviesSimilarTask = new RetrieveMovieTrailer(listenerFromController,id);
+        retrieveMoviesSimilarTask.execute();
+    }
+
+
 
     public void getMovieCredits(final ResultListener<List<Actores>> listenerFromController, String unId) {
         String id = unId;
@@ -132,6 +142,39 @@ public class PeliculasDAOInternet {
         protected void onPostExecute(List<Pelicula> peliculaList) {
 
             this.listener.finish(peliculaList);
+        }
+    }
+
+
+    class RetrieveMovieTrailer extends AsyncTask<String, Void, List<Trailer>> {
+        private ResultListener<List<Trailer>> listener;
+        private String id;
+
+        public RetrieveMovieTrailer(ResultListener<List<Trailer>> listener,String id) {
+            this.listener = listener;
+            this.id = id;
+        }
+
+        @Override
+        protected List<Trailer> doInBackground(String... strings) {
+            HTTPConnectionManager connectionManager = new HTTPConnectionManager();
+            String input = null;
+
+            try {
+                input = connectionManager.getRequestString(TMDBHelper.getMovieTrailer(id,TMDBHelper.language_SPANISH));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            Gson gson = new Gson();
+            TrailerContainer trailerContainer = gson.fromJson(input, TrailerContainer.class);
+
+            return trailerContainer.getResults();
+        }
+
+        protected void onPostExecute(List<Trailer> trailerList) {
+
+            this.listener.finish(trailerList);
         }
     }
 

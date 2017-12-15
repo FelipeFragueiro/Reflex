@@ -12,7 +12,7 @@
         android:layout_height="match_parent">
 
         <ImageButton
-            android:id="@+id/imageViewDelActorDetalle"
+            android:id="@+id/youtubeTrailerMovie"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:background="#212121"
@@ -31,7 +31,7 @@
             android:textStyle="bold"
             android:text="Nombre del personaje"
             android:textColor="#ffffff"
-            android:layout_below="@id/imageViewDelActorDetalle"/>
+            android:layout_below="@id/youtubeTrailerMovie"/>
 
         <TextView
             android:layout_marginTop="5dp"
