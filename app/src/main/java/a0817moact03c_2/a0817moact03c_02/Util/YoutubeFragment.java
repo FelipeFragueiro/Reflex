@@ -26,7 +26,7 @@ public class YoutubeFragment extends Fragment {
     private static final String API_KEY = "AIzaSyACk2EQxyUQ1zgu3sZhrsmipskzuSs7bzc";
 
     // YouTubeのビデオID
-    private String VIDEO_ID = "EGy39OMyHzw";
+    private String VIDEO_ID = "GquEnoqZAK0";
 
     public void setKeyto(String key){
         this.VIDEO_ID = key;

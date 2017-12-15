@@ -13,16 +13,22 @@
 
 
 
-        <ImageButton
+        <!--<ImageButton
 
             android:id="@+id/imageViewDeLaSerieDetalle"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:layout_alignParentTop="true"
             android:background="#212121"
-            android:scaleType="centerCrop" />
+            android:scaleType="centerCrop" />-->
+        <FrameLayout
 
-        <com.getbase.floatingactionbutton.FloatingActionsMenu
+            android:id="@+id/youtubeTrailerSerieMovie"
+            android:layout_width="match_parent"
+            android:layout_height="200dp" />
+
+
+        <!--<com.getbase.floatingactionbutton.FloatingActionsMenu
             android:id="@+id/fadMenu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -45,14 +51,14 @@
                 android:src="@drawable/ic_star_border_black_24dp" />
 
 
-        </com.getbase.floatingactionbutton.FloatingActionsMenu>
+        </com.getbase.floatingactionbutton.FloatingActionsMenu>-->
 
 
         <TextView
             android:id="@+id/textViewDelTituloDeLaSerieDetalle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/imageViewDeLaSerieDetalle"
+            android:layout_below="@id/youtubeTrailerSerieMovie"
             android:layout_marginTop="10dp"
             android:gravity="center"
             android:text="Titulo de la serie"
@@ -77,7 +83,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/textViewDelGeneroDeLaSerieDetalle"
             android:layout_marginBottom="15dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="30dp"
             android:gravity="center"
             android:text="Descripcion de la serie"
             android:textColor="#ffffff"
@@ -117,6 +123,33 @@
             android:layout_below="@id/textViewDelRepartoDeLaSerieDetalle">
 
         </android.support.v7.widget.RecyclerView>
+
+        <com.getbase.floatingactionbutton.FloatingActionsMenu
+            android:id="@+id/fadMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textViewDelTituloDeLaSerieDetalle"
+            android:layout_alignParentRight="true"
+            app:fab_expandDirection="down"
+            app:fab_addButtonColorNormal="@color/colorPrimary">
+
+            <com.getbase.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fadSerieCompartir"
+                android:layout_width="@dimen/fab_size_normal"
+                android:layout_height="@dimen/fab_size_normal"
+                app:fab_colorNormal="@color/colorPrimary"
+                android:src="@android:drawable/ic_menu_share" />
+
+            <com.getbase.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fadSerieFavoritos"
+                android:layout_width="@dimen/fab_size_normal"
+                android:layout_height="56dp"
+                app:fab_colorNormal="@color/colorPrimary"
+                android:onClick="agregarAFavoritos"
+                android:src="@drawable/ic_star_border_black_24dp" />
+
+
+        </com.getbase.floatingactionbutton.FloatingActionsMenu>
 
     </RelativeLayout>
 

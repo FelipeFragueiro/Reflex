@@ -246,7 +246,9 @@ public class TMDBHelper {
     public static String getMovieTrailer(String id, String language){
         return baseUrl + "/movie/"+id+"/videos?api_key="+apiKey+"&language"+language;
                 //https://api.themoviedb.org/3/movie/{movie_id}?api_key=<<api_key>>&language=en-US
-
-
+    }
+    public static String getSerieTrailer(String id, String language){
+        return baseUrl + "/tv/"+id+"/videos?api_key="+apiKey+"&language"+language;
+        //https://api.themoviedb.org/3/movie/{movie_id}?api_key=<<api_key>>&language=en-US
     }
 }

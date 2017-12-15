@@ -10,6 +10,8 @@ import a0817moact03c_2.a0817moact03c_02.Model.Actores;
 import a0817moact03c_2.a0817moact03c_02.Model.ActoresContainer;
 import a0817moact03c_2.a0817moact03c_02.Model.Serie;
 import a0817moact03c_2.a0817moact03c_02.Model.SeriesContainer;
+import a0817moact03c_2.a0817moact03c_02.Model.Trailer;
+import a0817moact03c_2.a0817moact03c_02.Model.TrailerContainer;
 import a0817moact03c_2.a0817moact03c_02.Util.HTTPConnectionManager;
 import a0817moact03c_2.a0817moact03c_02.Util.ResultListener;
 import a0817moact03c_2.a0817moact03c_02.Util.TMDBHelper;
@@ -31,7 +33,11 @@ public class SeriesDAOInternet {
         RetrieveSerieSimilarTask retrieveMoviesSimilarTask = new RetrieveSerieSimilarTask(listenerFromController, pagina,id);
         retrieveMoviesSimilarTask.execute();
     }
-
+    public void getSerieTrailer(final ResultListener<List<Trailer>> listenerFromController,String unId) {
+        String id = unId;
+        SeriesDAOInternet.RetrieveMovieTrailer retrieveMoviesSimilarTask = new SeriesDAOInternet.RetrieveMovieTrailer(listenerFromController,id);
+        retrieveMoviesSimilarTask.execute();
+    }
     public void getAllTopSeries(final ResultListener<List<Serie>> listResultListener){
         Integer pagina = 1;
         RetrieveSeriesTopTask retrieveSeriesTopTask = new RetrieveSeriesTopTask(listResultListener,pagina);
@@ -84,6 +90,37 @@ public class SeriesDAOInternet {
         protected void onPostExecute(List<Serie> serieList) {
 
             this.listener.finish(serieList);
+        }
+    }
+    class RetrieveMovieTrailer extends AsyncTask<String, Void, List<Trailer>> {
+        private ResultListener<List<Trailer>> listener;
+        private String id;
+
+        public RetrieveMovieTrailer(ResultListener<List<Trailer>> listener,String id) {
+            this.listener = listener;
+            this.id = id;
+        }
+
+        @Override
+        protected List<Trailer> doInBackground(String... strings) {
+            HTTPConnectionManager connectionManager = new HTTPConnectionManager();
+            String input = null;
+
+            try {
+                input = connectionManager.getRequestString(TMDBHelper.getSerieTrailer(id,TMDBHelper.language_SPANISH));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            Gson gson = new Gson();
+            TrailerContainer trailerContainer = gson.fromJson(input, TrailerContainer.class);
+
+            return trailerContainer.getResults();
+        }
+
+        protected void onPostExecute(List<Trailer> trailerList) {
+
+            this.listener.finish(trailerList);
         }
     }
 
