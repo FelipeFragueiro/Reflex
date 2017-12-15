@@ -35,7 +35,7 @@ public class SeriesDAOInternet {
     }
     public void getSerieTrailer(final ResultListener<List<Trailer>> listenerFromController,String unId) {
         String id = unId;
-        SeriesDAOInternet.RetrieveMovieTrailer retrieveMoviesSimilarTask = new SeriesDAOInternet.RetrieveMovieTrailer(listenerFromController,id);
+        RetrieveMovieTrailer retrieveMoviesSimilarTask = new RetrieveMovieTrailer(listenerFromController,id);
         retrieveMoviesSimilarTask.execute();
     }
     public void getAllTopSeries(final ResultListener<List<Serie>> listResultListener){

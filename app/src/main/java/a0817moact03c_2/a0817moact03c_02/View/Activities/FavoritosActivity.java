@@ -115,6 +115,7 @@ private String pelicula = "pelicula";
             unBundle.putString("descripcion_serie",unaPelicula.getOverview());
             unBundle.putString("imagen_serie",unaPelicula.getPoster_path());
             unBundle.putInt("posicion_serie",unaPelicula.getPosicion());
+            unBundle.putString("idDeSerie",unaPelicula.getId());
             unIntent.putExtras(unBundle);
             startActivity(unIntent);
 
