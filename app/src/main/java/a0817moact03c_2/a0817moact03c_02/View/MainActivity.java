@@ -168,7 +168,10 @@ public class MainActivity extends AppCompatActivity implements SeriesFragment.Es
                         cargadorDeFragments(new FragmentoGenerosPantallaPrincipal("12","Aventura"));
                         break;
                     case R.id.Animation :
-                        cargadorDeFragments(new FragmentoGenerosPantallaPrincipal("16","Animacion"));
+                        cargadorDeFragments(new FragmentoGenerosPantallaPrincipal("16","Animadas"));
+                        break;
+                    case R.id.ScienceFiction :
+                        cargadorDeFragments(new FragmentoGenerosPantallaPrincipal("878","Ciencia Ficción"));
                         break;
                     case R.id.Comedy :
                         cargadorDeFragments(new FragmentoGenerosPantallaPrincipal("35","Comedia"));
@@ -182,39 +185,36 @@ public class MainActivity extends AppCompatActivity implements SeriesFragment.Es
                     case R.id.Drama :
                         cargadorDeFragments(new FragmentoGenerosPantallaPrincipal("18","Drama"));
                         break;
-                    case R.id.Family :
+                    /*case R.id.Family :
                         cargadorDeFragments(new FragmentoGenerosPantallaPrincipal("10751","Familiar"));
                         break;
                     case R.id.Fantasy :
                         cargadorDeFragments(new FragmentoGenerosPantallaPrincipal("14","Fantasia"));
-                        break;
+                        break;*/
                     case R.id.History :
                         cargadorDeFragments(new FragmentoGenerosPantallaPrincipal("36","Historia"));
                         break;
                     case R.id.Horror :
-                        cargadorDeFragments(new FragmentoGenerosPantallaPrincipal("27","Horror"));
+                        cargadorDeFragments(new FragmentoGenerosPantallaPrincipal("27","Terror/Suspenso"));
                         break;
                     case R.id.Music :
-                        cargadorDeFragments(new FragmentoGenerosPantallaPrincipal("10402","Musica"));
+                        cargadorDeFragments(new FragmentoGenerosPantallaPrincipal("10402","Comedia musical"));
                         break;
-                    case R.id.Mystery :
+                   /* case R.id.Mystery :
                         cargadorDeFragments(new FragmentoGenerosPantallaPrincipal("9648","Misterio"));
-                        break;
+                        break;*/
                     case R.id.Romance :
-                        cargadorDeFragments(new FragmentoGenerosPantallaPrincipal("10749","Romance"));
+                        cargadorDeFragments(new FragmentoGenerosPantallaPrincipal("10749","Romanticas"));
                         break;
-                    case R.id.ScienceFiction :
-                        cargadorDeFragments(new FragmentoGenerosPantallaPrincipal("878","Ciencia Ficcion"));
-                        break;
-                    case R.id.Thriller :
+                   /* case R.id.Thriller :
                         cargadorDeFragments(new FragmentoGenerosPantallaPrincipal("53","Thriller"));
-                        break;
+                        break;*/
                     case R.id.War :
                         cargadorDeFragments(new FragmentoGenerosPantallaPrincipal("10752","Guerra"));
                         break;
-                    case R.id.Western :
+                   /* case R.id.Western :
                         cargadorDeFragments(new FragmentoGenerosPantallaPrincipal("37","Vaqueros"));
-                        break;
+                        break;*/
                     default:
                         cargadorDeFragments(new PantallaPrincipalFragmentPeliculas());
                 }

@@ -19,58 +19,58 @@
             android:title="Acción"></item>
         <item
             android:id="@+id/Adventure"
-            android:title="Adventure"></item>
+            android:title="Aventura"></item>
         <item
             android:id="@+id/Animation"
-            android:title="Animation"></item>
+            android:title="Animadas"></item>
         <item
             android:id="@+id/Comedy"
-            android:title="Comedy"></item>
+            android:title="Comedia"></item>
         <item
             android:id="@+id/Crime"
-            android:title="Crime"></item>
+            android:title="Crimen"></item>
         <item
             android:id="@+id/Documentary"
-            android:title="Documentary"></item>
+            android:title="Documental"></item>
         <item
             android:id="@+id/Drama"
             android:title="Drama"></item>
-        <item
+        <!--<item
             android:id="@+id/Family"
-            android:title="Family"></item>
-        <item
+            android:title="Family"></item>-->
+       <!-- <item
             android:id="@+id/Fantasy"
-            android:title="Fantasy"></item>
+            android:title="Fantasy"></item>-->
         <item
             android:id="@+id/History"
-            android:title="History"></item>
+            android:title="Historia"></item>
         <item
             android:id="@+id/Horror"
-            android:title="Horror"></item>
+            android:title="Terror/Suspenso"></item>
         <item
             android:id="@+id/Music"
-            android:title="Music"></item>
-        <item
+            android:title="Comedia musical"></item>
+    <!--    <item
             android:id="@+id/Mystery"
-            android:title="Mystery"></item>
+            android:title="Mystery"></item>-->
         <item
             android:id="@+id/Romance"
-            android:title="Romance"></item>
+            android:title="Romanticas"></item>
         <item
             android:id="@+id/ScienceFiction"
-            android:title="Science Fiction"></item>
-        <item
+            android:title="Ciencia ficción"></item>
+       <!-- <item
             android:id="@+id/TVMovie"
-            android:title="TV Movie"></item>
-        <item
+            android:title="TV Movie"></item>-->
+        <!--<item
             android:id="@+id/Thriller"
-            android:title="Thriller"></item>
+            android:title="Thriller"></item>-->
         <item
             android:id="@+id/War"
-            android:title="War"></item>
-        <item
+            android:title="Guerra"></item>
+       <!-- <item
             android:id="@+id/Western"
-            android:title="Western"></item>
+            android:title="Western"></item>-->
     <item
         android:id="@+id/Logout"
         android:title="Logout">
