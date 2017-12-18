@@ -1,18 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
 
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/Inicio"
+            android:icon="@drawable/ic_home_white"
             android:title="Inicio"></item>
         <item
             android:id="@+id/Login"
-            android:title="Login">
-        </item>
+            android:icon="@drawable/ic_login"
+            android:title="Login"></item>
 
 
         <item
             android:id="@+id/FavoritosItem"
+            android:icon="@drawable/ic_favoritos"
             android:title="Favoritos"></item>
         <item
             android:id="@+id/Action"
@@ -38,7 +43,7 @@
         <!--<item
             android:id="@+id/Family"
             android:title="Family"></item>-->
-       <!-- <item
+        <!-- <item
             android:id="@+id/Fantasy"
             android:title="Fantasy"></item>-->
         <item
@@ -50,7 +55,7 @@
         <item
             android:id="@+id/Music"
             android:title="Comedia musical"></item>
-    <!--    <item
+        <!--    <item
             android:id="@+id/Mystery"
             android:title="Mystery"></item>-->
         <item
@@ -59,7 +64,7 @@
         <item
             android:id="@+id/ScienceFiction"
             android:title="Ciencia ficción"></item>
-       <!-- <item
+        <!-- <item
             android:id="@+id/TVMovie"
             android:title="TV Movie"></item>-->
         <!--<item
@@ -68,12 +73,11 @@
         <item
             android:id="@+id/War"
             android:title="Guerra"></item>
-       <!-- <item
+        <!-- <item
             android:id="@+id/Western"
             android:title="Western"></item>-->
-    <item
-        android:id="@+id/Logout"
-        android:title="Logout">
-        </item>
+        <item
+            android:id="@+id/Logout"
+            android:title="Logout"></item>
     </group>
 </menu>
