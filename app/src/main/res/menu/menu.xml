@@ -78,6 +78,7 @@
             android:title="Western"></item>-->
         <item
             android:id="@+id/Logout"
+            android:icon="@drawable/ic_logout"
             android:title="Logout"></item>
     </group>
 </menu>
