@@ -5,6 +5,8 @@ import android.content.DialogInterface;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -23,12 +25,19 @@ import android.util.Base64;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.PathInterpolator;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URL;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
@@ -132,6 +141,26 @@ public class MainActivity extends AppCompatActivity implements SeriesFragment.Es
             public boolean onNavigationItemSelected(MenuItem item) {
                 FirebaseAuth mAuth = FirebaseAuth.getInstance();
                 FirebaseUser user = mAuth.getCurrentUser();
+
+             /*   ImageView imagenDelUsuario = (ImageView) findViewById(R.id.imageViewDeUsuario);
+                TextView nombreDeUsuario = (TextView) findViewById(R.id.textViewNombreDeUsuarioLoguado);
+
+                if (user != null){
+                    URL url = null;
+                    try {
+                        url = new URL(user.getPhotoUrl().toString());
+                    } catch (MalformedURLException e) {
+                        e.printStackTrace();
+                    }
+                    Bitmap bmp = null;
+                    try {
+                        bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    imagenDelUsuario.setImageBitmap(bmp);
+                }
+*/
 
                 switch (item.getItemId()){
                     case R.id.Inicio :
