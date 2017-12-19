@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#4e4d4d"
+    android:orientation="vertical"
+    tools:context="a0817moact03c_2.a0817moact03c_02.TinderLike.chat.ChatActivity">
+
+
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_above="@+id/sendLayout"
+        android:id="@+id/recyclerViewMatchesTinder"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical">
+
+
+
+    </android.support.v7.widget.RecyclerView>
+
+    <LinearLayout
+        android:id="@+id/sendLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:id="@+id/edittextenviarmensaje"
+        android:layout_weight="0.7"
+        android:layout_height="wrap_content"
+        android:hint="mensaje..."/>
+        <Button
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enviar"
+            android:id="@+id/buttonEnviarChatActivity"/>
+
+
+    </LinearLayout>
+
+
+
+
+
+
+</RelativeLayout>
