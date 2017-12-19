@@ -2,33 +2,40 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-
-    >
+    android:id="@+id/scrollview"
+    android:background="#ff54646c">
 
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/fragmentviewpelisback"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:focusableInTouchMode="true"
         android:orientation="vertical"
         tools:context="a0817moact03c_2.a0817moact03c_02.View.Activities.DetallePeliculaActivity"
-        android:background="#212121">
+        android:background="#212121"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:paddingTop="16dp"
+        android:columnWidth="190dp"
+        android:clipToPadding="false" >
+        <ImageView
+            android:id="@+id/backgroudchange"
+            android:layout_width="match_parent"
+            android:layout_height="750dp">
+
+        </ImageView>
+
+
+
 
 
         <FrameLayout
-
             android:id="@+id/youtubeTrailerMovie"
             android:layout_width="match_parent"
             android:layout_height="200dp" />
-
-
-
-
-
-
-
 
         <TextView
             android:id="@+id/textViewDelNombreDelActorDetalle"
@@ -42,15 +49,12 @@
             android:textColor="#ffffff"
             android:layout_below="@id/youtubeTrailerMovie"/>
 
-        <TextView
+        <ImageView
             android:layout_marginTop="5dp"
             android:id="@+id/textViewDelPersonajeActorDetalle"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="15dp"
+            android:layout_height="60dp"
             android:textStyle="bold"
-            android:text="Genero"
-            android:textColor="#ffffff"
             android:layout_below="@id/textViewDelNombreDelActorDetalle"/>
 
         <TextView
@@ -105,6 +109,7 @@
             android:id="@+id/fadMenu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="-25dp"
             android:layout_below="@+id/textViewDelNombreDelActorDetalle"
             android:layout_alignParentRight="true"
             app:fab_expandDirection="down"

@@ -19,6 +19,12 @@
             android:id="@+id/FavoritosItem"
             android:icon="@drawable/ic_favoritos"
             android:title="Favoritos"></item>
+
+        <item
+            android:id="@+id/TinderItem"
+            android:icon="@drawable/corazontinder"
+            android:title="Buscar Personas"></item>
+
         <item
             android:id="@+id/Action"
             android:title="Acción"></item>

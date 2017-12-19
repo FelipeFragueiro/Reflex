@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -30,6 +31,7 @@ import a0817moact03c_2.a0817moact03c_02.Model.Actores;
 import a0817moact03c_2.a0817moact03c_02.Model.PeliculaFavorita;
 import a0817moact03c_2.a0817moact03c_02.Model.Serie;
 import a0817moact03c_2.a0817moact03c_02.Model.Trailer;
+import a0817moact03c_2.a0817moact03c_02.Model.Usuario;
 import a0817moact03c_2.a0817moact03c_02.R;
 import a0817moact03c_2.a0817moact03c_02.Util.ResultListener;
 import a0817moact03c_2.a0817moact03c_02.Util.YoutubeFragment;
@@ -135,8 +137,18 @@ public class DetalleSerieFragment extends Fragment implements AdaptadorDeSeries.
         mAuth = FirebaseAuth.getInstance();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = database.getReference();
-        DatabaseReference pelifavorita = databaseReference.child("Favoritos").child(mAuth.getCurrentUser().getUid());
+        DatabaseReference pelifavorita = databaseReference.child("Usuario").child(mAuth.getCurrentUser().getDisplayName()).child("Favoritos");
 
+       /* DatabaseReference usuario = databaseReference.child("Usuario").child(mAuth.getCurrentUser().getDisplayName());
+        Usuario usuario1 = new Usuario();
+        usuario1.setName(mAuth.getCurrentUser().getDisplayName());
+        usuario1.setEmail(mAuth.getCurrentUser().getEmail());
+        usuario1.setId(mAuth.getCurrentUser().getUid());
+        usuario1.setPhoto(mAuth.getCurrentUser().getPhotoUrl());
+
+
+        DatabaseReference databaseReference1 = usuario.push();
+        databaseReference1.setValue(usuario1);*/
 
         Bundle aBundle = getArguments();
         String nombreSerie = aBundle.getString(NOMBRE_SERIE);
@@ -154,12 +166,27 @@ public class DetalleSerieFragment extends Fragment implements AdaptadorDeSeries.
         peliculaFavorita.setSerieOpeli("serie");
 
 
-        DatabaseReference newpelifavoritaref = pelifavorita.push();
+       DatabaseReference newpelifavoritaref = pelifavorita.push();
         peliculaFavorita.setUserID(mAuth.getCurrentUser().getUid());
         peliculaFavorita.setKey(newpelifavoritaref.getKey());
         newpelifavoritaref.setValue(peliculaFavorita);
+        cargarFoto();
 
 
+
+    }
+    public void cargarFoto(){
+        FirebaseAuth mAuth;
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference databaseReference = database.getReference();
+        DatabaseReference pelifavorita = databaseReference.child("Usuario").child(user.getDisplayName()).child("Fotos");
+        DatabaseReference userid = databaseReference.child("Usuario").child(user.getDisplayName()).child("ID");
+
+        userid.setValue(user.getUid());
+        pelifavorita.setValue(user.getPhotoUrl().toString());
 
     }
     @Override

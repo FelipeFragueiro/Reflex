@@ -27,6 +27,12 @@ public class SeriesDAOInternet {
         RetrieveSeriesPopularesTask retrieveSeriesPopularesTask = new RetrieveSeriesPopularesTask(listResultListener,pagina);
         retrieveSeriesPopularesTask.execute();
     }
+    public void getAllTVByGenre(final ResultListener<List<Serie>> listenerFromController, String unGenero) {
+        Integer pagina = 1;
+        String genero = unGenero;
+        RetrieveTVFromGenreTask retrieveMoviesFromGenreTask = new RetrieveTVFromGenreTask(listenerFromController, pagina, genero);
+        retrieveMoviesFromGenreTask.execute();
+    }
     public void getAllSeriesSimilar(final ResultListener<List<Serie>> listenerFromController,String unId) {
         Integer pagina = 1;
         String id = unId;
@@ -92,6 +98,43 @@ public class SeriesDAOInternet {
             this.listener.finish(serieList);
         }
     }
+
+    class RetrieveTVFromGenreTask extends AsyncTask<String, Void, List<Serie>> {
+        private ResultListener<List<Serie>> listener;
+        private Integer pagina;
+        private String genero;
+
+        public RetrieveTVFromGenreTask(ResultListener<List<Serie>> listener, Integer pagina, String genero) {
+            this.listener = listener;
+            this.pagina = pagina;
+            this.genero = genero;
+        }
+
+        @Override
+        protected List<Serie> doInBackground(String... strings) {
+            HTTPConnectionManager connectionManager = new HTTPConnectionManager();
+            String input = null;
+
+            try {
+                input = connectionManager.getRequestString(TMDBHelper.getTVByGenre(genero, pagina, TMDBHelper.language_SPANISH));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            Gson gson = new Gson();
+            SeriesContainer peliculasContainer = gson.fromJson(input,SeriesContainer.class);
+
+            return peliculasContainer.getResults();
+        }
+
+        protected void onPostExecute(List<Serie> peliculaList) {
+
+            this.listener.finish(peliculaList);
+        }
+    }
+
+
+
     class RetrieveMovieTrailer extends AsyncTask<String, Void, List<Trailer>> {
         private ResultListener<List<Trailer>> listener;
         private String id;

@@ -68,7 +68,7 @@ public class Callback extends ItemTouchHelper.SimpleCallback {
         // then you can delete the object
 
         //root.child(object.getKey()).removeValue();// setting the value to null will just delete it from the database.
-        DatabaseReference root2 = FirebaseDatabase.getInstance().getReference().child("Favoritos").child(mAuth.getCurrentUser().getUid()).child(object.getKey());
+        DatabaseReference root2 = FirebaseDatabase.getInstance().getReference().child("Usuario").child(mAuth.getCurrentUser().getUid()).child("Favoritos").child(object.getKey());
         root2.removeValue();
     }
 }

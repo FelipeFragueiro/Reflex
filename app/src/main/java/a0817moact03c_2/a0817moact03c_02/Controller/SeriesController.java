@@ -68,6 +68,22 @@ public class SeriesController {
 
 
     }
+    public void getTVFromGenreList(final ResultListener<List<Serie>> listenerFromView, String genreID, final Context context) {
+
+        if(HTTPConnectionManager.isNetworkingOnline(context)) {
+            SeriesDAOInternet peliculasDAOInternet = new SeriesDAOInternet();
+            peliculasDAOInternet.getAllTVByGenre(new ResultListener<List<Serie>>() {
+                @Override
+                public void finish(List<Serie> resultado) {
+                    listenerFromView.finish(resultado);
+                }
+            },genreID);
+        }
+        else{
+            Toast.makeText(context,"no hay internet",Toast.LENGTH_SHORT).show();
+        }
+
+    }
     public void getSerieSimilarList(final ResultListener<List<Serie>> listenerFromView, final Context context,String unId){
 
         if(HTTPConnectionManager.isNetworkingOnline(context)){

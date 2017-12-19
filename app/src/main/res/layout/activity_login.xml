@@ -24,6 +24,7 @@
 
     <ImageView
         android:layout_marginTop="50dp"
+        android:paddingTop="3dp"
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_gravity="center_horizontal"
@@ -35,10 +36,16 @@
     <com.facebook.login.widget.LoginButton
         android:id="@+id/login_button"
         android:layout_width="350dp"
-        android:layout_height="wrap_content"
+        android:layout_height="200dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="100dp"
         android:layout_marginBottom="30dp" />
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/googleSingin"
+            android:layout_width="350dp"
+            android:layout_height="35dp">
+
+        </com.google.android.gms.common.SignInButton>
 </LinearLayout>
 
 

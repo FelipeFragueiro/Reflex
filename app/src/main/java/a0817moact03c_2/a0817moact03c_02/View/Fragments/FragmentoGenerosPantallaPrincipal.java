@@ -21,6 +21,7 @@ import a0817moact03c_2.a0817moact03c_02.Model.Pelicula;
 import a0817moact03c_2.a0817moact03c_02.R;
 import a0817moact03c_2.a0817moact03c_02.Util.ResultListener;
 import a0817moact03c_2.a0817moact03c_02.View.Activities.DetallePeliculaActivity;
+import a0817moact03c_2.a0817moact03c_02.View.Activities.LoginActivity;
 import a0817moact03c_2.a0817moact03c_02.View.Adapters.AdapterGenerosDelNavigationView;
 import a0817moact03c_2.a0817moact03c_02.View.Adapters.AdapterPantallaPrincipalPeliculas;
 
@@ -55,27 +56,53 @@ public class FragmentoGenerosPantallaPrincipal extends Fragment implements Adapt
 
         RecyclerView recyclerViewlistaDePeliculasDeXGenero = view.findViewById(R.id.RecyclerPeliculasDelGenero);
         peliculaList = new ArrayList<>();
-        cargarGenero();
+
+        cargarGenero(1);
+
+
         recyclerViewlistaDePeliculasDeXGenero.setLayoutManager(new GridLayoutManager(getContext(),3));
         adapterGenerosDelNavigationView = new AdapterGenerosDelNavigationView(peliculaList,getContext(),this);
         recyclerViewlistaDePeliculasDeXGenero.setAdapter(adapterGenerosDelNavigationView);
 
+        recyclerViewlistaDePeliculasDeXGenero.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+
+                if (!recyclerView.canScrollVertically(1)) {
+                    Toast.makeText(getActivity(),"Cargando...",Toast.LENGTH_LONG).show();
+
+                    cargarGenero( 2 );
+
+
+                    adapterGenerosDelNavigationView.notifyDataSetChanged();
+
+
+
+                }
+            }
+        });
 
         return view;
     }
 
-    public void cargarGenero(){
-        PeliculasController peliculasController = new PeliculasController();
+    public void cargarGenero(final Integer pagina){
+        final PeliculasController peliculasController = new PeliculasController();
 
-        ResultListener<List<Pelicula>>listener = (new ResultListener<List<Pelicula>>() {
+        final ResultListener<List<Pelicula>>listener = (new ResultListener<List<Pelicula>>() {
             @Override
             public void finish(List<Pelicula> resultado) {
-                peliculaList.clear();
-                peliculaList.addAll(resultado);
-                adapterGenerosDelNavigationView.notifyDataSetChanged();
+                if (pagina == 1) {
+                    peliculaList.clear();
+                    peliculaList.addAll(resultado);
+                    adapterGenerosDelNavigationView.notifyDataSetChanged();
+                }else {
+                    peliculaList.addAll(resultado);
+                    adapterGenerosDelNavigationView.notifyDataSetChanged();
+                }
             }
         });
-        peliculasController.getMoviesFromGenreList(listener,genero,getContext());
+        peliculasController.getMoviesFromGenreList(listener,genero,getContext(),pagina);
     }
 
     @Override
