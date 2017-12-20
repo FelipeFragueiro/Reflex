@@ -50,8 +50,8 @@ public class PeliculasDAOInternet {
         retrieveMovieCreditsTask.execute();
     }
 
-    public void getAllMoviesByGenre(final ResultListener<List<Pelicula>> listenerFromController, String unGenero) {
-        Integer pagina = 1;
+    public void getAllMoviesByGenre(final ResultListener<List<Pelicula>> listenerFromController, String unGenero, Integer unaPagina) {
+        Integer pagina = unaPagina;
         String genero = unGenero;
         RetrieveMoviesFromGenreTask retrieveMoviesFromGenreTask = new RetrieveMoviesFromGenreTask(listenerFromController, pagina, genero);
         retrieveMoviesFromGenreTask.execute();

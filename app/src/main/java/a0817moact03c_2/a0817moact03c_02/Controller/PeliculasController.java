@@ -134,7 +134,7 @@ public class PeliculasController {
     }
 
 
-    public void getMoviesFromGenreList(final ResultListener<List<Pelicula>> listenerFromView, String genreID, final Context context) {
+    public void getMoviesFromGenreList(final ResultListener<List<Pelicula>> listenerFromView, String genreID, final Context context,Integer pagina) {
 
         if(HTTPConnectionManager.isNetworkingOnline(context)) {
             PeliculasDAOInternet peliculasDAOInternet = new PeliculasDAOInternet();
@@ -145,7 +145,7 @@ public class PeliculasController {
                     peliculasDAODB.addPosts(resultado);
                     listenerFromView.finish(resultado);
                 }
-            },genreID);
+            },genreID, pagina);
         }
         else{
             PeliculasDAODB peliculasDAODB = new PeliculasDAODB(context);

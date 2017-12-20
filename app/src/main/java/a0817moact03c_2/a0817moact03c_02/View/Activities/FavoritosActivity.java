@@ -18,6 +18,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import a0817moact03c_2.a0817moact03c_02.Model.Usuario;
 import a0817moact03c_2.a0817moact03c_02.View.Adapters.AdaptadorDePeliculasFavoritasRecycler;
 import a0817moact03c_2.a0817moact03c_02.Model.PeliculaFavorita;
 import a0817moact03c_2.a0817moact03c_02.R;
@@ -45,7 +46,7 @@ public class FavoritosActivity extends AppCompatActivity implements AdaptadorDeP
         final String userID = mAuth.getCurrentUser().getUid();
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference firebaseDataRef = firebaseDatabase.getReference();
-        DatabaseReference pelisfavoritasDB = firebaseDataRef.child("Favoritos").child(userID);
+        DatabaseReference pelisfavoritasDB = firebaseDataRef.child("Usuario").child(userID).child("Favoritos");
 
         pelisfavoritasDB.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -54,25 +55,27 @@ public class FavoritosActivity extends AppCompatActivity implements AdaptadorDeP
 
                 for (DataSnapshot snapshotChildren : dataSnapshot.getChildren()) {
                     PeliculaFavorita aPeli = snapshotChildren.getValue(PeliculaFavorita.class);
-                   if (contiene(aPeli)){
-                       userPhotoList.add(aPeli);
-                   }
+                    if (contiene(aPeli)) {
+                        userPhotoList.add(aPeli);
+                    }
+
+
+                    recyclerViewCollage = (RecyclerView) findViewById(R.id.recyclerPeliculasYSeriesFavoritas);
+
+                    // Toast.makeText(getApplicationContext(),userPhotoList.toString(),Toast.LENGTH_SHORT).show();
+                    GridLayoutManager gridLayoutManager = new GridLayoutManager(getApplicationContext(), 3);
+                    //LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext(), VERTICAL, false);
+                    recyclerViewCollage.setLayoutManager(gridLayoutManager);
+                    recyclerViewCollage.setAdapter((RecyclerView.Adapter) paintCollageAdapter);
+
+                    ItemTouchHelper.SimpleCallback simpleItemTouchCallback = new
+                            Callback(0, ItemTouchHelper.LEFT, paintCollageAdapter, getApplicationContext()); // Making the SimpleCallback
+
+                    ItemTouchHelper touchHelper = new ItemTouchHelper(simpleItemTouchCallback);
+
+
+                    touchHelper.attachToRecyclerView(recyclerViewCollage);
                 }
-                recyclerViewCollage = (RecyclerView) findViewById(R.id.recyclerPeliculasYSeriesFavoritas);
-
-                // Toast.makeText(getApplicationContext(),userPhotoList.toString(),Toast.LENGTH_SHORT).show();
-                GridLayoutManager gridLayoutManager = new GridLayoutManager(getApplicationContext(),3);
-                //LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext(), VERTICAL, false);
-                recyclerViewCollage.setLayoutManager(gridLayoutManager);
-                recyclerViewCollage.setAdapter((RecyclerView.Adapter) paintCollageAdapter);
-
-                ItemTouchHelper.SimpleCallback simpleItemTouchCallback = new
-                        Callback(0, ItemTouchHelper.LEFT,  paintCollageAdapter,getApplicationContext()); // Making the SimpleCallback
-
-                ItemTouchHelper touchHelper = new ItemTouchHelper(simpleItemTouchCallback);
-
-
-                touchHelper.attachToRecyclerView(recyclerViewCollage);
             }
 
             @Override

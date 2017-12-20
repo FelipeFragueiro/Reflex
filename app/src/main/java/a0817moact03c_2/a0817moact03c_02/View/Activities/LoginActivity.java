@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,6 +19,13 @@ import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.auth.api.signin.GoogleSignInResult;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.SignInButton;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
@@ -25,30 +33,45 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
+import a0817moact03c_2.a0817moact03c_02.Model.Usuario;
 import a0817moact03c_2.a0817moact03c_02.R;
 import a0817moact03c_2.a0817moact03c_02.View.MainActivity;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
+    private GoogleApiClient googleApiClient;
     CallbackManager callbackManager;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.activity_login);
-        ImageView imageView = (ImageView)findViewById(R.id.imageviewlogin);
+        ImageView imageView = (ImageView) findViewById(R.id.imageviewlogin);
+
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
+        googleApiClient = new GoogleApiClient.Builder(this).enableAutoManage(this, this).addApi(Auth.GOOGLE_SIGN_IN_API, gso).build();
+
+
 
         Glide.with(getApplicationContext()).load("https://i.kinja-img.com/gawker-media/image/upload/t_original/ljtry40abluorsmb7hnh.gif").into(imageView);
 
 
-        LoginButton loginButton = (LoginButton)findViewById(R.id.login_button);
+        LoginButton loginButton = (LoginButton) findViewById(R.id.login_button);
         loginButton.setReadPermissions("email");
         loginButton.setReadPermissions("public_profile");
 
         //FacebookSdk.sdkInitialize(getApplicationContext());
-       // AppEventsLogger.activateApp(this);
+        // AppEventsLogger.activateApp(this);
         mAuth = FirebaseAuth.getInstance();
 
 
@@ -59,8 +82,11 @@ public class LoginActivity extends AppCompatActivity {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
                     // User is signed in
+
+
                     Log.d("algo", "onAuthStateChanged:signed_in:" + user.getUid());
                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
+
 
 
                 } else {
@@ -73,18 +99,22 @@ public class LoginActivity extends AppCompatActivity {
         };
 
         callbackManager = CallbackManager.Factory.create();
-        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>(){
+        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-                Log.d("Algo", "facebook:onSuccess:"+ loginResult);
+                Log.d("Algo", "facebook:onSuccess:" + loginResult);
                 handleFacebookAccessToken(loginResult.getAccessToken());
+
+
+
+
 
                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
             }
 
             @Override
             public void onCancel() {
-                Log.d("Algo","facebook:onCancel");
+                Log.d("Algo", "facebook:onCancel");
             }
 
             @Override
@@ -94,7 +124,23 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
+        SignInButton signInButton = (SignInButton)findViewById(R.id.googleSingin);
+        signInButton.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                Intent intent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient);
+                startActivityForResult(intent,777);
+            }
+        });
     }
+
+
+
+
+
+
+
 
     private void handleFacebookAccessToken(AccessToken token) {
         Log.d("Algo", "handleFacebookAccessToken:" + token);
@@ -144,7 +190,41 @@ public class LoginActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         callbackManager.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 777){
+            GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
+            handleSignInResult(result);
+
+        }
     }
 
+    private void handleSignInResult(GoogleSignInResult result) {
+        if(result.isSuccess()){
+            firebaseAuthWitchGoogle(result.getSignInAccount());
+            goMainScreen();
+        }else{
+            Toast.makeText(getApplicationContext(),"error al iniciar sesion",Toast.LENGTH_SHORT).show();
+        }
+
     }
+
+    private void firebaseAuthWitchGoogle(GoogleSignInAccount signInAccount) {
+        AuthCredential credential = GoogleAuthProvider.getCredential(signInAccount.getIdToken(),null);
+        mAuth.signInWithCredential(credential).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+
+            }
+        });
+
+    }
+
+    private void goMainScreen() {
+        startActivity(new Intent(this, MainActivity.class));
+    }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
+    }
+}
 

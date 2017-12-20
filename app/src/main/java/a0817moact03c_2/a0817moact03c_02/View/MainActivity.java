@@ -34,6 +34,8 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.facebook.login.LoginManager;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.auth.api.signin.SignInAccount;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -51,6 +53,7 @@ import a0817moact03c_2.a0817moact03c_02.Model.AdaptadorDeSeriesFavoritasRecycler
 import a0817moact03c_2.a0817moact03c_02.Model.Serie;
 import a0817moact03c_2.a0817moact03c_02.Model.Pelicula;
 import a0817moact03c_2.a0817moact03c_02.R;
+import a0817moact03c_2.a0817moact03c_02.TinderLike.TinderActivity;
 import a0817moact03c_2.a0817moact03c_02.Util.ResultListener;
 import a0817moact03c_2.a0817moact03c_02.View.Activities.DetallePeliculaActivity;
 import a0817moact03c_2.a0817moact03c_02.View.Activities.DetalleSeriesActivity;
@@ -171,6 +174,8 @@ public class MainActivity extends AppCompatActivity implements SeriesFragment.Es
                         if(user != null) {
                             FirebaseAuth.getInstance().signOut();
                             LoginManager.getInstance().logOut();
+
+
                             Toast.makeText(getApplicationContext(),"Logout completado",Toast.LENGTH_SHORT).show();
 
 
@@ -185,6 +190,9 @@ public class MainActivity extends AppCompatActivity implements SeriesFragment.Es
                         }else {
                             showDialog(MainActivity.this,"No estas registrado.", "tienes que iniciar sesión para completar la siguiente accion.");
                         }
+                        break;
+                    case R.id.TinderItem:
+                        startActivity(new Intent ( MainActivity.this, TinderActivity.class));
                         break;
                     case R.id.Action :
                         cargadorDeFragments(new FragmentoGenerosPantallaPrincipal("28","Accion"));

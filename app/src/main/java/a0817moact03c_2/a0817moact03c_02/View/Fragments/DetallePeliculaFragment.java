@@ -5,6 +5,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import android.support.annotation.NonNull;
@@ -12,13 +14,18 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.graphics.Palette;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.ScrollView;
+
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.getbase.floatingactionbutton.FloatingActionButton;
@@ -29,9 +36,13 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import a0817moact03c_2.a0817moact03c_02.Controller.ActoresController;
 import a0817moact03c_2.a0817moact03c_02.Controller.PeliculasController;
@@ -39,6 +50,7 @@ import a0817moact03c_2.a0817moact03c_02.Model.Actores;
 import a0817moact03c_2.a0817moact03c_02.Model.Pelicula;
 import a0817moact03c_2.a0817moact03c_02.Model.PeliculaFavorita;
 import a0817moact03c_2.a0817moact03c_02.Model.Trailer;
+import a0817moact03c_2.a0817moact03c_02.Model.Usuario;
 import a0817moact03c_2.a0817moact03c_02.R;
 import a0817moact03c_2.a0817moact03c_02.Util.ResultListener;
 import a0817moact03c_2.a0817moact03c_02.Util.YoutubeFragment;
@@ -116,27 +128,47 @@ public class DetallePeliculaFragment extends Fragment implements AdapterPantalla
         if (user != null) {
             FirebaseDatabase database = FirebaseDatabase.getInstance();
             DatabaseReference databaseReference = database.getReference();
-            DatabaseReference pelifavorita = databaseReference.child("Favoritos").child(mAuth.getCurrentUser().getUid());
+            //DatabaseReference pelifavorita = databaseReference.child("Usuario").child(user.getUid()).child("Favoritos");
+            /*DatabaseReference usuariorootFoto = databaseReference.child("Usuario").child(user.getDisplayName()).child("Foto");
+             usuariorootFoto.setValue(user.getPhotoUrl());*/
+            //DatabaseReference user1 = databaseReference.child("Usuario").child(user.getUid()).child("datosDeUsuario");
+            //DatabaseReference user23 = databaseReference.child("Usuario").child(user.getUid()).child("Foto");
+/*
+            Usuario usuario3 = new Usuario();
+
+            DatabaseReference newuser1 = user1.push();
+            //DatabaseReference newUser23 = user23.push();
+
+            usuario3.setNombre(user.getDisplayName());
+            usuario3.setFoto(user.getPhotoUrl().toString());
+            usuario3.setID(user.getUid());*/
 
 
-            Bundle aBundle = getArguments();
-            String unId = aBundle.getString(ID_PELICULA);
-            String unTitulo = aBundle.getString(NOMBRE_PELICULA);
-            final String unaImagen = aBundle.getString(IMAGEN_PELICULA);
-            String unaDescripcion = aBundle.getString(DESCRIPCION_PELICULA);
-            String unGenero = aBundle.getString(GENERO_PELICULA);
+                Bundle aBundle = getArguments();
+                String unId = aBundle.getString(ID_PELICULA);
+                String unTitulo = aBundle.getString(NOMBRE_PELICULA);
+                final String unaImagen = aBundle.getString(IMAGEN_PELICULA);
+                String unaDescripcion = aBundle.getString(DESCRIPCION_PELICULA);
+                String unGenero = aBundle.getString(GENERO_PELICULA);
 
-            PeliculaFavorita peliculaFavorita = new PeliculaFavorita();
-            peliculaFavorita.setId(unId);
-            peliculaFavorita.setGenre(unGenero);
-            peliculaFavorita.setTitle(unTitulo);
-            peliculaFavorita.setPoster_path(unaImagen);
-            peliculaFavorita.setOverview(unaDescripcion);
-            peliculaFavorita.setSerieOpeli("pelicula");
-            DatabaseReference newpelifavoritaref = pelifavorita.push();
-            peliculaFavorita.setUserID(mAuth.getCurrentUser().getUid());
-            peliculaFavorita.setKey(newpelifavoritaref.getKey());
-            newpelifavoritaref.setValue(peliculaFavorita);
+
+                PeliculaFavorita peliculaFavorita = new PeliculaFavorita();
+                peliculaFavorita.setId(unId);
+                peliculaFavorita.setGenre(unGenero);
+                peliculaFavorita.setTitle(unTitulo);
+                peliculaFavorita.setPoster_path(unaImagen);
+                peliculaFavorita.setOverview(unaDescripcion);
+                peliculaFavorita.setSerieOpeli("pelicula");
+
+
+           // newuser1.child("Favoritos");
+
+                DatabaseReference pelifavorita = databaseReference.child("Usuario").child(user.getUid()).child("Favoritos");
+                DatabaseReference newpelifavoritaref = pelifavorita.push();
+                peliculaFavorita.setUserID(mAuth.getCurrentUser().getUid());
+               peliculaFavorita.setKey(newpelifavoritaref.getKey());
+                newpelifavoritaref.setValue(peliculaFavorita);
+                cargarFoto();
         } else {
             showDialog(getActivity(), "No estas registrado.", "tienes que iniciar sesión para completar la siguiente accion.");
 
@@ -151,6 +183,21 @@ public class DetallePeliculaFragment extends Fragment implements AdapterPantalla
 
 
         // Toast.makeText(getContext(),peliculaFavorita.toString(),Toast.LENGTH_SHORT).show();
+    }
+    public void cargarFoto(){
+        FirebaseAuth mAuth;
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference databaseReference = database.getReference();
+        DatabaseReference pelifavorita = databaseReference.child("Usuario").child(user.getUid()).child("Fotos");
+        DatabaseReference userid = databaseReference.child("Usuario").child(user.getUid()).child("ID");
+        DatabaseReference username= databaseReference.child("Usuario").child(user.getUid()).child("Nombre");
+        username.setValue(user.getDisplayName());
+        userid.setValue(user.getUid());
+        pelifavorita.setValue(user.getPhotoUrl().toString());
+
     }
 
 
@@ -177,6 +224,7 @@ public class DetallePeliculaFragment extends Fragment implements AdapterPantalla
     }
 
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -190,6 +238,42 @@ public class DetallePeliculaFragment extends Fragment implements AdapterPantalla
         String unaDescripcion = aBundle.getString(DESCRIPCION_PELICULA);
         String unGenero = aBundle.getString(GENERO_PELICULA);
 
+     /*   final ImageView imageView2 = (ImageView)fragmentView.findViewById(R.id.textViewDelPersonajeActorDetalle);
+        final TextView textViewNombrePelicula1 = (TextView) fragmentView.findViewById(R.id.textViewDelNombreDelActorDetalle);
+        Picasso.with(getActivity()).load(unaImagen).into(new Target() {
+            @Override
+            public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+                assert imageView2 != null;
+                imageView2.setImageBitmap(bitmap);
+                Palette.from(bitmap)
+                        .generate(new Palette.PaletteAsyncListener() {
+                            @Override
+                            public void onGenerated(Palette palette) {
+                                Palette.Swatch textSwatch = palette.getVibrantSwatch();
+                                if (textSwatch == null) {
+                                    Toast.makeText(getActivity(), "Null swatch :(", Toast.LENGTH_SHORT).show();
+                                    return;
+                                }
+
+                                imageView2.setBackgroundColor(textSwatch.getRgb());
+                                textViewNombrePelicula1.setTextColor(textSwatch.getTitleTextColor());
+                                //bodyColorText.setTextColor(textSwatch.getBodyTextColor());
+                            }
+                        });
+            }
+
+
+            @Override
+            public void onBitmapFailed(Drawable errorDrawable) {
+
+            }
+
+            @Override
+            public void onPrepareLoad(Drawable placeHolderDrawable) {
+
+            }
+        });
+*/
         //YouTubePlayerFragment youTubePlayerView = fragmentView.findViewById(R.id.youtubetrailermovie);
 
 
@@ -202,11 +286,11 @@ public class DetallePeliculaFragment extends Fragment implements AdapterPantalla
 
         TextView textViewNombrePelicula = (TextView) fragmentView.findViewById(R.id.textViewDelNombreDelActorDetalle);
         //ImageView unImageViewPelicula = (ImageView) fragmentView.findViewById(R.id.youtubeTrailerMovie);
-        TextView unTextViewDelGenero = (TextView) fragmentView.findViewById(R.id.textViewDelPersonajeActorDetalle);
+        //TextView unTextViewDelGenero = (TextView) fragmentView.findViewById(R.id.textViewDelPersonajeActorDetalle);
         TextView unTextViewDeLaDescripcion = (TextView) fragmentView.findViewById(R.id.textViewDeLaBiografiaDelActorDetalle);
         textViewNombrePelicula.setText(unTitulo);
         //Glide.with(getContext()).load(unaImagen).into(unImageViewPelicula);
-        unTextViewDelGenero.setText(unGenero);
+        //unTextViewDelGenero.setText(unGenero);
         unTextViewDeLaDescripcion.setText(unaDescripcion);
 
 
