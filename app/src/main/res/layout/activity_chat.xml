@@ -23,6 +23,7 @@
 
     <LinearLayout
         android:id="@+id/sendLayout"
+        android:background="#fff"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -30,15 +31,22 @@
 
     <EditText
         android:layout_width="match_parent"
+        android:layout_marginLeft="20dp"
         android:id="@+id/edittextenviarmensaje"
         android:layout_weight="0.7"
         android:layout_height="wrap_content"
         android:hint="mensaje..."/>
-        <Button
+
+        <ImageButton
 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Enviar"
+            android:src="@drawable/ic_chat_send"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:paddingLeft="13dp"
+            android:paddingStart="13dp"
+            android:paddingRight="17dp"
+            android:paddingEnd="17dp"
             android:id="@+id/buttonEnviarChatActivity"/>
 
 

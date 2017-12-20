@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -30,7 +31,7 @@ public class ChatActivity extends AppCompatActivity implements ChatAdapter.Escuc
     private ChatAdapter matchesAdapter;
     private String currentUserID, matchid, chatid;
     private EditText msendEditText;
-    private Button mButtonSend;
+    private ImageButton mButtonSend;
     DatabaseReference mDatabaseUser, mDatabaseChat;
 
     @Override
