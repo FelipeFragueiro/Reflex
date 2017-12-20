@@ -111,7 +111,6 @@ public class ChatAdapter extends RecyclerView.Adapter {
             }else {
                 mMessage.setGravity(Gravity.START);
                 mMessage.setTextColor(Color.BLACK);
-                mContainer.setGravity(Gravity.LEFT);
                 //color.parsecolor(#8768)
                 LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams)mRelative.getLayoutParams();
                 lp.setMargins(0,20,70,0);

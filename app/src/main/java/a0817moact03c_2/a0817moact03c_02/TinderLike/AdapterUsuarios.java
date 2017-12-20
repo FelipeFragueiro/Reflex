@@ -33,11 +33,35 @@ public class AdapterUsuarios extends ArrayAdapter<Usuario>{
         if(convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.item, parent, false);
         }
-
+        TextView pelicuaFavorita1 = (TextView)convertView.findViewById(R.id.textviewfavoritos1);
         TextView nombreTextView = (TextView)convertView.findViewById(R.id.nameTindertextview);
         ImageView imageView = (ImageView)convertView.findViewById(R.id.imageViewTinder);
 
+
         nombreTextView.setText(usuario.getNombre());
+
+
+        if(usuario.getPeliculaFavorita() != null) {
+
+
+        pelicuaFavorita1.setText(usuario.getPeliculaFavorita().getTitle());
+
+
+    }
+
+      /* if(usuario.getPeliculaFavorita().get(1) != null) {
+            textviewpeliculafavorita2.setText(usuario.getPeliculaFavorita().get(1).getTitle());
+        }else {
+            textviewpeliculafavorita2.setText("-");
+        }*/
+
+        /*if(usuario.getPeliculaFavorita().get(2) != null) {
+            textViewPeliculaFavorita3.setText(usuario.getPeliculaFavorita().get(2).getTitle());
+        }else {
+            textViewPeliculaFavorita3.setText("-");
+        }*/
+
+
         Glide.with(getContext()).load(usuario.getFoto()).into(imageView);
         return convertView;
     }

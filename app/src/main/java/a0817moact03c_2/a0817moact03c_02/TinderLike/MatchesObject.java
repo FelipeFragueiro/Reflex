@@ -1,5 +1,7 @@
 package a0817moact03c_2.a0817moact03c_02.TinderLike;
 
+import a0817moact03c_2.a0817moact03c_02.Model.PeliculaFavorita;
+
 /**
  * Created by Ines on 19/12/2017.
  */
@@ -9,10 +11,11 @@ public class MatchesObject {
     private String foto;
     private String nombre;
 
+
+
    // public ChatObject(String userID) {
    //     this.userID = userID;
    // }
-
 
 
 

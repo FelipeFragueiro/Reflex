@@ -16,6 +16,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import a0817moact03c_2.a0817moact03c_02.Model.PeliculaFavorita;
 import a0817moact03c_2.a0817moact03c_02.R;
 import a0817moact03c_2.a0817moact03c_02.TinderLike.chat.ChatActivity;
 
@@ -24,12 +25,14 @@ public class MatchesActivity extends AppCompatActivity implements MatchesAdapter
     private List<MatchesObject>listaMatches;
     private MatchesAdapter matchesAdapter;
     private String currentUserID;
+    private List<PeliculaFavorita>userPhotoList;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_matches);
+        userPhotoList = new ArrayList<>();
 
         currentUserID = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
@@ -61,7 +64,6 @@ public class MatchesActivity extends AppCompatActivity implements MatchesAdapter
                         FetchMatchInfo(match.getKey());
                     }
                 }
-
             }
 
             @Override
@@ -72,12 +74,13 @@ public class MatchesActivity extends AppCompatActivity implements MatchesAdapter
 
     }
 
-    private void FetchMatchInfo(String key) {
+    private void FetchMatchInfo(final String key) {
         DatabaseReference userDB = FirebaseDatabase.getInstance().getReference().child("Usuario").child(key);
         userDB.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists()){
+                    MatchesObject obj = new MatchesObject();
                     String userid = dataSnapshot.getKey();
                     String userName = "";
                     String userPhoto = "";
@@ -89,7 +92,9 @@ public class MatchesActivity extends AppCompatActivity implements MatchesAdapter
                         userPhoto = dataSnapshot.child("Fotos").getValue().toString();
 
                     }
-                    MatchesObject obj = new MatchesObject();
+
+
+
                     obj.setUserID(userid);
                     obj.setFoto(userPhoto);
                     obj.setNombre(userName);
@@ -106,6 +111,8 @@ public class MatchesActivity extends AppCompatActivity implements MatchesAdapter
 
 
     }
+
+
 
 
 
