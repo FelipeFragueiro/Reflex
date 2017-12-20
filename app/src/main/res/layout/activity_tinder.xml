@@ -4,16 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#212121"
     tools:context="a0817moact03c_2.a0817moact03c_02.TinderLike.TinderActivity">
 <Button
-    android:layout_width="wrap_content"
+    android:layout_width="88dp"
     android:layout_height="wrap_content"
     android:text="Matches"
+    android:background="@color/colorPrimary"
+    android:textSize="25dp"
     android:id="@+id/buttonMatches"
-    android:onClick="goToMatches"/>
+    android:onClick="goToMatches"
+    tools:layout_editor_absoluteY="0dp"
+    tools:layout_editor_absoluteX="8dp" />
     <com.lorentzos.flingswipe.SwipeFlingAdapterView
         android:id="@+id/frame"
-        android:background="#ffeee9e2"
+        android:background="#212121"
         android:layout_width="368dp"
         android:layout_height="551dp"
         app:rotation_degrees="15.5"
