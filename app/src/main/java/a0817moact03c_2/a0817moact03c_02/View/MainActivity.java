@@ -1,12 +1,14 @@
 package a0817moact03c_2.a0817moact03c_02.View;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -30,6 +32,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -57,9 +60,9 @@ import a0817moact03c_2.a0817moact03c_02.View.Activities.LoginActivity;
 import a0817moact03c_2.a0817moact03c_02.View.Fragments.FragmentoGenerosPantallaPrincipal;
 import a0817moact03c_2.a0817moact03c_02.View.Fragments.PantallaPrincipalFragmentPeliculas;
 import a0817moact03c_2.a0817moact03c_02.View.Fragments.SeriesFragment;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends AppCompatActivity implements SeriesFragment.EscuchadorDeSeries ,PantallaPrincipalFragmentPeliculas.EscuchadorDePelicula{
-
     private List<Serie>listaseriespopulares;
     private AdaptadorDeSeriesFavoritasRecycler adaptadorDeSeriesFavoritasRecycler;
 
@@ -129,12 +132,14 @@ public class MainActivity extends AppCompatActivity implements SeriesFragment.Es
 
         NavigationView navigationView = (NavigationView)findViewById(R.id.navigationView);
 
+
+
           /* Tenemos que escuchar cuando se hace click en una de las opciones
             de nuestro menú. En el MainActivity crear el listener como clase
             privada*/
-
-
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            FirebaseAuth mAuth = FirebaseAuth.getInstance();
+            FirebaseUser user = mAuth.getCurrentUser();
 
 
             @Override
@@ -142,25 +147,9 @@ public class MainActivity extends AppCompatActivity implements SeriesFragment.Es
                 FirebaseAuth mAuth = FirebaseAuth.getInstance();
                 FirebaseUser user = mAuth.getCurrentUser();
 
-             /*   ImageView imagenDelUsuario = (ImageView) findViewById(R.id.imageViewDeUsuario);
-                TextView nombreDeUsuario = (TextView) findViewById(R.id.textViewNombreDeUsuarioLoguado);
 
-                if (user != null){
-                    URL url = null;
-                    try {
-                        url = new URL(user.getPhotoUrl().toString());
-                    } catch (MalformedURLException e) {
-                        e.printStackTrace();
-                    }
-                    Bitmap bmp = null;
-                    try {
-                        bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    imagenDelUsuario.setImageBitmap(bmp);
-                }
-*/
+                ImageView imagenDelUsuario = (CircleImageView) findViewById(R.id.imageViewDeUsuario);
+                TextView nombreDeUsuario = (TextView) findViewById(R.id.textViewNombreDeUsuarioLoguado);
 
                 switch (item.getItemId()){
                     case R.id.Inicio :
@@ -169,7 +158,14 @@ public class MainActivity extends AppCompatActivity implements SeriesFragment.Es
                         startActivity(intent);
                         break;
                     case R.id.Login :
-                        startActivity(new Intent(MainActivity.this,LoginActivity.class));
+                         if(user != null){
+                             String urlDeFotoDelUsuario = user.getPhotoUrl().toString();
+                             String nombreDelUsuarioLogueado = user.getDisplayName().toString();
+                             nombreDeUsuario.setText(nombreDelUsuarioLogueado);
+                             Glide.with(MainActivity.this).load(urlDeFotoDelUsuario).into(imagenDelUsuario);
+                        }else {
+                            startActivity(new Intent(MainActivity.this,LoginActivity.class));
+                        }
                         break;
                     case R.id.Logout :
                         if(user != null) {
@@ -253,11 +249,16 @@ public class MainActivity extends AppCompatActivity implements SeriesFragment.Es
 
                 return true;
             }
+
+
+
+
         });
 
-
-
     }
+
+
+
 
     private void cargadorDeFragments(Fragment unFragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();

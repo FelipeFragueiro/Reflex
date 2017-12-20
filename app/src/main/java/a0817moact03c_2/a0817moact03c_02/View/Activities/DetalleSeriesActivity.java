@@ -22,7 +22,7 @@ public class DetalleSeriesActivity extends AppCompatActivity implements DetalleS
         Intent unIntent = getIntent();
         Bundle unBundle = unIntent.getExtras();
 
-        Toast.makeText(this, "hola serie", Toast.LENGTH_SHORT).show();
+
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();

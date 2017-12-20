@@ -53,7 +53,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="#333333"
+        android:background="#212121"
         app:menu="@menu/menu"
         app:itemIconTint="@color/colorPrimary">
 

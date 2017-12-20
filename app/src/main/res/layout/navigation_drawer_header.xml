@@ -6,7 +6,8 @@
     android:orientation="vertical">
 
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:scaleType="centerCrop"
         android:id="@+id/imageViewDeUsuario"
         android:layout_width="120dp"
         android:layout_height="120dp"
@@ -15,12 +16,14 @@
 
 
     <TextView
+        android:textStyle="bold"
+        android:textColor="#000"
         android:gravity="center"
         android:foregroundGravity="center"
         android:id="@+id/textViewNombreDeUsuarioLoguado"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nombre de Usuario"
+        android:text=""
         android:textSize="20dp"
         android:layout_centerVertical="true"
         android:layout_toEndOf="@+id/imageViewDeUsuario"

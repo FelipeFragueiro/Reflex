@@ -23,7 +23,7 @@ public class DetalleActoresActivity extends AppCompatActivity implements Detalle
         Intent unIntent = getIntent();
         Bundle unBundle = unIntent.getExtras();
 
-        Toast.makeText(this, "hola actor", Toast.LENGTH_SHORT).show();
+
 
 
         FragmentManager fragmentManager = getSupportFragmentManager();
