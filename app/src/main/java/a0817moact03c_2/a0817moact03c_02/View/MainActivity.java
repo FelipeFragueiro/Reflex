@@ -135,8 +135,6 @@ public class MainActivity extends AppCompatActivity implements SeriesFragment.Es
 
         NavigationView navigationView = (NavigationView)findViewById(R.id.navigationView);
 
-
-
           /* Tenemos que escuchar cuando se hace click en una de las opciones
             de nuestro menú. En el MainActivity crear el listener como clase
             privada*/
@@ -144,15 +142,19 @@ public class MainActivity extends AppCompatActivity implements SeriesFragment.Es
             FirebaseAuth mAuth = FirebaseAuth.getInstance();
             FirebaseUser user = mAuth.getCurrentUser();
 
+            ImageView imagenDelUsuario = (CircleImageView) findViewById(R.id.imageViewDeUsuario);
+            TextView nombreDeUsuario = (TextView) findViewById(R.id.textViewNombreDeUsuarioLoguado);
 
             @Override
             public boolean onNavigationItemSelected(MenuItem item) {
                 FirebaseAuth mAuth = FirebaseAuth.getInstance();
                 FirebaseUser user = mAuth.getCurrentUser();
 
-
                 ImageView imagenDelUsuario = (CircleImageView) findViewById(R.id.imageViewDeUsuario);
                 TextView nombreDeUsuario = (TextView) findViewById(R.id.textViewNombreDeUsuarioLoguado);
+
+
+
 
                 switch (item.getItemId()){
                     case R.id.Inicio :
@@ -162,10 +164,10 @@ public class MainActivity extends AppCompatActivity implements SeriesFragment.Es
                         break;
                     case R.id.Login :
                          if(user != null){
-                             String urlDeFotoDelUsuario = user.getPhotoUrl().toString();
+                             /*String urlDeFotoDelUsuario = user.getPhotoUrl().toString();
                              String nombreDelUsuarioLogueado = user.getDisplayName().toString();
                              nombreDeUsuario.setText(nombreDelUsuarioLogueado);
-                             Glide.with(MainActivity.this).load(urlDeFotoDelUsuario).into(imagenDelUsuario);
+                             Glide.with(MainActivity.this).load(urlDeFotoDelUsuario).into(imagenDelUsuario);*/
                         }else {
                             startActivity(new Intent(MainActivity.this,LoginActivity.class));
                         }
@@ -252,13 +254,18 @@ public class MainActivity extends AppCompatActivity implements SeriesFragment.Es
                         cargadorDeFragments(new PantallaPrincipalFragmentPeliculas());
                 }
 
+                  /*  if(user != null){
+                             String urlDeFotoDelUsuario = user.getPhotoUrl().toString();
+                             String nombreDelUsuarioLogueado = user.getDisplayName().toString();
+                             nombreDeUsuario.setText(nombreDelUsuarioLogueado);
+                             Glide.with(MainActivity.this).load(urlDeFotoDelUsuario).into(imagenDelUsuario);
+                    }else {}*/
+
                 DrawerLayout drawerLayout = (DrawerLayout)findViewById(R.id.drawerLayout);
                 drawerLayout.closeDrawers();
 
                 return true;
             }
-
-
 
 
         });

@@ -38,6 +38,7 @@ public class DetallePeliculaActivity extends AppCompatActivity implements Detall
         fragmentTransaction.commit();
 
 
+
         /*ViewPager viewPager = (ViewPager) findViewById(R.id.viewPagerDetallePelicula);
         AdaptadorDeDetallePeliculaFragment adapterViewPager = new AdaptadorDeDetallePeliculaFragment(getSupportFragmentManager());
         viewPager.setAdapter(adapterViewPager);

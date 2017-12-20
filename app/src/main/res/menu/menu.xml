@@ -4,7 +4,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
 
-    <group android:checkableBehavior="single">
+    <group
+        android:id="@+id/menu_top"
+        android:checkableBehavior="single">
         <item
             android:id="@+id/Inicio"
             android:icon="@drawable/ic_home_white"
@@ -24,6 +26,11 @@
             android:id="@+id/TinderItem"
             android:icon="@drawable/ic_corazon_buscar_personas"
             android:title="Buscar Personas" />
+    </group>
+
+    <group
+        android:id="@+id/menu_bottom"
+        android:checkableBehavior="single">
 
         <item
             android:id="@+id/Action"
