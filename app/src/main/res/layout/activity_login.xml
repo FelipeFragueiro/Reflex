@@ -40,7 +40,9 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="100dp"
         android:layout_marginBottom="30dp" />
+
         <com.google.android.gms.common.SignInButton
+            android:layout_gravity="center_horizontal"
             android:id="@+id/googleSingin"
             android:layout_width="350dp"
             android:layout_height="35dp">

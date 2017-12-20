@@ -22,8 +22,8 @@
 
         <item
             android:id="@+id/TinderItem"
-            android:icon="@drawable/corazontinder"
-            android:title="Buscar Personas"></item>
+            android:icon="@drawable/ic_corazon_buscar_personas"
+            android:title="Buscar Personas" />
 
         <item
             android:id="@+id/Action"
