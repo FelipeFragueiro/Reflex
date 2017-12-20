@@ -84,12 +84,15 @@ public class ChatAdapter extends RecyclerView.Adapter {
         private TextView mMessage;
         public LinearLayout mContainer;
         private String hola;
+        private LinearLayout mRelative;
+
 
         public MatchesViewHolder(View itemView) {
             super(itemView);
             //imageViewDeMatch = (ImageView) itemView.findViewById(R.id.imageViewMatchImage);
             mMessage = (TextView) itemView.findViewById(R.id.messagetextviewchat);
             mContainer = itemView.findViewById(R.id.containeridchattinder);
+            mRelative = itemView.findViewById(R.id.relativeLayoutTinderChatMessage);
 
             //textViewNombreMatch = (TextView)itemView.findViewById(R.id.textViewMatchesName);
         }
@@ -100,17 +103,19 @@ public class ChatAdapter extends RecyclerView.Adapter {
                 mMessage.setGravity(Gravity.END);
                 mMessage.setTextColor(Color.WHITE);
                 //color.parsecolor(#8768)
-                mContainer.setBackgroundColor(Color.BLUE);
-                mContainer.setGravity(Gravity.RIGHT);
+                mContainer.setBackgroundColor(Color.parseColor("#FFA000"));
+                LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams)mRelative.getLayoutParams();
+                lp.setMargins(70,20,0,0);
+                mRelative.setLayoutParams(lp);
 
             }else {
                 mMessage.setGravity(Gravity.START);
                 mMessage.setTextColor(Color.BLACK);
                 mContainer.setGravity(Gravity.LEFT);
                 //color.parsecolor(#8768)
-                mContainer.setBackgroundColor(Color.parseColor("#F4F4F4"));
-
-
+                LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams)mRelative.getLayoutParams();
+                lp.setMargins(0,20,70,0);
+                mRelative.setLayoutParams(lp);
             }
            // textViewIDMatch.setText(unMatch.getUserID());
             //textViewNombreMatch.setText(unMatch.getNombre());
