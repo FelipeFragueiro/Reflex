@@ -39,11 +39,11 @@ public class DetalleActorFragment extends Fragment {
         String biografia = aBundle.getString("biografia_actor");
 
         ImageView imageViewActor = (ImageView)view.findViewById(R.id.youtubeTrailerMovie);
-        TextView textViewNombreActor = (TextView)view.findViewById(R.id.textViewDelNombreDelActorDetalle);
+        TextView textViewNombreActor = (TextView)view.findViewById(R.id.textViewDelNombreDeLaPelicula);
         TextView textViewAlsoKnownAs = (TextView)view.findViewById(R.id.textViewTambienConocidoPorActorDetalle);
         TextView textViewCharacter = (TextView)view.findViewById(R.id.textViewDelPersonajeActorDetalle);
         TextView textViewBirthday = (TextView)view.findViewById(R.id.textViewDelCumpleañosDelActor);
-        TextView textViewBiografia = (TextView)view.findViewById(R.id.textViewDeLaBiografiaDelActorDetalle);
+        TextView textViewBiografia = (TextView)view.findViewById(R.id.textViewDeLaBiografiaDeLaPelicula);
 
         Glide.with(getContext()).load(proflePath).into(imageViewActor);
         textViewNombreActor.setText(name);

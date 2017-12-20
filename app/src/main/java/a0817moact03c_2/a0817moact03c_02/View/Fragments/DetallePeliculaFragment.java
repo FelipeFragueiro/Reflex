@@ -5,44 +5,27 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
-import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.graphics.Palette;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.ScrollView;
 
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.getbase.floatingactionbutton.FloatingActionButton;
-import com.google.android.youtube.player.YouTubeInitializationResult;
-import com.google.android.youtube.player.YouTubePlayer;
-import com.google.android.youtube.player.YouTubePlayerFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.squareup.picasso.Picasso;
-import com.squareup.picasso.Target;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import a0817moact03c_2.a0817moact03c_02.Controller.ActoresController;
 import a0817moact03c_2.a0817moact03c_02.Controller.PeliculasController;
@@ -50,7 +33,6 @@ import a0817moact03c_2.a0817moact03c_02.Model.Actores;
 import a0817moact03c_2.a0817moact03c_02.Model.Pelicula;
 import a0817moact03c_2.a0817moact03c_02.Model.PeliculaFavorita;
 import a0817moact03c_2.a0817moact03c_02.Model.Trailer;
-import a0817moact03c_2.a0817moact03c_02.Model.Usuario;
 import a0817moact03c_2.a0817moact03c_02.R;
 import a0817moact03c_2.a0817moact03c_02.Util.ResultListener;
 import a0817moact03c_2.a0817moact03c_02.Util.YoutubeFragment;
@@ -284,10 +266,10 @@ public class DetallePeliculaFragment extends Fragment implements AdapterPantalla
         botonFlotanteShare.setOnClickListener(this);
 
 
-        TextView textViewNombrePelicula = (TextView) fragmentView.findViewById(R.id.textViewDelNombreDelActorDetalle);
+        TextView textViewNombrePelicula = (TextView) fragmentView.findViewById(R.id.textViewDelNombreDeLaPelicula);
         //ImageView unImageViewPelicula = (ImageView) fragmentView.findViewById(R.id.youtubeTrailerMovie);
         //TextView unTextViewDelGenero = (TextView) fragmentView.findViewById(R.id.textViewDelPersonajeActorDetalle);
-        TextView unTextViewDeLaDescripcion = (TextView) fragmentView.findViewById(R.id.textViewDeLaBiografiaDelActorDetalle);
+        TextView unTextViewDeLaDescripcion = (TextView) fragmentView.findViewById(R.id.textViewDeLaBiografiaDeLaPelicula);
         textViewNombrePelicula.setText(unTitulo);
         //Glide.with(getContext()).load(unaImagen).into(unImageViewPelicula);
         //unTextViewDelGenero.setText(unGenero);

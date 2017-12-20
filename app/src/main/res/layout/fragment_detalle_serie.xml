@@ -12,15 +12,6 @@
         android:layout_height="match_parent">
 
 
-
-        <!--<ImageButton
-
-            android:id="@+id/imageViewDeLaSerieDetalle"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_alignParentTop="true"
-            android:background="#212121"
-            android:scaleType="centerCrop" />-->
         <FrameLayout
 
             android:id="@+id/youtubeTrailerSerieMovie"
@@ -67,7 +58,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/textViewDelGeneroDeLaSerieDetalle"
+            android:id="@+id/textViewDelGeneroDeLaPelicula"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/textViewDelTituloDeLaSerieDetalle"
@@ -81,7 +72,7 @@
             android:id="@+id/textViewDeLaDescripcionDeLaSerieDetalle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/textViewDelGeneroDeLaSerieDetalle"
+            android:layout_below="@id/textViewDelGeneroDeLaPelicula"
             android:layout_marginBottom="15dp"
             android:layout_marginTop="30dp"
             android:gravity="center"
@@ -128,10 +119,10 @@
             android:id="@+id/fadMenu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/textViewDelTituloDeLaSerieDetalle"
             android:layout_alignParentRight="true"
             app:fab_expandDirection="down"
-            app:fab_addButtonColorNormal="@color/colorPrimary">
+            app:fab_addButtonColorNormal="@color/colorPrimary"
+            android:layout_alignTop="@+id/textViewDelTituloDeLaSerieDetalle">
 
             <com.getbase.floatingactionbutton.FloatingActionButton
                 android:id="@+id/fadSerieCompartir"

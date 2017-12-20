@@ -14,7 +14,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -25,13 +24,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import a0817moact03c_2.a0817moact03c_02.Controller.ActoresController;
-import a0817moact03c_2.a0817moact03c_02.Controller.PeliculasController;
 import a0817moact03c_2.a0817moact03c_02.Controller.SeriesController;
 import a0817moact03c_2.a0817moact03c_02.Model.Actores;
 import a0817moact03c_2.a0817moact03c_02.Model.PeliculaFavorita;
 import a0817moact03c_2.a0817moact03c_02.Model.Serie;
 import a0817moact03c_2.a0817moact03c_02.Model.Trailer;
-import a0817moact03c_2.a0817moact03c_02.Model.Usuario;
 import a0817moact03c_2.a0817moact03c_02.R;
 import a0817moact03c_2.a0817moact03c_02.Util.ResultListener;
 import a0817moact03c_2.a0817moact03c_02.Util.YoutubeFragment;
@@ -93,7 +90,7 @@ public class DetalleSerieFragment extends Fragment implements AdaptadorDeSeries.
 
         TextView textViewNombreSerie = (TextView) fragmentView.findViewById(R.id.textViewDelTituloDeLaSerieDetalle);
         ImageView unImageViewSerie = (ImageView) fragmentView.findViewById(R.id.imageViewDeLaSerieDetalle);
-        TextView unTextViewDelGenero = (TextView) fragmentView.findViewById(R.id.textViewDelGeneroDeLaSerieDetalle);
+        TextView unTextViewDelGenero = (TextView) fragmentView.findViewById(R.id.textViewDelGeneroDeLaPelicula);
         TextView unTextViewDeLaDescripcion = (TextView) fragmentView.findViewById(R.id.textViewDeLaDescripcionDeLaSerieDetalle);
         cargarMovieTrailer(idDeSerie);
 

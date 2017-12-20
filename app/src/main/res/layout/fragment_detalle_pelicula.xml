@@ -1,9 +1,9 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollview"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
-    android:id="@+id/scrollview"
-    android:background="#ff54646c">
+    android:background="#212121"
+    android:fillViewport="true">
 
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -12,24 +12,21 @@
         android:id="@+id/fragmentviewpelisback"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#212121"
         android:focusableInTouchMode="true"
         android:orientation="vertical"
-        tools:context="a0817moact03c_2.a0817moact03c_02.View.Activities.DetallePeliculaActivity"
-        android:background="#212121"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:paddingTop="16dp"
+        tools:context="a0817moact03c_2.a0817moact03c_02.View.Activities.DetallePeliculaActivity">
+
+
+        <!--android:paddingTop="16dp"
         android:columnWidth="190dp"
-        android:clipToPadding="false" >
-        <ImageView
-            android:id="@+id/backgroudchange"
-            android:layout_width="match_parent"
-            android:layout_height="750dp">
+        android:clipToPadding="false"-->
+        <!-- <ImageView
+             android:id="@+id/backgroudchange"
+             android:layout_width="match_parent"
+             android:layout_height="750dp">
 
-        </ImageView>
-
-
-
+         </ImageView>-->
 
 
         <FrameLayout
@@ -38,46 +35,59 @@
             android:layout_height="200dp" />
 
         <TextView
-            android:id="@+id/textViewDelNombreDelActorDetalle"
+            android:id="@+id/textViewDelNombreDeLaPelicula"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:layout_below="@id/youtubeTrailerMovie"
             android:layout_marginTop="10dp"
-            android:textSize="20dp"
-            android:textStyle="bold"
+            android:gravity="center"
             android:text="Titulo de la pelicula"
             android:textColor="#ffffff"
-            android:layout_below="@id/youtubeTrailerMovie"/>
+            android:textSize="20dp"
+            android:textStyle="bold" />
 
-        <ImageView
+
+        <TextView
+            android:id="@+id/textViewDelGeneroDeLaPelicula"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textViewDelNombreDeLaPelicula"
+            android:layout_marginTop="5dp"
+            android:text=""
+            android:textColor="#ffffff"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+
+        <!--<ImageView
             android:layout_marginTop="5dp"
             android:id="@+id/textViewDelPersonajeActorDetalle"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:textStyle="bold"
-            android:layout_below="@id/textViewDelNombreDelActorDetalle"/>
+            android:layout_below="@id/textViewDelNombreDelActorDetalle"/>-->
 
         <TextView
 
-            android:id="@+id/textViewDeLaBiografiaDelActorDetalle"
+            android:id="@+id/textViewDeLaBiografiaDeLaPelicula"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textSize="20dp"
-            android:text="Descripcion de la pelicula"
-            android:layout_marginTop="20dp"
+            android:layout_below="@id/textViewDelGeneroDeLaPelicula"
             android:layout_marginBottom="15dp"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:text="Descripcion de la pelicula"
             android:textColor="#ffffff"
-            android:layout_below="@id/textViewDelPersonajeActorDetalle"/>
+            android:textSize="20dp" />
+
         <TextView
+            android:id="@+id/textViewPeliculasSimilares"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/textViewDeLaBiografiaDeLaPelicula"
             android:text="Peliculas Similares"
-            android:textSize="15dp"
-            android:textStyle="bold"
             android:textColor="#ffffff"
-            android:id="@+id/textViewPeliculasSimilares"
-            android:layout_below="@+id/textViewDeLaBiografiaDelActorDetalle"/>
+            android:textSize="15dp"
+            android:textStyle="bold" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerViewDePeliculasSugeridas"
@@ -88,14 +98,14 @@
         </android.support.v7.widget.RecyclerView>
 
         <TextView
+            android:id="@+id/textViewDelRepartoDeLaPeliculaDetalle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/recyclerViewDePeliculasSugeridas"
             android:text="Reparto"
-            android:textSize="15dp"
-            android:textStyle="bold"
             android:textColor="#ffffff"
-            android:id="@+id/textViewDelRepartoDeLaPeliculaDetalle"
-            android:layout_below="@+id/recyclerViewDePeliculasSugeridas"/>
+            android:textSize="15dp"
+            android:textStyle="bold" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerViewDelRepartoPelicula"
@@ -109,30 +119,28 @@
             android:id="@+id/fadMenu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="-25dp"
-            android:layout_below="@+id/textViewDelNombreDelActorDetalle"
             android:layout_alignParentRight="true"
+            app:fab_addButtonColorNormal="@color/colorPrimary"
             app:fab_expandDirection="down"
-            app:fab_addButtonColorNormal="@color/colorPrimary">
+            android:layout_alignTop="@+id/textViewDelNombreDeLaPelicula">
 
             <com.getbase.floatingactionbutton.FloatingActionButton
                 android:id="@+id/fadCompartir"
                 android:layout_width="@dimen/fab_size_normal"
                 android:layout_height="@dimen/fab_size_normal"
-                app:fab_colorNormal="@color/colorPrimary"
-                android:src="@android:drawable/ic_menu_share" />
+                android:src="@android:drawable/ic_menu_share"
+                app:fab_colorNormal="@color/colorPrimary" />
 
             <com.getbase.floatingactionbutton.FloatingActionButton
                 android:id="@+id/fadFavoritos"
                 android:layout_width="@dimen/fab_size_normal"
                 android:layout_height="56dp"
-                app:fab_colorNormal="@color/colorPrimary"
                 android:onClick="agregarAFavoritos"
-                android:src="@drawable/ic_star_border_black_24dp" />
+                android:src="@drawable/ic_star_border_black_24dp"
+                app:fab_colorNormal="@color/colorPrimary" />
 
 
         </com.getbase.floatingactionbutton.FloatingActionsMenu>
-
 
 
     </RelativeLayout>

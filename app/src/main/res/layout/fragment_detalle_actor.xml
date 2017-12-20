@@ -22,7 +22,7 @@
 
 
         <TextView
-            android:id="@+id/textViewDelNombreDelActorDetalle"
+            android:id="@+id/textViewDelNombreDeLaPelicula"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -42,7 +42,7 @@
             android:textStyle="bold"
             android:text="Personaje"
             android:textColor="#ffffff"
-            android:layout_below="@id/textViewDelNombreDelActorDetalle"/>
+            android:layout_below="@id/textViewDelNombreDeLaPelicula"/>
 
         <TextView
             android:layout_marginTop="5dp"
@@ -69,7 +69,7 @@
             android:layout_below="@id/textViewDelPersonajeActorDetalle"/>
 
         <TextView
-            android:id="@+id/textViewDeLaBiografiaDelActorDetalle"
+            android:id="@+id/textViewDeLaBiografiaDeLaPelicula"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -87,7 +87,7 @@
             android:textStyle="bold"
             android:textColor="#ffffff"
             android:id="@+id/textViewActoresPopulares"
-            android:layout_below="@+id/textViewDeLaBiografiaDelActorDetalle"/>
+            android:layout_below="@+id/textViewDeLaBiografiaDeLaPelicula"/>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerViewDePeliculasSugeridas"
