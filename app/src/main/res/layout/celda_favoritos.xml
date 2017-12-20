@@ -16,16 +16,17 @@
         android:layout_margin="8dp"
         />
 
-    <TextView
+    <!--<TextView
         android:id="@+id/textViewNombreDeLaPeliculaOSerieFavorita"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Nombre"
+        android:layout_gravity="center"
         android:gravity="center"
         android:layout_margin="4dp"
         android:textAlignment="center"
         android:textColor="#ffffff"
-        android:textSize="20dp"/>
+        android:textSize="20dp"/>-->
 
 
 

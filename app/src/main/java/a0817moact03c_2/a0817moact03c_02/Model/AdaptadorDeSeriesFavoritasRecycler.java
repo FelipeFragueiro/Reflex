@@ -70,7 +70,7 @@ public class AdaptadorDeSeriesFavoritasRecycler extends RecyclerView.Adapter  {
         public SeriesFavoritasViewHolder(View itemView) {
             super(itemView);
             imageViewDeLaPeliculaOSerieFavorita = (ImageView) itemView.findViewById(R.id.imageViewDeLaPeliculaOSerieFavorita);
-            textViewNombreDeLaPeliculaOSerieFavorita = (TextView)itemView.findViewById(R.id.textViewNombreDeLaPeliculaOSerieFavorita);
+            //textViewNombreDeLaPeliculaOSerieFavorita = (TextView)itemView.findViewById(R.id.textViewNombreDeLaPeliculaOSerieFavorita);
         }
 
         public void cargarSerieFavorita(Serie unaSerie){
