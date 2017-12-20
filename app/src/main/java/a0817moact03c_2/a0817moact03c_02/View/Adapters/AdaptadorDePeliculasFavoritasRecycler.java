@@ -90,11 +90,11 @@ public class AdaptadorDePeliculasFavoritasRecycler extends RecyclerView.Adapter 
         public PeliculasFavoritasViewHolder(View itemView) {
             super(itemView);
             imageViewDeLaPeliculaOSerieFavorita = (ImageView) itemView.findViewById(R.id.imageViewDeLaPeliculaOSerieFavorita);
-            textViewNombreDeLaPeliculaOSerieFavorita = (TextView)itemView.findViewById(R.id.textViewNombreDeLaPeliculaOSerieFavorita);
+            //textViewNombreDeLaPeliculaOSerieFavorita = (TextView)itemView.findViewById(R.id.textViewNombreDeLaPeliculaOSerieFavorita);
         }
 
         public void cargarPeliculaFavorita(PeliculaFavorita unaPelicula){
-            textViewNombreDeLaPeliculaOSerieFavorita.setText(unaPelicula.getTitle());
+           // textViewNombreDeLaPeliculaOSerieFavorita.setText(unaPelicula.getTitle());
             Glide.with(unContexto).load(unaPelicula.getPoster_path().toString()).into(imageViewDeLaPeliculaOSerieFavorita);
 
         }
