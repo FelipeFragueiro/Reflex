@@ -1,31 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="#212121"
     tools:context="a0817moact03c_2.a0817moact03c_02.TinderLike.TinderActivity">
-<Button
-    android:layout_width="88dp"
-    android:layout_height="wrap_content"
-    android:text="Matches"
-    android:background="@color/colorPrimary"
+<ImageButton
+    android:layout_width="80dp"
+    android:layout_height="80dp"
+    android:scaleType="centerCrop"
+    android:src="@drawable/ic_message_black_24dp"
+    style="@style/Widget.AppCompat.Button.Borderless"
+
     android:textSize="25dp"
     android:id="@+id/buttonMatches"
     android:onClick="goToMatches"
-    tools:layout_editor_absoluteY="0dp"
-    tools:layout_editor_absoluteX="8dp" />
+     />
     <com.lorentzos.flingswipe.SwipeFlingAdapterView
         android:id="@+id/frame"
         android:background="#212121"
-        android:layout_width="368dp"
-        android:layout_height="551dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:rotation_degrees="15.5"
         tools:context=".MyActivity"
-        tools:layout_editor_absoluteY="8dp"
-        tools:layout_editor_absoluteX="8dp" />
+         />
 
 
 
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

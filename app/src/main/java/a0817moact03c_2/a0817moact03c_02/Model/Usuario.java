@@ -12,7 +12,15 @@ public class Usuario {
     private String Foto;
     private String ID;
     private String Nombre;
+    private PeliculaFavorita peliculaFavorita;
 
+    public PeliculaFavorita getPeliculaFavorita() {
+        return peliculaFavorita;
+    }
+
+    public void setPeliculaFavorita(PeliculaFavorita peliculaFavorita) {
+        this.peliculaFavorita = peliculaFavorita;
+    }
 
     public String getFoto() {
         return Foto;

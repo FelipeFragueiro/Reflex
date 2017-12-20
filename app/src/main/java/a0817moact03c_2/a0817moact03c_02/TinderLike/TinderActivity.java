@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.content.Context;
 import android.util.Log;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -24,22 +25,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+import a0817moact03c_2.a0817moact03c_02.Model.PeliculaFavorita;
 import a0817moact03c_2.a0817moact03c_02.Model.Usuario;
 import a0817moact03c_2.a0817moact03c_02.R;
 
 public class TinderActivity extends AppCompatActivity {
     //private ArrayList<String> rowItems;
-    private List<Usuario>rowItems = new ArrayList<>();
+    private List<Usuario> rowItems = new ArrayList<>();
     //private ArrayAdapter<String>arrayAdapter;
     private AdapterUsuarios usuarioAdapterUsuarios;
     private int i;
+    private List<PeliculaFavorita> userPhotoList;
+    private List<PeliculaFavorita> otraLista;
     ListView listView;
 
 
-//lo que podria hacer es que no te mache por las peliculas favoritas si no que directamente se muestren tus peliculas favoritas
+    //lo que podria hacer es que no te mache por las peliculas favoritas si no que directamente se muestren tus peliculas favoritas
     //y ahi decidis si hablar con esa persona o no.
-        //no hace falta que no te tire solo mujeres si sos hombre(lo mismo pa mujeres) porque esta app no es para
-            //peliCULEAR todavia.
+    //no hace falta que no te tire solo mujeres si sos hombre(lo mismo pa mujeres) porque esta app no es para
+    //peliCULEAR todavia.
     FirebaseAuth mAuth;
     //mAuth = FirebaseAuth.getInstance();
     //FirebaseUser user = mAuth.getCurrentUser();
@@ -58,21 +62,16 @@ public class TinderActivity extends AppCompatActivity {
         final DatabaseReference databaseReference1 = databaseReference.child("Usuario").child(user.getUid());
 
 
+       // userPhotoList = new ArrayList<>();
 
 
         rowItems = new ArrayList<>();
-        //rowItems.add("hola");
-        Usuario usuario = new Usuario();
-        usuario.setNombre("oh".concat(String.valueOf(i)));
-        usuario.setFoto("http://www.islabit.com/wp-content/uploads/2017/09/Android.png");
-        usuario.setID("123123");
-        rowItems.add(usuario);
 
         getUsuarios();
-        usuarioAdapterUsuarios = new AdapterUsuarios(this, R.layout.item, rowItems );
+        usuarioAdapterUsuarios = new AdapterUsuarios(this, R.layout.item,rowItems);
 
-        SwipeFlingAdapterView flingContainer = (SwipeFlingAdapterView)findViewById(R.id.frame);
-        flingContainer.setAdapter(usuarioAdapterUsuarios);
+        SwipeFlingAdapterView flingContainer = (SwipeFlingAdapterView) findViewById(R.id.frame);
+        flingContainer.setAdapter( usuarioAdapterUsuarios);
         flingContainer.setFlingListener(new SwipeFlingAdapterView.onFlingListener() {
             @Override
             public void removeFirstObjectInAdapter() {
@@ -107,24 +106,45 @@ public class TinderActivity extends AppCompatActivity {
             @Override
             public void onAdapterAboutToEmpty(int itemsInAdapter) {
                 // Ask for more data here
-                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                /*FirebaseDatabase database = FirebaseDatabase.getInstance();
                 DatabaseReference databaseReference = database.getReference();
                 DatabaseReference pelifavorita = databaseReference.child("Usuario").child("123123").child("Fotos");
                 DatabaseReference userid = databaseReference.child("Usuario").child("123123").child("ID");
-                DatabaseReference username= databaseReference.child("Usuario").child("123123").child("Nombre");
+                DatabaseReference username = databaseReference.child("Usuario").child("123123").child("Nombre");
+                DatabaseReference userfav = databaseReference.child("Usuario").child("123123").child("Favoritos").child("pe2");
+                DatabaseReference userfav2 = databaseReference.child("Usuario").child("123123").child("Favoritos").child("pe3");
                 username.setValue("oh");
                 userid.setValue("123123");
 
                 pelifavorita.setValue("http://www.islabit.com/wp-content/uploads/2017/09/Android.png");
+                PeliculaFavorita pe2 = new PeliculaFavorita();
+                PeliculaFavorita pe3 = new PeliculaFavorita();
+                pe3.setTitle("pelicula5");
+                pe3.setOverview("asnjdansd");
+                pe3.setKey("oipoipoiop");
+                pe3.setUserID("123123");
 
+                pe3.setPoster_path("ljn");
+                pe2.setTitle("pelicula3");
+                pe2.setOverview("asnjdansd");
+                pe2.setKey("oipoipoiop");
+                pe2.setUserID("123123");
+                pe2.setPoster_path("ljn");
+
+                List<PeliculaFavorita> lista = new ArrayList<PeliculaFavorita>();
+                userfav.setValue(pe2);
+                userfav2.setValue(pe3);
+                lista.add(pe2);
+                lista.add(pe3);
                 Usuario usuario = new Usuario();
                 usuario.setNombre("oh".concat(String.valueOf(i)));
                 usuario.setFoto("http://www.islabit.com/wp-content/uploads/2017/09/Android.png");
                 usuario.setID("123123");
+                usuario.setPeliculaFavorita(lista);
                 rowItems.add(usuario);
                 usuarioAdapterUsuarios.notifyDataSetChanged();
                 Log.d("LIST", "notified");
-                i++;
+                i++;*/
             }
 
             @Override
@@ -143,7 +163,8 @@ public class TinderActivity extends AppCompatActivity {
         });
 
     }
-    public void getUsuarios(){
+
+    public void getUsuarios() {
         final FirebaseAuth mAuth;
         mAuth = FirebaseAuth.getInstance();
 
@@ -153,15 +174,66 @@ public class TinderActivity extends AppCompatActivity {
         DatabaseReference firebaseDataRef = firebaseDatabase.getReference();
         DatabaseReference pelisfavoritasDB = firebaseDataRef.child("Usuario");
         pelisfavoritasDB.addChildEventListener(new ChildEventListener() {
+
+
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                if(dataSnapshot.exists()) {
-                Usuario usuario = new Usuario();
-                    usuario.setID(dataSnapshot.getKey());
-                    usuario.setNombre(dataSnapshot.child("Nombre").getValue().toString());
-                    usuario.setFoto(dataSnapshot.child("Fotos").getValue().toString());
-                    rowItems.add(usuario);
-                    usuarioAdapterUsuarios.notifyDataSetChanged();
+                if (dataSnapshot.exists()) {
+                    final Usuario usuario = new Usuario();
+                    userPhotoList = new ArrayList<PeliculaFavorita>();
+
+
+                        usuario.setID(dataSnapshot.getKey());
+
+                        usuario.setNombre(dataSnapshot.child("Nombre").getValue().toString());
+
+                        usuario.setFoto(dataSnapshot.child("Fotos").getValue().toString());
+
+                        //agregarFavs(usuario.getID());
+                        //usuario.setPeliculaFavorita(userPhotoList);
+
+
+
+
+                    DatabaseReference firebaseDatabase = FirebaseDatabase.getInstance().getReference().child("Usuario").child(usuario.getID()).child("Favoritos");
+                    firebaseDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            for (DataSnapshot snapshotChildren : dataSnapshot.getChildren()) {
+                                PeliculaFavorita aPeli = snapshotChildren.getValue(PeliculaFavorita.class);
+
+
+                                    userPhotoList.add(aPeli);
+
+                                 otraLista = new ArrayList<>();
+
+
+
+                                //agregarPelicula(userPhotoList,usuario);
+                                if (userPhotoList.get(0).getUserID().equals(usuario.getID())){
+                                    usuario.setPeliculaFavorita(userPhotoList.get(0));
+                                }
+
+                                if (!userPhotoList.isEmpty()){
+
+                                  usuario.setPeliculaFavorita(userPhotoList.get(0));
+                                    }
+
+
+                                rowItems.add(usuario);
+
+                                usuarioAdapterUsuarios.notifyDataSetChanged();
+
+
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+
 
                 }
             }
@@ -179,6 +251,7 @@ public class TinderActivity extends AppCompatActivity {
             @Override
             public void onChildMoved(DataSnapshot dataSnapshot, String s) {
 
+
             }
 
             @Override
@@ -187,18 +260,29 @@ public class TinderActivity extends AppCompatActivity {
             }
         });
 
-        //ESTE METODO DE ABAJO NO FUNCIONA LO QUE HAY QUE HACER ES IR LLAMANDO LOS DBREFERENCE UNO POR UNO Y METEROS
-        //AL USIARIO. Fijarse como hacer para obtener un valor de un child en internet.
+    }
+    public void agregarPelicula(List<PeliculaFavorita>peli , Usuario usuario){
+        for (PeliculaFavorita unaPeli:peli) {
+            if (unaPeli.getUserID().equals(usuario.getID()))
+                otraLista.add(unaPeli);
+            break;
+        }
 
 
-        /*pelisfavoritasDB.addListenerForSingleValueEvent(new ValueEventListener() {
+
+
+
+    }
+
+    public void agregarFavs( String usuario){
+        DatabaseReference firebaseDatabase = FirebaseDatabase.getInstance().getReference().child("Usuario").child(usuario).child("Favoritos");
+        firebaseDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-
-
                 for (DataSnapshot snapshotChildren : dataSnapshot.getChildren()) {
-                    Usuario aUser = snapshotChildren.getValue(Usuario.class);
-                    rowItems.add(aUser);
+                    PeliculaFavorita aPeli = snapshotChildren.getValue(PeliculaFavorita.class);
+
+                    userPhotoList.add(aPeli);
 
 
                 }
@@ -206,22 +290,24 @@ public class TinderActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Toast.makeText(TinderActivity.this, databaseError.toString(), Toast.LENGTH_SHORT).show();
+
             }
-        });*/
+        });
     }
 
-    public void goToMatches(View view){
+
+
+    public void goToMatches(View view) {
         startActivity(new Intent(TinderActivity.this, MatchesActivity.class));
     }
 
-    private void isConnectionMatch(String userid){
+    private void isConnectionMatch(String userid) {
         final String currentuserid = mAuth.getCurrentUser().getUid();
         DatabaseReference pelisfavoritasDB = databaseReference.child("Usuario").child(currentuserid).child("Connections").child("Si").child(userid);
         pelisfavoritasDB.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if(dataSnapshot.exists()) {
+                if (dataSnapshot.exists()) {
                     Toast.makeText(getApplicationContext(), "Match", Toast.LENGTH_SHORT).show();
                     String key = FirebaseDatabase.getInstance().getReference().child("Chat").push().getKey();
 
@@ -230,8 +316,6 @@ public class TinderActivity extends AppCompatActivity {
                     databaseReference.child("Usuario").child(currentuserid).child("Connections").child("Match").child(dataSnapshot.getKey()).child("Chatid").setValue(key);
 
 
-
-
                 }
             }
 
@@ -244,18 +328,18 @@ public class TinderActivity extends AppCompatActivity {
 
     }
 
-/*
-    public boolean contiene(Usuario unaPeli){
-        for (Usuario unaPeli1:usuarioList) {
-            if (unaPeli.getID().equals(unaPeli1.getID())){
+
+    public boolean contiene(PeliculaFavorita unaPeli){
+        for (PeliculaFavorita unaPeli1:userPhotoList) {
+            if (unaPeli.getTitle().equals(unaPeli1.getTitle())){
 
                 return false;
             }
         }
         return true;
-    }*/
+    }
 
-    static void makeToast(Context ctx, String s){
+    static void makeToast(Context ctx, String s) {
         Toast.makeText(ctx, s, Toast.LENGTH_SHORT).show();
     }
 
