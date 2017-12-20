@@ -83,6 +83,7 @@ public class ChatAdapter extends RecyclerView.Adapter {
          //private ImageView imageViewDeMatch;
         private TextView mMessage;
         public LinearLayout mContainer;
+        private String hola;
 
         public MatchesViewHolder(View itemView) {
             super(itemView);
