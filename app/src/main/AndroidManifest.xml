@@ -19,7 +19,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".View.Activities.DetalleGenerosDePeliculaActivity" />
         <activity android:name=".View.Activities.DetallePeliculaActivity" />
         <activity android:name=".View.Activities.FotoCompletaPeliculaActivity" />
         <activity android:name=".View.Activities.DetalleSeriesActivity" />

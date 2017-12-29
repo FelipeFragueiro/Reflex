@@ -74,11 +74,11 @@ public class AdapterGenerosDelNavigationView extends RecyclerView.Adapter{
 
         public PeliculaViewHolder(View itemView) {
             super(itemView);
-            textViewNombreDeLaPelicula = (TextView)itemView.findViewById(R.id.textViewNombreDeLaPeliculaDeXGenero);
+            //textViewNombreDeLaPelicula = (TextView)itemView.findViewById(R.id.textViewNombreDeLaPeliculaDeXGenero);
             imageViewDeLaPelicula = (ImageView) itemView.findViewById(R.id.imageViewDePeliculaDeXGenero);
         }
         public void cargarPelicula(Pelicula unaPelicula){
-            textViewNombreDeLaPelicula.setText(unaPelicula.getNombre());
+//            textViewNombreDeLaPelicula.setText(unaPelicula.getNombre());
             Glide.with(unContexto).load(unaPelicula.getPoster_path()).into(imageViewDeLaPelicula);
         }
 

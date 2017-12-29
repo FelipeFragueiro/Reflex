@@ -49,8 +49,8 @@ public class FragmentoGenerosPantallaPrincipal extends Fragment implements Adapt
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_fragmento_generos_pantalla_principal, container, false);
 
-        TextView nombeGenero = (TextView)view.findViewById(R.id.textViewGeneroPantallaPrincipal);
-        nombeGenero.setText(nombreGenero);
+        TextView nombreGenero = (TextView)view.findViewById(R.id.textViewGeneroPantallaPrincipal);
+        nombreGenero.setText(this.nombreGenero);
 
 
 
